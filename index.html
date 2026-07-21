@@ -59,7 +59,7 @@
         }
         .countries-container {
             max-width: 1200px; margin: 0 auto; display: flex; align-items: center;
-            justify-content: center; gap: 20px; flex-wrap: wrap; font-size: 14px; font-weight: 600;
+            justify-content: center; gap: 15px; flex-wrap: wrap; font-size: 13px; font-weight: 600;
         }
         .country-item { display: flex; align-items: center; gap: 6px; background: #f8fafc; padding: 6px 14px; border-radius: 20px; border: 1px solid #e2e8f0; }
 
@@ -117,11 +117,11 @@
         }
 
         .card-img {
-            height: 190px; width: 100%; background: #fff;
-            display: flex; align-items: center; justify-content: center; padding: 10px;
+            height: 190px; width: 100%; background: #f8fafc;
+            display: flex; align-items: center; justify-content: center; padding: 15px;
             border-bottom: 1px solid #f4f5f7;
         }
-        .card-img img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .card-img img { max-width: 100%; max-height: 100%; object-fit: contain; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.08)); }
 
         .card-body { padding: 15px; }
         .card-title { font-size: 14px; font-weight: 700; height: 38px; line-height: 1.3; color: var(--text-dark); overflow: hidden; }
@@ -189,7 +189,7 @@
     <!-- Import Countries Section -->
     <div class="countries-bar">
         <div class="countries-container">
-            <span style="color:#6b778c; font-size: 13px;">პროდუქცია სხვადასხვა ქვეყნიდან:</span>
+            <span style="color:#6b778c;">პროდუქცია სხვადასხვა ქვეყნიდან:</span>
             <div class="country-item">🇬🇪 საქართველო</div>
             <div class="country-item">🇦🇲 სომხეთი</div>
             <div class="country-item">🇹🇷 თურქეთი</div>
@@ -253,49 +253,63 @@
     <script>
         let currentLang = 'ka';
 
-        // პროდუქტების სია რეალისტური ფოტოებით
+        // მულტფილმის/3D სტილის მაღალი ხარისხის სურათები
         const products = [
             {
                 id: 1,
                 name: { ka: "სომხური ყავა Latino (საპრიზო 🎁)", en: "Armenian Coffee Latino (Prize 🎁)", ru: "Армянский кофе Latino (Призовой 🎁)" },
                 price: 3.50,
                 prize: true,
-                img: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=500&q=80"
+                img: "https://cdn-icons-png.flaticon.com/512/2935/2935413.png"
             },
             {
                 id: 2,
                 name: { ka: "ახალი საქონლის ხორცი (1კგ)", en: "Fresh Beef Meat (1kg)", ru: "Свежая говядина (1кг)" },
                 price: 22.00,
                 prize: false,
-                img: "https://images.unsplash.com/photo-1588168333986-5078d3ae3976?auto=format&fit=crop&w=500&q=80"
+                img: "https://cdn-icons-png.flaticon.com/512/3143/3143643.png"
             },
             {
                 id: 3,
-                name: { ka: "ახალი ქათმის ფილე (1კგ)", en: "Fresh Chicken Fillet (1kg)", ru: "Куриное филе (1кг)" },
-                price: 13.50,
+                name: { ka: "შებოლილი სოსისი (1კგ)", en: "Smoked Sausage (1kg)", ru: "Копченая колбаса (1кг)" },
+                price: 15.00,
                 prize: false,
-                img: "https://images.unsplash.com/photo-1604503468506-a8da13d82791?auto=format&fit=crop&w=500&q=80"
+                img: "https://cdn-icons-png.flaticon.com/512/2822/2822453.png"
             },
             {
                 id: 4,
-                name: { ka: "ქათმის კვერცხი C1 (10 ცალი)", en: "Chicken Eggs C1 (10 pcs)", ru: "Куриные яйца (10 шт)" },
-                price: 4.50,
+                name: { ka: "ახალი ქათმის ფილე (1კგ)", en: "Fresh Chicken Fillet (1kg)", ru: "Куриное филе (1кг)" },
+                price: 13.50,
                 prize: false,
-                img: "https://images.unsplash.com/photo-1582721478779-0ae163c05a60?auto=format&fit=crop&w=500&q=80"
+                img: "https://cdn-icons-png.flaticon.com/512/1046/1046751.png"
             },
             {
                 id: 5,
-                name: { ka: "ლუდი ჰაინეკენი (Heineken) 0.5L", en: "Heineken Beer 0.5L", ru: "Пиво Heineken 0.5л" },
-                price: 3.80,
+                name: { ka: "სარეცხი ფხვნილი Ariel / Tide", en: "Washing Powder Ariel / Tide", ru: "Стиральный порошок Ariel / Tide" },
+                price: 18.50,
                 prize: false,
-                img: "https://images.unsplash.com/photo-1608270586620-248524c67de9?auto=format&fit=crop&w=500&q=80"
+                img: "https://cdn-icons-png.flaticon.com/512/2553/2553642.png"
             },
             {
                 id: 6,
-                name: { ka: "შაქარი თეთრი (1კგ)", en: "White Sugar (1kg)", ru: "Сахар белый (1кг)" },
-                price: 2.80,
+                name: { ka: "ჭურჭლის სარეცხი სითხე (Fairy)", en: "Dishwashing Liquid (Fairy)", ru: "Средство для посуды (Fairy)" },
+                price: 4.80,
                 prize: false,
-                img: "https://images.unsplash.com/photo-1581441363689-1f3c3c414635?auto=format&fit=crop&w=500&q=80"
+                img: "https://cdn-icons-png.flaticon.com/512/2917/2917629.png"
+            },
+            {
+                id: 7,
+                name: { ka: "ქათმის კვერცხი C1 (10 ცალი)", en: "Chicken Eggs C1 (10 pcs)", ru: "Куриные яйца (10 шт)" },
+                price: 4.50,
+                prize: false,
+                img: "https://cdn-icons-png.flaticon.com/512/2917/2917633.png"
+            },
+            {
+                id: 8,
+                name: { ka: "ლუდი ჰაინეკენი (Heineken) 0.5L", en: "Heineken Beer 0.5L", ru: "Пиво Heineken 0.5л" },
+                price: 3.80,
+                prize: false,
+                img: "https://cdn-icons-png.flaticon.com/512/931/931949.png"
             }
         ];
 
@@ -375,11 +389,11 @@
             setTimeout(() => {
                 let reply = "";
                 if(currentLang === 'ka') {
-                    reply = "მადლობა შეკითხვისთვის! ჩვენს მინი მარკეტში მოქმედებს 50 ლარზე ზემოთ უფასო მიწოდება ახალციხეში. ასევე გვაქვს საპრიზო ყავა Latino!";
+                    reply = "მადლობა შეკითხვისთვის! ახალციხეში 50 ლარზე ზემოთ მიწოდება უფასოა. გვაქვს სარეცხი საშუალებები, ხორცეული და საპრიზო ყავა Latino!";
                 } else if(currentLang === 'en') {
-                    reply = "Thanks for asking! Free delivery in Akhaltsikhe for orders over 50 GEL. We also have prize coffee Latino!";
+                    reply = "Thanks for asking! Free delivery in Akhaltsikhe over 50 GEL. We have detergents, meat products, and prize coffee Latino!";
                 } else {
-                    reply = "Спасибо за вопрос! Бесплатная доставка по Ахалцихе при заказе от 50 лари. Также у нас есть призовой кофе Latino!";
+                    reply = "Спасибо за вопрос! Бесплатная доставка по Ахалцихе от 50 лари. У нас есть моющие средства, мясные продукты и призовой кофе Latino!";
                 }
 
                 body.innerHTML += `
