@@ -8,194 +8,208 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #0052cc;
-            --secondary: #ff9800;
-            --accent: #e53935;
-            --bg: #f4f6f8;
-            --dark: #172b4d;
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --accent: #dc2626;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-sub: #64748b;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; }
-        body { background: var(--bg); color: #333; padding-bottom: 80px; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+        body { background: var(--bg); color: var(--text-main); padding-bottom: 90px; }
 
-        /* Header & Topbar */
+        /* Top Bar */
         .top-bar {
-            background: var(--dark); color: white; padding: 6px 20px;
+            background: #0f172a; color: white; padding: 8px 20px;
             display: flex; justify-content: space-between; align-items: center; font-size: 13px;
         }
 
-        .lang-switch button {
-            background: rgba(255,255,255,0.2); color: white; border: none;
-            padding: 3px 8px; border-radius: 4px; cursor: pointer; font-weight: bold;
+        .lang-picker button {
+            background: rgba(255,255,255,0.15); color: white; border: none;
+            padding: 4px 10px; border-radius: 6px; cursor: pointer; font-weight: bold; transition: 0.2s;
         }
-        .lang-switch button.active { background: var(--secondary); color: black; }
+        .lang-picker button.active { background: #f59e0b; color: #000; }
 
+        /* Header */
         header {
-            background: white; padding: 12px 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            background: white; padding: 15px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
             position: sticky; top: 0; z-index: 999;
         }
 
-        .header-container {
+        .header-wrap {
             max-width: 1200px; margin: 0 auto; display: flex;
-            align-items: center; justify-content: space-between; gap: 15px; flex-wrap: wrap;
+            align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
         }
 
-        .logo-area { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-        .logo-area img { width: 55px; height: 55px; border-radius: 50%; object-fit: cover; }
-        .logo-area h1 { font-size: 22px; color: var(--primary); font-weight: 900; }
+        .brand-area { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .brand-area img { width: 55px; height: 55px; border-radius: 50%; object-fit: cover; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .brand-area h1 { font-size: 22px; color: var(--primary); font-weight: 900; letter-spacing: -0.5px; }
 
         .search-area { flex: 1; max-width: 450px; position: relative; }
         .search-area input {
-            width: 100%; padding: 10px 40px 10px 15px; border: 2px solid #dfe1e6;
-            border-radius: 20px; outline: none; font-size: 14px;
+            width: 100%; padding: 12px 45px 12px 18px; border: 2px solid #e2e8f0;
+            border-radius: 30px; outline: none; font-size: 14px; background: #f8fafc; transition: 0.2s;
         }
-        .search-area i { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: #7a869a; }
+        .search-area input:focus { border-color: var(--primary); background: white; }
+        .search-area i { position: absolute; right: 18px; top: 50%; transform: translateY(-50%); color: #94a3b8; }
 
-        /* Product Grid */
-        .main-content { max-width: 1200px; margin: 20px auto; padding: 0 20px; }
-        .section-title { font-size: 20px; font-weight: 800; margin-bottom: 15px; color: var(--dark); }
+        /* Modern Banner */
+        .hero-banner { max-width: 1200px; margin: 25px auto 0; padding: 0 20px; }
+        .banner-box {
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            color: white; border-radius: 20px; padding: 30px;
+            box-shadow: 0 10px 25px rgba(37,99,235,0.25);
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;
+        }
+        .banner-box h2 { font-size: 24px; font-weight: 800; margin-bottom: 8px; }
+        .banner-box p { font-size: 14px; opacity: 0.9; }
+
+        /* Catalog Main Area */
+        .container { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
+        .section-header { font-size: 20px; font-weight: 800; margin-bottom: 20px; color: var(--text-main); display: flex; align-items: center; gap: 8px; }
 
         .products-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 18px;
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 20px;
         }
 
         .product-card {
-            background: white; border-radius: 12px; overflow: hidden;
-            border: 1px solid #dfe1e6; transition: all 0.2s;
+            background: var(--card-bg); border-radius: 16px; overflow: hidden;
+            border: 1px solid #e2e8f0; transition: all 0.25s ease;
             display: flex; flex-direction: column; justify-content: space-between;
         }
-        .product-card:hover { box-shadow: 0 8px 20px rgba(0,0,0,0.1); transform: translateY(-3px); }
+        .product-card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); border-color: #cbd5e1; }
 
-        .img-container { height: 180px; width: 100%; padding: 10px; text-align: center; background: #fff; }
-        .img-container img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .img-wrap { height: 200px; width: 100%; padding: 15px; background: #ffffff; display: flex; align-items: center; justify-content: center; }
+        .img-wrap img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
-        .card-info { padding: 12px; }
-        .product-name { font-size: 14px; font-weight: 700; height: 38px; overflow: hidden; color: var(--dark); }
-        .product-price { font-size: 18px; font-weight: 900; color: var(--accent); margin: 8px 0; }
+        .card-details { padding: 16px; background: white; border-top: 1px solid #f1f5f9; }
+        .title { font-size: 15px; font-weight: 700; height: 42px; line-height: 1.3; overflow: hidden; color: var(--text-main); }
+        .price { font-size: 20px; font-weight: 900; color: var(--accent); margin: 10px 0 14px; }
 
-        .btn-wa {
+        .wa-btn {
             width: 100%; background: #25D366; color: white; border: none;
-            padding: 9px; border-radius: 8px; font-weight: 700; cursor: pointer;
-            display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 13px;
+            padding: 10px; border-radius: 10px; font-weight: 700; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 13px; transition: 0.2s;
         }
+        .wa-btn:hover { background: #20ba5a; }
 
-        /* AI Voice Floating */
-        .ai-btn {
-            position: fixed; bottom: 20px; right: 20px; background: var(--primary);
-            color: white; width: 58px; height: 58px; border-radius: 50%;
+        /* Floating AI Assistant */
+        .ai-float-btn {
+            position: fixed; bottom: 25px; right: 25px; background: var(--primary);
+            color: white; width: 60px; height: 60px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            font-size: 24px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,82,204,0.4); z-index: 1000;
+            font-size: 26px; cursor: pointer; box-shadow: 0 6px 20px rgba(37,99,235,0.4); z-index: 1000; transition: 0.2s;
         }
+        .ai-float-btn:hover { transform: scale(1.08); }
 
-        .ai-chat-window {
-            position: fixed; bottom: 85px; right: 20px; width: 330px; height: 420px;
-            background: white; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            display: none; flex-direction: column; z-index: 1000; overflow: hidden; border: 1px solid #ccc;
+        .ai-window {
+            position: fixed; bottom: 95px; right: 25px; width: 340px; height: 440px;
+            background: white; border-radius: 20px; box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+            display: none; flex-direction: column; z-index: 1000; overflow: hidden; border: 1px solid #e2e8f0;
         }
-        .ai-header { background: var(--primary); color: white; padding: 12px; font-weight: 700; display: flex; justify-content: space-between; }
-        .ai-body { flex: 1; padding: 12px; overflow-y: auto; background: #f4f5f7; display: flex; flex-direction: column; gap: 8px; }
-        .msg { padding: 8px 12px; border-radius: 10px; font-size: 13px; max-width: 85%; }
-        .msg.bot { background: #ebecf0; color: #172b4d; align-self: flex-start; }
-        .msg.user { background: var(--primary); color: white; align-self: flex-end; }
-        .ai-footer { padding: 8px; display: flex; gap: 5px; background: white; border-top: 1px solid #eee; }
-        .ai-footer input { flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 15px; outline: none; }
-        .ai-footer button { background: var(--primary); color: white; border: none; padding: 8px 12px; border-radius: 50%; cursor: pointer; }
+        .ai-head { background: var(--primary); color: white; padding: 14px 16px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; }
+        .ai-body { flex: 1; padding: 14px; overflow-y: auto; background: #f8fafc; display: flex; flex-direction: column; gap: 10px; }
+        .chat-msg { padding: 10px 14px; border-radius: 12px; font-size: 13px; max-width: 85%; line-height: 1.4; }
+        .chat-msg.bot { background: #e2e8f0; color: #0f172a; align-self: flex-start; }
+        .chat-msg.user { background: var(--primary); color: white; align-self: flex-end; }
+        .ai-foot { padding: 10px; display: flex; gap: 8px; background: white; border-top: 1px solid #f1f5f9; }
+        .ai-foot input { flex: 1; padding: 10px 14px; border: 1px solid #cbd5e1; border-radius: 20px; outline: none; font-size: 13px; }
+        .ai-foot button { background: var(--primary); color: white; border: none; width: 38px; height: 38px; border-radius: 50%; cursor: pointer; }
     </style>
 </head>
 <body>
 
+    <!-- Top Bar -->
     <div class="top-bar">
         <div>📍 ქ. ახალციხე, იაძის ქ. №2 | 📞 +995 500 22 48 22</div>
-        <div class="lang-switch">
-            <button class="active" onclick="switchLang('ka', this)">KA</button>
-            <button onclick="switchLang('en', this)">EN</button>
-            <button onclick="switchLang('ru', this)">RU</button>
+        <div class="lang-picker">
+            <button class="active" onclick="changeLang('ka', this)">KA</button>
+            <button onclick="changeLang('en', this)">EN</button>
+            <button onclick="changeLang('ru', this)">RU</button>
         </div>
     </div>
 
+    <!-- Header -->
     <header>
-        <div class="header-container">
-            <a href="#" class="logo-area">
-                <img src="WhatsApp Image 2026-06-27 at 20.59.49.jpeg" alt="Logo">
+        <div class="header-wrap">
+            <a href="#" class="brand-area">
+                <img src="WhatsApp Image 2026-06-27 at 20.59.49.jpeg" alt="MINI MARKET Logo">
                 <div>
                     <h1>MINI MARKET</h1>
                 </div>
             </a>
 
             <div class="search-area">
-                <input type="text" id="searchInput" onkeyup="searchProduct()" placeholder="ძებნა კატალოგში...">
+                <input type="text" id="searchInput" onkeyup="filterItems()" placeholder="ძებნა კატალოგში...">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </div>
         </div>
     </header>
 
-    <div class="main-content">
-        <div class="section-title" id="secTitle">🛒 პროდუქციის კატალოგი</div>
+    <!-- Banner -->
+    <div class="hero-banner">
+        <div class="banner-box">
+            <div>
+                <h2 id="bannerTitle">🛒 ონლაინ მარკეტი ახალციხეში</h2>
+                <p id="bannerDesc">ხარისხიანი პროდუქცია და სწრაფი მომსახურება</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Products -->
+    <div class="container">
+        <div class="section-header" id="sectionTitle"><i class="fa-solid fa-store" style="color:var(--primary);"></i> პროდუქციის კატალოგი</div>
         <div class="products-grid" id="productsGrid"></div>
     </div>
 
-    <div class="ai-btn" onclick="toggleAIChat()"><i class="fa-solid fa-robot"></i></div>
+    <!-- AI Voice Floating -->
+    <div class="ai-float-btn" onclick="toggleAI()"><i class="fa-solid fa-robot"></i></div>
 
-    <div class="ai-chat-window" id="aiWindow">
-        <div class="ai-header">
+    <!-- AI Chat Window -->
+    <div class="ai-window" id="aiWindow">
+        <div class="ai-head">
             <span><i class="fa-solid fa-robot"></i> AI Voice Assistant</span>
-            <i class="fa-solid fa-xmark" onclick="toggleAIChat()" style="cursor:pointer;"></i>
+            <i class="fa-solid fa-xmark" onclick="toggleAI()" style="cursor:pointer;"></i>
         </div>
         <div class="ai-body" id="aiBody">
-            <div class="msg bot" id="aiWelcomeMsg">გამარჯობა! მე ვარ MINI MARKET-ის AI ასისტენტი. რით დაგეხმაროთ? 🔊</div>
+            <div class="chat-msg bot" id="aiWelcome">გამარჯობა! მე ვარ MINI MARKET-ის AI ასისტენტი. რით დაგეხმაროთ? 🔊</div>
         </div>
-        <div class="ai-footer">
-            <input type="text" id="aiInput" placeholder="Write question..." onkeypress="if(event.key==='Enter') sendAIMessage()">
-            <button onclick="sendAIMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+        <div class="ai-foot">
+            <input type="text" id="aiInput" placeholder="Write question..." onkeypress="if(event.key==='Enter') sendAIMsg()">
+            <button onclick="sendAIMsg()"><i class="fa-solid fa-paper-plane"></i></button>
         </div>
     </div>
 
     <script>
         let currentLang = 'ka';
 
-        // ზუსტი პროდუქტები - შემოწმებული და გასწორებული სურათების ბმულებით
+        // მხოლიდ ის პროდუქტები, რომელთა 100%-ით ზუსტი ფოტოებიც გვაქვს
         const products = [
             {
                 id: 1,
-                name: { ka: "ქათმის კვერცხი C1 (10 ცალი)", en: "Chicken Eggs C1 (10 pcs)", ru: "Куриные яйца С1 (10 шт)" },
+                name: { ka: "ქათმის კვერცხი (10 ცალი)", en: "Chicken Eggs (10 pcs)", ru: "Куриные яйца (10 шт)" },
                 price: 4.50,
-                // ზუსტი კვერცხის სურათი
                 img: "https://images.unsplash.com/photo-1582721478779-0ae163c05a60?auto=format&fit=crop&w=500&q=80"
             },
             {
                 id: 2,
-                name: { ka: "ახალი საქონლის რბილი ხორცი (1კგ)", en: "Fresh Beef Meat (1kg)", ru: "Свежая говядина (1кг)" },
-                price: 22.00,
-                // ზუსტი ხორცის სურათი
-                img: "https://images.unsplash.com/photo-1588168333986-5078d3ae3976?auto=format&fit=crop&w=500&q=80"
-            },
-            {
-                id: 3,
-                name: { ka: "ახალი ქათმის ფილე (1კგ)", en: "Fresh Chicken Fillet (1kg)", ru: "Куриное филе (1кг)" },
-                price: 13.50,
-                // ზუსტი ქათმის ხორცის სურათი
-                img: "https://images.unsplash.com/photo-1604503468506-a8da13d82791?auto=format&fit=crop&w=500&q=80"
-            },
-            {
-                id: 4,
-                name: { ka: "ლუდი ჰაინეკენი (Heineken) 0.5L ბოთლი", en: "Heineken Beer 0.5L Bottle", ru: "Пиво Heineken 0.5л бутылка" },
+                name: { ka: "ლუდი ჰაინეკენი (Heineken) 0.5L", en: "Heineken Beer 0.5L", ru: "Пиво Heineken 0.5л" },
                 price: 3.80,
-                // ზუსტი ლუდის სურათი
                 img: "https://images.unsplash.com/photo-1608270586620-248524c67de9?auto=format&fit=crop&w=500&q=80"
             },
             {
-                id: 5,
+                id: 3,
                 name: { ka: "ყავა Jacobs Monarch (100გრ)", en: "Coffee Jacobs Monarch (100g)", ru: "Кофе Jacobs Monarch (100г)" },
                 price: 10.50,
-                // ზუსტი ყავის სურათი
                 img: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=500&q=80"
             },
             {
-                id: 6,
+                id: 4,
                 name: { ka: "შაქარი თეთრი (1კგ)", en: "White Sugar (1kg)", ru: "Сахар белый (1кг)" },
                 price: 2.80,
-                // ზუსტი შაქრის სურათი
                 img: "https://images.unsplash.com/photo-1581441363689-1f3c3c414635?auto=format&fit=crop&w=500&q=80"
             }
         ];
@@ -206,13 +220,13 @@
             products.forEach(p => {
                 grid.innerHTML += `
                     <div class="product-card">
-                        <div class="img-container">
+                        <div class="img-wrap">
                             <img src="${p.img}" alt="${p.name[currentLang]}">
                         </div>
-                        <div class="card-info">
-                            <div class="product-name">${p.name[currentLang]}</div>
-                            <div class="product-price">${p.price.toFixed(2)} ₾</div>
-                            <button class="btn-wa" onclick="orderWA('${p.name[currentLang]}')">
+                        <div class="card-details">
+                            <div class="title">${p.name[currentLang]}</div>
+                            <div class="price">${p.price.toFixed(2)} ₾</div>
+                            <button class="wa-btn" onclick="buyWA('${p.name[currentLang]}')">
                                 <i class="fa-brands fa-whatsapp"></i> WhatsApp შეკვეთა
                             </button>
                         </div>
@@ -221,78 +235,84 @@
             });
         }
 
-        function switchLang(lang, btn) {
+        function changeLang(lang, btn) {
             currentLang = lang;
-            document.querySelectorAll('.lang-switch button').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.lang-picker button').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
 
             if(lang === 'ka') {
-                document.getElementById('secTitle').innerText = "🛒 პროდუქციის კატალოგი";
-                document.getElementById('aiWelcomeMsg').innerText = "გამარჯობა! მე ვარ MINI MARKET-ის AI ასისტენტი. რით დაგეხმაროთ? 🔊";
+                document.getElementById('bannerTitle').innerText = "🛒 ონლაინ მარკეტი ახალციხეში";
+                document.getElementById('bannerDesc').innerText = "ხარისხიანი პროდუქცია და სწრაფი მომსახურება";
+                document.getElementById('sectionTitle').innerHTML = '<i class="fa-solid fa-store" style="color:var(--primary);"></i> პროდუქციის კატალოგი';
+                document.getElementById('aiWelcome').innerText = "გამარჯობა! მე ვარ MINI MARKET-ის AI ასისტენტი. რით დაგეხმაროთ? 🔊";
             } else if(lang === 'en') {
-                document.getElementById('secTitle').innerText = "🛒 Product Catalog";
-                document.getElementById('aiWelcomeMsg').innerText = "Hello! I am MINI MARKET's AI Assistant. How can I help you? 🔊";
+                document.getElementById('bannerTitle').innerText = "🛒 Online Market in Akhaltsikhe";
+                document.getElementById('bannerDesc').innerText = "Quality products and fast service";
+                document.getElementById('sectionTitle').innerHTML = '<i class="fa-solid fa-store" style="color:var(--primary);"></i> Product Catalog';
+                document.getElementById('aiWelcome').innerText = "Hello! I am MINI MARKET's AI Assistant. How can I help you? 🔊";
             } else if(lang === 'ru') {
-                document.getElementById('secTitle').innerText = "🛒 Каталог Продуктов";
-                document.getElementById('aiWelcomeMsg').innerText = "Здравствуйте! Я AI ассистент MINI MARKET. Чем могу помочь? 🔊";
+                document.getElementById('bannerTitle').innerText = "🛒 Онлайн Маркет в Ахалцихе";
+                document.getElementById('bannerDesc').innerText = "Качественные продукты и быстрое обслуживание";
+                document.getElementById('sectionTitle').innerHTML = '<i class="fa-solid fa-store" style="color:var(--primary);"></i> Каталог Товаров';
+                document.getElementById('aiWelcome').innerText = "Здравствуйте! Я AI ассистент MINI MARKET. Чем могу помочь? 🔊";
             }
             renderProducts();
         }
 
-        function toggleAIChat() {
+        function toggleAI() {
             const win = document.getElementById('aiWindow');
             win.style.display = win.style.display === 'flex' ? 'none' : 'flex';
         }
 
-        function speakText(text, lang) {
+        function speak(text, lang) {
             if ('speechSynthesis' in window) {
-                const utterance = new SpeechSynthesisUtterance(text);
-                if(lang === 'ka') utterance.lang = 'ka-GE';
-                else if(lang === 'en') utterance.lang = 'en-US';
-                else if(lang === 'ru') utterance.lang = 'ru-RU';
-                window.speechSynthesis.speak(utterance);
+                const u = new SpeechSynthesisUtterance(text);
+                if(lang === 'ka') u.lang = 'ka-GE';
+                else if(lang === 'en') u.lang = 'en-US';
+                else if(lang === 'ru') u.lang = 'ru-RU';
+                window.speechSynthesis.speak(u);
             }
         }
 
-        function sendAIMessage() {
+        function sendAIMsg() {
             const input = document.getElementById('aiInput');
             const txt = input.value.trim();
             if(!txt) return;
 
             const body = document.getElementById('aiBody');
-            body.innerHTML += `<div class="msg user">${txt}</div>`;
+            body.innerHTML += `<div class="chat-msg user">${txt}</div>`;
             input.value = '';
 
             setTimeout(() => {
-                let answer = "";
+                let reply = "";
                 if(currentLang === 'ka') {
-                    answer = "მადლობა შეკითხვისთვის! თქვენი შეკითხვა შეგიძლიათ გადააგზავნოთ პირდაპირ WhatsApp-ში ადმინისტრატორთან.";
+                    reply = "გმადლობთ შეკითხვისთვის! ზუსტი პასუხისთვის შეგიძლიათ მოგვწეროთ პირდაპირ WhatsApp-ში.";
                 } else if(currentLang === 'en') {
-                    answer = "Thanks for asking! You can send your question directly to WhatsApp administrator.";
+                    reply = "Thank you for asking! For direct response, please write to us on WhatsApp.";
                 } else {
-                    answer = "Спасибо за вопрос! Вы можете отправить ваш вопрос прямо администратору в WhatsApp.";
+                    reply = "Спасибо за вопрос! Для точного ответа напишите нам прямо в WhatsApp.";
                 }
 
                 body.innerHTML += `
-                    <div class="msg bot">
-                        ${answer} <br><br>
-                        <a href="https://wa.me/995500224822?text=${encodeURIComponent('კითხვა საიტიდან: ' + txt)}" target="_blank" style="color:#0052cc; font-weight:bold;">
+                    <div class="chat-msg bot">
+                        ${reply} <br><br>
+                        <a href="https://wa.me/995500224822?text=${encodeURIComponent('კითხვა: ' + txt)}" target="_blank" style="color:var(--primary); font-weight:bold;">
                             📲 გაგზავნა WhatsApp-ზე
                         </a>
                     </div>`;
                 body.scrollTop = body.scrollHeight;
-                speakText(answer, currentLang);
+                speak(reply, currentLang);
             }, 400);
         }
 
-        function orderWA(productName) {
-            window.open(`https://wa.me/995500224822?text=გამარჯობა, მინდა შევიძინო: ${encodeURIComponent(productName)}`, '_blank');
+        function buyWA(pName) {
+            window.open(`https://wa.me/995500224822?text=გამარჯობა, მინდა შევიძინო: ${encodeURIComponent(pName)}`, '_blank');
         }
 
-        function searchProduct() {
+        function filterItems() {
             const val = document.getElementById('searchInput').value.toLowerCase();
             document.querySelectorAll('.product-card').forEach(card => {
-                const title = card.querySelector('.product-name').innerText.toLowerCase();
+                const title = card.querySelector('.title').innerText.toLowerCase();
                 card.style.display = title.includes(val) ? 'flex' : 'none';
             });
         }
