@@ -8,18 +8,15 @@
     <style>
         :root {
             --primary: #0052cc;
-            --primary-dark: #0747a6;
             --accent: #d32f2f;
             --gold: #ffb300;
             --bg: #f4f5f7;
-            --card-bg: #ffffff;
             --text-dark: #172b4d;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; }
         body { background: var(--bg); color: var(--text-dark); padding-bottom: 90px; }
 
-        /* Top Nav */
         .top-nav {
             background: #091e42; color: white; padding: 8px 20px;
             display: flex; justify-content: space-between; align-items: center; font-size: 13px; flex-wrap: wrap; gap: 10px;
@@ -27,11 +24,10 @@
 
         .lang-switch button {
             background: rgba(255,255,255,0.2); color: white; border: none;
-            padding: 4px 10px; border-radius: 6px; cursor: pointer; font-weight: bold; transition: 0.2s;
+            padding: 4px 10px; border-radius: 6px; cursor: pointer; font-weight: bold;
         }
         .lang-switch button.active { background: var(--gold); color: #000; }
 
-        /* Header */
         header {
             background: white; padding: 15px 20px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.06); position: sticky; top: 0; z-index: 999;
@@ -53,61 +49,38 @@
         }
         .search-box i { position: absolute; right: 18px; top: 50%; transform: translateY(-50%); color: #6b778c; }
 
-        /* Countries Section */
-        .countries-bar {
-            background: #fff; border-bottom: 1px solid #e2e8f0; padding: 12px 20px;
-        }
+        .countries-bar { background: #fff; border-bottom: 1px solid #e2e8f0; padding: 12px 20px; }
         .countries-container {
             max-width: 1200px; margin: 0 auto; display: flex; align-items: center;
             justify-content: center; gap: 12px; flex-wrap: wrap; font-size: 13px; font-weight: 600;
         }
         .country-item { display: flex; align-items: center; gap: 6px; background: #f8fafc; padding: 6px 14px; border-radius: 20px; border: 1px solid #e2e8f0; }
 
-        /* Banner & Delivery Info */
         .hero { max-width: 1200px; margin: 20px auto; padding: 0 20px; }
         .banner {
             background: linear-gradient(135deg, #0052cc 0%, #0747a6 100%);
             color: white; border-radius: 16px; padding: 25px;
-            box-shadow: 0 8px 20px rgba(0,82,204,0.2);
             display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;
         }
-        .banner-info h2 { font-size: 24px; font-weight: 800; margin-bottom: 6px; }
-        .banner-info p { font-size: 14px; opacity: 0.9; }
-
         .delivery-badge {
             background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(5px);
             border: 1px solid rgba(255,255,255,0.3); padding: 15px 20px; border-radius: 12px;
-            max-width: 400px;
         }
-        .delivery-badge h4 { color: var(--gold); font-size: 15px; margin-bottom: 5px; display: flex; align-items: center; gap: 8px; }
-        .delivery-badge p { font-size: 13px; line-height: 1.4; }
 
-        /* Promo Banner (Latino Coffee) */
-        .promo-banner {
-            max-width: 1200px; margin: 0 auto 25px; padding: 0 20px;
-        }
+        .promo-banner { max-width: 1200px; margin: 0 auto 25px; padding: 0 20px; }
         .promo-box {
             background: linear-gradient(135deg, #ff9800 0%, #e65100 100%);
             color: white; border-radius: 16px; padding: 20px; display: flex;
             align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px;
-            box-shadow: 0 6px 18px rgba(230, 81, 0, 0.25);
         }
-        .promo-title { font-size: 20px; font-weight: 900; display: flex; align-items: center; gap: 10px; }
-        .promo-tag { background: #fff; color: #e65100; padding: 4px 10px; border-radius: 8px; font-size: 12px; font-weight: 800; }
 
-        /* Product Grid */
         .container { max-width: 1200px; margin: 25px auto; padding: 0 20px; }
-        .section-title { font-size: 22px; font-weight: 800; margin-bottom: 20px; color: var(--text-dark); display: flex; align-items: center; gap: 10px; }
-
-        .grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px;
-        }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
 
         .card {
             background: white; border-radius: 16px; overflow: hidden;
             border: 1px solid #dfe1e6; transition: all 0.25s ease;
-            display: flex; flex-direction: column; justify-content: space-between;
-            position: relative;
+            display: flex; flex-direction: column; justify-content: space-between; position: relative;
         }
         .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.08); }
 
@@ -117,23 +90,21 @@
         }
 
         .card-img {
-            height: 190px; width: 100%; background: #ffffff;
+            height: 200px; width: 100%; background: #f8fafc;
             display: flex; align-items: center; justify-content: center; overflow: hidden;
             border-bottom: 1px solid #f4f5f7;
         }
-        .card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
-        .card:hover .card-img img { transform: scale(1.05); }
+        .card-img img { width: 100%; height: 100%; object-fit: cover; }
 
         .card-body { padding: 15px; }
-        .card-title { font-size: 14px; font-weight: 700; height: 38px; line-height: 1.3; color: var(--text-dark); overflow: hidden; }
+        .card-title { font-size: 14px; font-weight: 700; height: 38px; line-height: 1.3; overflow: hidden; }
         .card-price { font-size: 20px; font-weight: 900; color: var(--accent); margin: 8px 0 12px; }
 
         .btn-wa {
             width: 100%; background: #25D366; color: white; border: none;
             padding: 10px; border-radius: 10px; font-weight: 700; cursor: pointer;
-            display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 13px; transition: 0.2s;
+            display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 13px;
         }
-        .btn-wa:hover { background: #20ba5a; }
 
         /* Floating AI */
         .ai-float {
@@ -142,7 +113,6 @@
             display: flex; align-items: center; justify-content: center;
             font-size: 26px; cursor: pointer; box-shadow: 0 6px 20px rgba(0,82,204,0.35); z-index: 1000;
         }
-
         .ai-box {
             position: fixed; bottom: 95px; right: 25px; width: 340px; height: 430px;
             background: white; border-radius: 18px; box-shadow: 0 12px 35px rgba(0,0,0,0.18);
@@ -160,7 +130,6 @@
 </head>
 <body>
 
-    <!-- Top Nav -->
     <div class="top-nav">
         <div>📍 ქ. ახალციხე, იაძის ქ. №2 | 📞 +995 500 22 48 22</div>
         <div class="lang-switch">
@@ -170,16 +139,12 @@
         </div>
     </div>
 
-    <!-- Header -->
     <header>
         <div class="header-container">
             <a href="#" class="brand-logo">
                 <img src="WhatsApp Image 2026-06-27 at 20.59.49.jpeg" alt="MINI MARKET">
-                <div>
-                    <h1>MINI MARKET</h1>
-                </div>
+                <div><h1>MINI MARKET</h1></div>
             </a>
-
             <div class="search-box">
                 <input type="text" id="searchInput" onkeyup="filter()" placeholder="ძებნა კატალოგში...">
                 <i class="fa-solid fa-magnifying-glass"></i>
@@ -187,7 +152,6 @@
         </div>
     </header>
 
-    <!-- Import Countries Section -->
     <div class="countries-bar">
         <div class="countries-container">
             <span style="color:#6b778c;">პროდუქცია სხვადასხვა ქვეყნიდან:</span>
@@ -200,50 +164,43 @@
         </div>
     </div>
 
-    <!-- Banner & Delivery -->
     <div class="hero">
         <div class="banner">
-            <div class="banner-info">
+            <div>
                 <h2 id="bTitle">🏪 თქვენი უბნის მინი მარკეტი</h2>
                 <p id="bDesc">ახალი, მრავალფეროვანი და ხარისხიანი პროდუქცია ყოველდღე!</p>
             </div>
             <div class="delivery-badge">
                 <h4><i class="fa-solid fa-truck-fast"></i> მიწოდების სერვისი ახალციხეში</h4>
-                <p id="delInfo">🚚 ქალაქის მასშტაბით ნებისმიერ წერტილში!<br>
-                ✨ <b>50 ₾-ზე ზემოთ:</b> უფასო მიწოდება<br>
-                📦 <b>50 ₾-მდე შენაძენზე:</b> მიწოდება 5 ₾</p>
+                <p id="delInfo">🚚 ქალაქის მასშტაბით!<br>✨ <b>50 ₾-ზე ზემოთ:</b> უფასო მიწოდება<br>📦 <b>50 ₾-მდე:</b> 5 ₾</p>
             </div>
         </div>
     </div>
 
-    <!-- Promo Banner (Latino Coffee) -->
     <div class="promo-banner">
         <div class="promo-box">
             <div>
                 <div class="promo-title">🎁 საპრიზო აქცია MINI MARKET-ში!</div>
                 <p style="margin-top:5px; font-size:14px;">შეიძინეთ <b>სომხური ყავა Latino</b> და მოიგეთ ფასიანი საჩუქრები!</p>
             </div>
-            <span class="promo-tag">✨ იპოვე პრიზი</span>
+            <span style="background:#fff; color:#e65100; padding:6px 12px; border-radius:8px; font-weight:800; font-size:12px;">✨ იპოვე პრიზი</span>
         </div>
     </div>
 
-    <!-- Products Container -->
     <div class="container">
-        <div class="section-title" id="sTitle"><i class="fa-solid fa-basket-shopping" style="color:var(--primary)"></i> პროდუქციის კატალოგი (10+ პროდუქტი)</div>
+        <h3 style="margin-bottom:15px;" id="sTitle">🛒 პროდუქციის კატალოგი</h3>
         <div class="grid" id="grid"></div>
     </div>
 
-    <!-- Floating AI -->
     <div class="ai-float" onclick="toggleAI()"><i class="fa-solid fa-robot"></i></div>
 
-    <!-- AI Box -->
     <div class="ai-box" id="aiBox">
         <div class="ai-head">
-            <span><i class="fa-solid fa-robot"></i> Voice AI Assistant</span>
+            <span>Voice AI Assistant</span>
             <i class="fa-solid fa-xmark" onclick="toggleAI()" style="cursor:pointer;"></i>
         </div>
         <div class="ai-body" id="aiBody">
-            <div class="msg bot" id="aiWelcome">გამარჯობა! მე ვარ MINI MARKET-ის AI ასისტენტი. რით დაგეხმაროთ? 🔊</div>
+            <div class="msg bot">გამარჯობა! მე ვარ MINI MARKET-ის AI ასისტენტი. რით დაგეხმაროთ? 🔊</div>
         </div>
         <div class="ai-foot">
             <input type="text" id="aiIn" placeholder="Write message..." onkeypress="if(event.key==='Enter') sendAI()">
@@ -254,77 +211,77 @@
     <script>
         let currentLang = 'ka';
 
-        // 10 რეალური პროდუქტი მაღალი ხარისხის სურათებით
+        // 💡 აქ ჩაწერილია სურათების ფაილების სახელები, რომლებსაც შენ ჩააგდებ ფოლდერში:
         const products = [
             {
                 id: 1,
                 name: { ka: "სომხური ყავა Latino (საპრიზო 🎁)", en: "Armenian Coffee Latino (Prize 🎁)", ru: "Армянский кофе Latino (Призовой 🎁)" },
                 price: 3.50,
                 prize: true,
-                img: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=600&q=80"
+                img: "latino.jpg" // 👈 ჩააგდე latino.jpg ფოლდერში
             },
             {
                 id: 2,
                 name: { ka: "ახალი საქონლის ხორცი (1კგ)", en: "Fresh Beef Meat (1kg)", ru: "Свежая говядина (1кг)" },
                 price: 22.00,
                 prize: false,
-                img: "https://images.unsplash.com/photo-1603048588665-791ca8aea617?auto=format&fit=crop&w=600&q=80"
+                img: "beef.jpg" // 👈 ჩააგდე beef.jpg
             },
             {
                 id: 3,
                 name: { ka: "ახალი ქათმის ფილე (1კგ)", en: "Fresh Chicken Fillet (1kg)", ru: "Куриное филе (1кг)" },
                 price: 13.50,
                 prize: false,
-                img: "https://images.unsplash.com/photo-1604503468506-a8da13d82791?auto=format&fit=crop&w=600&q=80"
+                img: "chicken.jpg"
             },
             {
                 id: 4,
-                name: { ka: "შებოლილი სოსისი / ძეხვეული", en: "Smoked Sausage / Salami", ru: "Копченая колбаса / Салями" },
+                name: { ka: "შებოლილი სოსისი / ძეხვი", en: "Smoked Sausage / Salami", ru: "Копченая колбаса" },
                 price: 14.80,
                 prize: false,
-                img: "https://images.unsplash.com/photo-1541529086526-db283c563270?auto=format&fit=crop&w=600&q=80"
+                img: "sausage.jpg"
             },
             {
                 id: 5,
-                name: { ka: "სარეცხი ფხვნილი Ariel / Tide (3კგ)", en: "Washing Powder Ariel / Tide (3kg)", ru: "Стиральный порошок Ariel / Tide (3кг)" },
+                name: { ka: "სარეცხი ფხვნილი Ariel / Tide", en: "Washing Powder Ariel / Tide", ru: "Стиральный порошок Ariel / Tide" },
                 price: 21.50,
                 prize: false,
-                img: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=80"
+                img: "ariel.jpg"
             },
             {
                 id: 6,
                 name: { ka: "ჭურჭლის სარეცხი სითხე Fairy", en: "Dishwashing Liquid Fairy", ru: "Средство для посуды Fairy" },
                 price: 4.80,
                 prize: false,
-                img: "https://images.unsplash.com/photo-1585830812416-a6c86bb14576?auto=format&fit=crop&w=600&q=80"
+                img: "fairy.jpg"
             },
             {
                 id: 7,
                 name: { ka: "ქათმის კვერცხი C1 (10 ცალი)", en: "Chicken Eggs C1 (10 pcs)", ru: "Куриные яйца (10 шт)" },
                 price: 4.50,
                 prize: false,
-                img: "https://images.unsplash.com/photo-1582721478779-0ae163c05a60?auto=format&fit=crop&w=600&q=80"
+                img: "eggs.jpg"
             },
             {
                 id: 8,
-                name: { ka: "ყველის ასორტი / სულგუნი (1კგ)", en: "Cheese Assortment / Sulguni (1kg)", ru: "Сырное ассорти / Сулугуни (1кг)" },
+                name: { ka: "ქართული სულგუნი / ყველი (1კგ)", en: "Georgian Sulguni Cheese (1kg)", ru: "Грузинский сыр Сулугуни (1кг)" },
                 price: 18.00,
                 prize: false,
-                img: "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?auto=format&fit=crop&w=600&q=80"
+                img: "cheese.jpg"
             },
             {
                 id: 9,
-                name: { ka: "შოკოლადის ფილა (100გ)", en: "Chocolate Bar (100g)", ru: "Плитка шоколада (100г)" },
+                name: { ka: "შოკოლადის ფილა", en: "Chocolate Bar", ru: "Плитка шоколада" },
                 price: 3.20,
                 prize: false,
-                img: "https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&w=600&q=80"
+                img: "chocolate.jpg"
             },
             {
                 id: 10,
                 name: { ka: "ლუდი ჰაინეკენი (Heineken) 0.5L", en: "Heineken Beer 0.5L", ru: "Пиво Heineken 0.5л" },
                 price: 3.80,
                 prize: false,
-                img: "https://images.unsplash.com/photo-1608270586620-248524c67de9?auto=format&fit=crop&w=600&q=80"
+                img: "beer.jpg"
             }
         ];
 
@@ -336,7 +293,7 @@
                     <div class="card">
                         ${p.prize ? '<span class="prize-badge">🎁 საპრიზო</span>' : ''}
                         <div class="card-img">
-                            <img src="${p.img}" alt="${p.name[currentLang]}">
+                            <img src="${p.img}" alt="${p.name[currentLang]}" onerror="this.src='https://via.placeholder.com/200?text=ფოტო+არ+არის'">
                         </div>
                         <div class="card-body">
                             <div class="card-title">${p.name[currentLang]}</div>
@@ -354,26 +311,6 @@
             currentLang = lang;
             document.querySelectorAll('.lang-switch button').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-
-            if(lang === 'ka') {
-                document.getElementById('bTitle').innerText = "🏪 თქვენი უბნის მინი მარკეტი";
-                document.getElementById('bDesc').innerText = "ახალი, მრავალფეროვანი და ხარისხიანი პროდუქცია ყოველდღე!";
-                document.getElementById('delInfo').innerHTML = "🚚 ქალაქის მასშტაბით ნებისმიერ წერტილში!<br>✨ <b>50 ₾-ზე ზემოთ:</b> უფასო მიწოდება<br>📦 <b>50 ₾-მდე შენაძენზე:</b> მიწოდება 5 ₾";
-                document.getElementById('sTitle').innerHTML = '<i class="fa-solid fa-basket-shopping" style="color:var(--primary)"></i> პროდუქციის კატალოგი (10+ პროდუქტი)';
-                document.getElementById('aiWelcome').innerText = "გამარჯობა! მე ვარ MINI MARKET-ის AI ასისტენტი. რით დაგეხმაროთ? 🔊";
-            } else if(lang === 'en') {
-                document.getElementById('bTitle').innerText = "🏪 Your Neighborhood Mini Market";
-                document.getElementById('bDesc').innerText = "Fresh, diverse and quality products every day!";
-                document.getElementById('delInfo').innerHTML = "🚚 Delivery anywhere in Akhaltsikhe!<br>✨ <b>Over 50 GEL:</b> Free Delivery<br>📦 <b>Under 50 GEL:</b> Delivery 5 GEL";
-                document.getElementById('sTitle').innerHTML = '<i class="fa-solid fa-basket-shopping" style="color:var(--primary)"></i> Product Catalog (10+ Products)';
-                document.getElementById('aiWelcome').innerText = "Hello! I am MINI MARKET's AI Assistant. How can I help you? 🔊";
-            } else if(lang === 'ru') {
-                document.getElementById('bTitle').innerText = "🏪 Ваш районный Мини Маркет";
-                document.getElementById('bDesc').innerText = "Свежие, разнообразные и качественные продукты каждый день!";
-                document.getElementById('delInfo').innerHTML = "🚚 Доставка по всему Ахалцихе!<br>✨ <b>Свыше 50 Лари:</b> Бесплатная доставка<br>📦 <b>До 50 Лари:</b> Доставка 5 Лари";
-                document.getElementById('sTitle').innerHTML = '<i class="fa-solid fa-basket-shopping" style="color:var(--primary)"></i> Каталог Товаров (10+ Товаров)';
-                document.getElementById('aiWelcome').innerText = "Здравствуйте! Я AI ассистент MINI MARKET. Чем могу помочь? 🔊";
-            }
             render();
         }
 
@@ -382,44 +319,16 @@
             b.style.display = b.style.display === 'flex' ? 'none' : 'flex';
         }
 
-        function speak(text, lang) {
-            if ('speechSynthesis' in window) {
-                const u = new SpeechSynthesisUtterance(text);
-                if(lang === 'ka') u.lang = 'ka-GE';
-                else if(lang === 'en') u.lang = 'en-US';
-                else if(lang === 'ru') u.lang = 'ru-RU';
-                window.speechSynthesis.speak(u);
-            }
-        }
-
         function sendAI() {
             const input = document.getElementById('aiIn');
             const txt = input.value.trim();
             if(!txt) return;
-
             const body = document.getElementById('aiBody');
             body.innerHTML += `<div class="msg user">${txt}</div>`;
             input.value = '';
-
             setTimeout(() => {
-                let reply = "";
-                if(currentLang === 'ka') {
-                    reply = "მადლობა შეკითხვისთვის! ახალციხეში 50 ლარზე ზემოთ მიწოდება უფასოა. გვაქვს სარეცხი საშუალებები, ხორცეული, რძის ნაწარმი და საპრიზო ყავა Latino!";
-                } else if(currentLang === 'en') {
-                    reply = "Thanks for asking! Free delivery in Akhaltsikhe over 50 GEL. We have detergents, meat products, dairy, and prize coffee Latino!";
-                } else {
-                    reply = "Спасибо за вопрос! Бесплатная доставка по Ахалцихе от 50 лари. У нас есть моющие средства, мясные продукты, молочка и призовой кофе Latino!";
-                }
-
-                body.innerHTML += `
-                    <div class="msg bot">
-                        ${reply} <br><br>
-                        <a href="https://wa.me/995500224822?text=${encodeURIComponent('კითხვა: ' + txt)}" target="_blank" style="color:var(--primary); font-weight:bold;">
-                            📲 გაგზავნა WhatsApp-ზე
-                        </a>
-                    </div>`;
+                body.innerHTML += `<div class="msg bot">მადლობა შეკითხვისთვის! ახალციხეში 50₾-ზე ზემოთ მიწოდება უფასოა.<br><a href="https://wa.me/995500224822" target="_blank" style="color:var(--primary); font-weight:bold;">📲 მოგვწერეთ WhatsApp-ზე</a></div>`;
                 body.scrollTop = body.scrollHeight;
-                speak(reply, currentLang);
             }, 400);
         }
 
