@@ -3,446 +3,394 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MINI MARKET | ახალციხე, იაძის ქ. №2</title>
+    <title>MINI MARKET | ახალციხე</title>
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #2e7d32;
-            --primary-dark: #1b5e20;
-            --accent-color: #fbc02d;
-            --danger-color: #e53935;
-            --bg-color: #f4f6f8;
-            --card-bg: #ffffff;
-            --text-color: #2c3e50;
+            --brand-green: #008744;
+            --brand-dark: #005c2e;
+            --brand-yellow: #ffb300;
+            --brand-red: #d62d20;
+            --bg-light: #f4f6f8;
+            --text-main: #1f2937;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Georgia, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            padding-bottom: 70px;
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            padding-bottom: 80px;
         }
 
-        /* Test Mode Top Bar */
-        .test-bar {
-            background: #fff3cd;
-            color: #856404;
+        /* Top Bar - Test Mode */
+        .top-notice {
+            background-color: #fef3c7;
+            color: #92400e;
             text-align: center;
-            padding: 10px 15px;
-            font-size: 14px;
-            font-weight: bold;
-            border-bottom: 2px solid #ffeeba;
+            padding: 8px 15px;
+            font-size: 13px;
+            font-weight: 600;
+            border-bottom: 1px solid #fde68a;
             position: sticky;
             top: 0;
             z-index: 1000;
         }
 
-        /* Header */
+        /* Main Header */
         header {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-            color: white;
-            padding: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 35px;
+            z-index: 999;
         }
 
-        .header-wrap {
+        .header-container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 15px 20px;
             display: flex;
+            align-items: center;
             justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .brand-box h1 {
-            font-size: 26px;
-            letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .brand-box p {
-            font-size: 13px;
-            opacity: 0.9;
-            margin-top: 3px;
-        }
-
-        .contact-info-box {
-            display: flex;
-            align-items: center;
             gap: 20px;
             flex-wrap: wrap;
         }
 
-        .phone-link {
-            background: rgba(255,255,255,0.15);
-            padding: 8px 15px;
-            border-radius: 20px;
-            color: white;
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
             text-decoration: none;
-            font-weight: bold;
+        }
+
+        .logo-icon {
+            background: var(--brand-green);
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+
+        .logo-text h1 {
+            font-size: 22px;
+            color: var(--brand-green);
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .logo-text span {
+            font-size: 12px;
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        .search-container {
+            flex: 1;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 12px 45px 12px 18px;
+            border: 2px solid #e5e7eb;
+            border-radius: 25px;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .search-container input:focus {
+            border-color: var(--brand-green);
+        }
+
+        .search-container i {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+            font-size: 16px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .contact-btn {
+            background-color: #25D366;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 20px;
+            text-decoration: none;
             font-size: 14px;
+            font-weight: 700;
             display: flex;
             align-items: center;
             gap: 8px;
+            box-shadow: 0 2px 6px rgba(37,211,102,0.3);
         }
 
-        .social-icons a {
-            color: white;
-            font-size: 22px;
-            margin-left: 12px;
+        .social-btn {
+            color: #4b5563;
+            font-size: 20px;
+            text-decoration: none;
             transition: color 0.2s;
         }
 
-        .social-icons a:hover {
-            color: var(--accent-color);
+        .social-btn:hover {
+            color: var(--brand-green);
         }
 
-        /* Banner */
-        .banner {
+        /* Banner Hero */
+        .hero-banner {
             max-width: 1200px;
             margin: 20px auto 10px auto;
             padding: 0 20px;
         }
 
-        .banner-inner {
-            background: white;
-            border-left: 6px solid var(--primary-color);
-            padding: 15px 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        .banner-box {
+            background: linear-gradient(135deg, var(--brand-green), var(--brand-dark));
+            color: white;
+            border-radius: 16px;
+            padding: 25px 30px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 20px;
+            box-shadow: 0 4px 15px rgba(0,135,68,0.2);
         }
 
-        .banner-inner h3 {
-            color: var(--primary-dark);
-            font-size: 18px;
+        .banner-info h2 {
+            font-size: 24px;
+            margin-bottom: 6px;
         }
 
-        .banner-inner p {
-            color: #666;
+        .banner-info p {
             font-size: 14px;
+            opacity: 0.9;
         }
 
-        /* Controls (Search & Filter) */
-        .controls {
+        .banner-tag {
+            background: var(--brand-yellow);
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 800;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        /* Categories Bar */
+        .categories-nav {
             max-width: 1200px;
-            margin: 20px auto;
+            margin: 15px auto;
             padding: 0 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .search-field {
-            position: relative;
-            width: 100%;
-        }
-
-        .search-field input {
-            width: 100%;
-            padding: 14px 45px 14px 20px;
-            border: 2px solid #e0e0e0;
-            border-radius: 30px;
-            font-size: 16px;
-            outline: none;
-            transition: border-color 0.2s;
-            background: white;
-        }
-
-        .search-field input:focus {
-            border-color: var(--primary-color);
-        }
-
-        .search-field i {
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #888;
-            font-size: 18px;
-        }
-
-        .filter-buttons {
             display: flex;
             gap: 10px;
             overflow-x: auto;
             padding-bottom: 5px;
         }
 
-        .filter-btn {
+        .cat-chip {
             background: white;
-            border: 1px solid #ddd;
-            padding: 10px 18px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: bold;
+            border: 1px solid #e5e7eb;
+            padding: 10px 20px;
+            border-radius: 20px;
             font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
             white-space: nowrap;
             transition: all 0.2s;
-            color: #555;
+            color: #4b5563;
         }
 
-        .filter-btn.active, .filter-btn:hover {
-            background: var(--primary-color);
+        .cat-chip.active, .cat-chip:hover {
+            background: var(--brand-green);
             color: white;
-            border-color: var(--primary-color);
+            border-color: var(--brand-green);
         }
 
         /* Products Grid */
-        .products-wrap {
+        .products-section {
             max-width: 1200px;
-            margin: 0 auto;
+            margin: 20px auto;
             padding: 0 20px;
         }
 
-        .grid {
+        .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
             gap: 20px;
         }
 
-        .card {
-            background: var(--card-bg);
-            border-radius: 12px;
+        .product-card {
+            background: white;
+            border-radius: 14px;
+            border: 1px solid #f3f4f6;
             overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.06);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            position: relative;
-            border: 1px solid #eee;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
             transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
         }
 
-        .card:hover {
+        .product-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
         }
 
-        .badge {
+        .discount-badge {
             position: absolute;
             top: 10px;
             left: 10px;
-            background: var(--danger-color);
+            background: var(--brand-red);
             color: white;
+            font-size: 11px;
+            font-weight: 800;
             padding: 4px 8px;
             border-radius: 6px;
-            font-size: 11px;
-            font-weight: bold;
             z-index: 2;
         }
 
-        .img-box {
-            height: 160px;
-            background: #f8f9fa;
+        .product-thumb {
+            height: 150px;
+            background: #fafafa;
             display: flex;
-            justify-content: center;
             align-items: center;
-            color: var(--primary-color);
-            border-bottom: 1px solid #eee;
+            justify-content: center;
+            color: var(--brand-green);
+            border-bottom: 1px solid #f3f4f6;
         }
 
-        .card-body {
+        .product-details {
             padding: 15px;
         }
 
-        .card-title {
-            font-size: 16px;
-            font-weight: bold;
+        .product-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #111827;
             margin-bottom: 10px;
-            min-height: 40px;
+            height: 40px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
-        .prices {
-            margin-bottom: 15px;
+        .price-row {
             display: flex;
             align-items: baseline;
-            gap: 10px;
+            gap: 8px;
+            margin-bottom: 12px;
         }
 
-        .old-p {
-            text-decoration: line-through;
-            color: #888;
-            font-size: 13px;
-        }
-
-        .new-p {
-            color: var(--primary-dark);
+        .current-price {
             font-size: 20px;
-            font-weight: bold;
+            font-weight: 800;
+            color: var(--brand-green);
         }
 
-        .btn-add {
+        .old-price {
+            font-size: 13px;
+            color: #9ca3af;
+            text-decoration: line-through;
+        }
+
+        .add-btn {
             width: 100%;
-            background: var(--primary-color);
-            color: white;
+            background: #f3f4f6;
+            color: var(--brand-green);
             border: none;
-            padding: 12px;
+            padding: 10px;
             border-radius: 8px;
-            font-weight: bold;
+            font-weight: 700;
+            font-size: 14px;
             cursor: pointer;
             display: flex;
-            justify-content: center;
             align-items: center;
-            gap: 8px;
-            transition: background 0.2s;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.2s;
         }
 
-        .btn-add:hover {
-            background: var(--primary-dark);
+        .add-btn:hover {
+            background: var(--brand-green);
+            color: white;
         }
 
-        /* Floating UI Elements */
-        .float-cart-btn {
+        /* Floating Controls */
+        .cart-trigger {
             position: fixed;
             bottom: 25px;
             right: 25px;
-            background: var(--primary-color);
+            background: var(--brand-green);
             color: white;
-            width: 60px;
-            height: 60px;
+            width: 62px;
+            height: 62px;
             border-radius: 50%;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             font-size: 24px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
             cursor: pointer;
-            z-index: 999;
+            z-index: 1000;
         }
 
-        .cart-badge {
+        .cart-counter {
             position: absolute;
             top: -2px;
             right: -2px;
-            background: var(--danger-color);
+            background: var(--brand-red);
             color: white;
+            font-size: 11px;
+            font-weight: 800;
+            width: 22px;
+            height: 22px;
             border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            font-size: 12px;
             display: flex;
-            justify-content: center;
             align-items: center;
-            font-weight: bold;
+            justify-content: center;
         }
 
-        .float-ai-btn {
+        .ai-trigger {
             position: fixed;
-            bottom: 95px;
+            bottom: 98px;
             right: 25px;
-            background: #0084ff;
+            background: #2563eb;
             color: white;
-            width: 60px;
-            height: 60px;
+            width: 62px;
+            height: 62px;
             border-radius: 50%;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             font-size: 26px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
             cursor: pointer;
-            z-index: 999;
-        }
-
-        /* AI Assistant Window */
-        .chat-modal {
-            position: fixed;
-            bottom: 165px;
-            right: 25px;
-            width: 340px;
-            height: 430px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
-            display: none;
-            flex-direction: column;
             z-index: 1000;
-            overflow: hidden;
-            border: 1px solid #ddd;
         }
 
-        .chat-head {
-            background: #0084ff;
-            color: white;
-            padding: 12px 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: bold;
-        }
-
-        .chat-messages {
-            flex: 1;
-            padding: 15px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            background: #f9f9f9;
-        }
-
-        .msg {
-            max-width: 85%;
-            padding: 10px 12px;
-            border-radius: 12px;
-            font-size: 13px;
-            line-height: 1.4;
-        }
-
-        .msg.bot {
-            background: #e4e6eb;
-            color: #050505;
-            align-self: flex-start;
-        }
-
-        .msg.user {
-            background: #0084ff;
-            color: white;
-            align-self: flex-end;
-        }
-
-        .chat-input-box {
-            padding: 10px;
-            border-top: 1px solid #ddd;
-            display: flex;
-            gap: 5px;
-            background: white;
-        }
-
-        .chat-input-box input {
-            flex: 1;
-            padding: 8px 12px;
-            border: 1px solid #ddd;
-            border-radius: 20px;
-            outline: none;
-        }
-
-        .chat-input-box button {
-            background: #0084ff;
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-
-        /* Cart Popup */
-        .cart-modal {
+        /* Cart Modal */
+        .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
@@ -450,206 +398,312 @@
             height: 100%;
             background: rgba(0,0,0,0.5);
             display: none;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             z-index: 1001;
         }
 
-        .cart-box {
+        .modal-card {
             background: white;
             width: 90%;
             max-width: 480px;
-            border-radius: 12px;
+            border-radius: 16px;
             padding: 20px;
-            max-height: 85vh;
+            max-height: 80vh;
             display: flex;
             flex-direction: column;
         }
 
-        .cart-head {
+        .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 10px;
+            border-bottom: 1px solid #f3f4f6;
+            padding-bottom: 12px;
             margin-bottom: 15px;
         }
 
-        .cart-list {
+        .cart-items-list {
             flex: 1;
             overflow-y: auto;
             margin-bottom: 15px;
         }
 
-        .cart-item {
+        .cart-item-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 10px 0;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #f9fafb;
         }
 
-        .cart-total-price {
-            font-size: 18px;
+        .qty-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .qty-btn {
+            background: #f3f4f6;
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
             font-weight: bold;
+            cursor: pointer;
+        }
+
+        .cart-summary {
+            font-size: 18px;
+            font-weight: 800;
             text-align: right;
             margin-bottom: 15px;
+            color: #111827;
         }
 
-        .wa-btn {
+        .checkout-wa-btn {
             width: 100%;
-            padding: 14px;
             background: #25D366;
             color: white;
             border: none;
-            border-radius: 8px;
-            font-weight: bold;
+            padding: 14px;
+            border-radius: 10px;
+            font-weight: 800;
             font-size: 16px;
             cursor: pointer;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             gap: 10px;
+        }
+
+        /* AI Chat Window */
+        .ai-window {
+            position: fixed;
+            bottom: 170px;
+            right: 25px;
+            width: 340px;
+            height: 420px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: none;
+            flex-direction: column;
+            z-index: 1000;
+            overflow: hidden;
+            border: 1px solid #e5e7eb;
+        }
+
+        .ai-header {
+            background: #2563eb;
+            color: white;
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+        }
+
+        .ai-body {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background: #f9fafb;
+        }
+
+        .ai-msg {
+            max-width: 85%;
+            padding: 10px 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        .ai-msg.bot {
+            background: #e5e7eb;
+            color: #1f2937;
+            align-self: flex-start;
+        }
+
+        .ai-msg.user {
+            background: #2563eb;
+            color: white;
+            align-self: flex-end;
+        }
+
+        .ai-footer {
+            padding: 10px;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            gap: 8px;
+            background: white;
+        }
+
+        .ai-footer input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 20px;
+            outline: none;
+        }
+
+        .ai-footer button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 50%;
+            cursor: pointer;
         }
 
         /* Footer */
         footer {
-            background: #111;
+            background: #111827;
             color: white;
-            padding: 30px 20px 15px 20px;
-            margin-top: 50px;
+            padding: 40px 20px 20px 20px;
+            margin-top: 60px;
         }
 
-        .footer-wrap {
+        .footer-grid {
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
+            gap: 30px;
         }
 
         .footer-col h4 {
-            color: var(--accent-color);
-            margin-bottom: 12px;
+            color: var(--brand-yellow);
+            margin-bottom: 15px;
+            font-size: 16px;
         }
 
         .footer-col p, .footer-col a {
-            color: #bbb;
+            color: #9ca3af;
             font-size: 14px;
             line-height: 1.8;
             text-decoration: none;
             display: block;
         }
 
-        .copy {
+        .copyright {
             text-align: center;
-            margin-top: 25px;
-            padding-top: 15px;
-            border-top: 1px solid #222;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #1f2937;
             font-size: 12px;
-            color: #777;
+            color: #6b7280;
         }
     </style>
 </head>
 <body>
 
-    <!-- სატესტო რეჟიმის ბანერი -->
-    <div class="test-bar">
-        <i class="fa-solid fa-flask"></i> ვებ გვერდი მუშაობს სატესტო რეჟიმში
+    <!-- სატესტო რეჟიმის შეტყობინება -->
+    <div class="top-notice">
+        <i class="fa-solid fa-triangle-exclamation"></i> ვებ გვერდი მუშაობს სატესტო რეჟიმში
     </div>
 
-    <!-- ჰედერი -->
+    <!-- მთავარი ჰედერი -->
     <header>
-        <div class="header-wrap">
-            <div class="brand-box">
-                <h1><i class="fa-solid fa-shop" style="color: var(--accent-color);"></i> MINI MARKET</h1>
-                <p><i class="fa-solid fa-location-dot"></i> ქ. ახალციხე, იაძის ქუჩა №2</p>
-            </div>
-            <div class="contact-info-box">
-                <a href="https://wa.me/995500224822" target="_blank" class="phone-link">
-                    <i class="fa-brands fa-whatsapp" style="font-size:18px; color:#25D366;"></i> +995 500 22 48 22
-                </a>
-                <div class="social-icons">
-                    <a href="https://www.facebook.com/minimarketakhaltsike/" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="https://www.instagram.com/minimarketakhaltsikhe/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <div class="header-container">
+            <a href="#" class="logo-area">
+                <div class="logo-icon"><i class="fa-solid fa-basket-shopping"></i></div>
+                <div class="logo-text">
+                    <h1>MINI MARKET</h1>
+                    <span>ახალციხე, იაძის ქ. №2</span>
                 </div>
+            </a>
+
+            <div class="search-container">
+                <input type="text" id="searchInput" onkeyup="filterProducts()" placeholder="მოძებნეთ პროდუქტი (მაგ: ხორცი, ყველი, პური)...">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+
+            <div class="header-actions">
+                <a href="https://wa.me/995500224822" target="_blank" class="contact-btn">
+                    <i class="fa-brands fa-whatsapp"></i> +995 500 22 48 22
+                </a>
+                <a href="https://www.facebook.com/minimarketakhaltsike/" target="_blank" class="social-btn"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://www.instagram.com/minimarketakhaltsikhe/" target="_blank" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
             </div>
         </div>
     </header>
 
-    <!-- ფასების გარანტიის ბანერი -->
-    <div class="banner">
-        <div class="banner-inner">
-            <div>
-                <h3><i class="fa-solid fa-check-circle" style="color: var(--primary-color);"></i> საუკეთესო ფასის გარანტია</h3>
-                <p>ახალციხეში არსებულ სხვა მაღაზიებთან შედარებით, ჩვენთან პროდუქცია უფრო დაბალ ფასადაა!</p>
+    <!-- მთავარი ბანერი -->
+    <div class="hero-banner">
+        <div class="banner-box">
+            <div class="banner-info">
+                <h2><i class="fa-solid fa-tags"></i> დაბალი ფასების გარანტია!</h2>
+                <p>ახალციხეში არსებულ სხვა მაღაზიებთან შედარებით, ჩვენთან პროდუქცია უფრო იაფია.</p>
+            </div>
+            <div class="banner-tag">
+                დაზოგე MINI MARKET-ში
             </div>
         </div>
     </div>
 
-    <!-- ძებნა და კატეგორიები -->
-    <div class="controls">
-        <div class="search-field">
-            <input type="text" id="searchInput" onkeyup="searchProducts()" placeholder="მოძებნეთ პროდუქტი (მაგ: ხორცი, ყველი, პური, წვენი)...">
-            <i class="fa-solid fa-magnifying-glass"></i>
-        </div>
-        <div class="filter-buttons">
-            <button class="filter-btn active" onclick="filterCat('all', event)">ყველა პროდუქტი</button>
-            <button class="filter-btn" onclick="filterCat('meat', event)">ხორცპროდუქტები</button>
-            <button class="filter-btn" onclick="filterCat('dairy', event)">რძის ნაწარმი</button>
-            <button class="filter-btn" onclick="filterCat('bakery', event)">პურ-ფუნთუშეული</button>
-            <button class="filter-btn" onclick="filterCat('drinks', event)">სასმელები</button>
-            <button class="filter-btn" onclick="filterCat('snacks', event)">ტკბილეული / სნექები</button>
-            <button class="filter-btn" onclick="filterCat('chem', event)">საყოფაცხოვრებო</button>
+    <!-- კატეგორიების ზოლი -->
+    <div class="categories-nav">
+        <button class="cat-chip active" onclick="selectCategory('all', event)">ყველა პროდუქტი</button>
+        <button class="cat-chip" onclick="selectCategory('meat', event)">ხორცპროდუქტები</button>
+        <button class="cat-chip" onclick="selectCategory('dairy', event)">რძის ნაწარმი</button>
+        <button class="cat-chip" onclick="selectCategory('bakery', event)">პურ-ფუნთუშეული</button>
+        <button class="cat-chip" onclick="selectCategory('drinks', event)">სასმელები</button>
+        <button class="cat-chip" onclick="selectCategory('snacks', event)">ტკბილეული / სნექები</button>
+        <button class="cat-chip" onclick="selectCategory('chem', event)">საყოფაცხოვრებო</button>
+    </div>
+
+    <!-- პროდუქტების სექცია -->
+    <div class="products-section">
+        <div class="products-grid" id="productsGrid">
+            <!-- ჩაიტვირთება დინამიურად JS-ით -->
         </div>
     </div>
 
-    <!-- პროდუქტების კატალოგი -->
-    <div class="products-wrap">
-        <div class="grid" id="productGrid"></div>
-    </div>
-
-    <!-- მცურავი ღილაკები -->
-    <div class="float-ai-btn" onclick="toggleAI()" title="AI ასისტენტი">
+    <!-- მცურავი ღილაკები (კალათა & AI) -->
+    <div class="ai-trigger" onclick="toggleAIChat()" title="AI ასისტენტი">
         <i class="fa-solid fa-robot"></i>
     </div>
 
-    <div class="float-cart-btn" onclick="openCartModal()" title="კალათა">
-        <i class="fa-solid fa-basket-shopping"></i>
-        <div class="cart-badge" id="cartBadge">0</div>
+    <div class="cart-trigger" onclick="openCartModal()" title="კალათა">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <div class="cart-counter" id="cartBadge">0</div>
     </div>
 
-    <!-- AI ჩატბოტის ფანჯარა -->
-    <div class="chat-modal" id="aiModal">
-        <div class="chat-head">
+    <!-- AI ჩატბოტი -->
+    <div class="ai-window" id="aiWindow">
+        <div class="ai-header">
             <span><i class="fa-solid fa-robot"></i> AI ასისტენტი</span>
-            <i class="fa-solid fa-xmark" style="cursor: pointer;" onclick="toggleAI()"></i>
+            <i class="fa-solid fa-xmark" style="cursor: pointer;" onclick="toggleAIChat()"></i>
         </div>
-        <div class="chat-messages" id="chatMsgs">
-            <div class="msg bot">
+        <div class="ai-body" id="aiBody">
+            <div class="ai-msg bot">
                 გამარჯობა! მე ვარ MINI MARKET-ის AI ასისტენტი. რით შემიძლია დაგეხმაროთ?
             </div>
         </div>
-        <div class="chat-input-box">
-            <input type="text" id="chatInput" placeholder="დაწერეთ შეკითხვა..." onkeypress="chatKey(event)">
-            <button onclick="sendMsg()"><i class="fa-solid fa-paper-plane"></i></button>
+        <div class="ai-footer">
+            <input type="text" id="aiInput" placeholder="დაწერეთ შეკითხვა..." onkeypress="handleAIKey(event)">
+            <button onclick="sendAIMessage()"><i class="fa-solid fa-paper-plane"></i></button>
         </div>
     </div>
 
-    <!-- კალათის მოდალი -->
-    <div class="cart-modal" id="cartModal">
-        <div class="cart-box">
-            <div class="cart-head">
-                <h2>თქვენი კალათა</h2>
-                <i class="fa-solid fa-xmark" style="cursor: pointer; font-size: 20px;" onclick="closeCartModal()"></i>
+    <!-- კალათის მოდალური ფანჯარა -->
+    <div class="modal-overlay" id="cartModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>თქვენი კალათა</h3>
+                <i class="fa-solid fa-xmark" style="cursor: pointer; font-size: 18px;" onclick="closeCartModal()"></i>
             </div>
-            <div class="cart-list" id="cartList">
-                <p style="text-align: center; color: #888;">კალათა ცარიელია</p>
+            <div class="cart-items-list" id="cartList">
+                <p style="text-align: center; color: #9ca3af; padding: 20px;">კალათა ცარიელია</p>
             </div>
-            <div class="cart-total-price" id="cartTotal">
+            <div class="cart-summary" id="cartTotal">
                 სულ: 0.00 ₾
             </div>
-            <button class="wa-btn" onclick="sendOrderToWhatsApp()">
+            <button class="checkout-wa-btn" onclick="sendOrderToWhatsApp()">
                 <i class="fa-brands fa-whatsapp"></i> შეკვეთა WhatsApp-ით
             </button>
         </div>
@@ -657,196 +711,191 @@
 
     <!-- ფუტერი -->
     <footer>
-        <div class="footer-wrap">
+        <div class="footer-grid">
             <div class="footer-col">
                 <h4>MINI MARKET</h4>
-                <p>პატარა მინი მარკეტი დიდი ასორტიმენტითა და საუკეთესო ფასებით ახალციხეში!</p>
+                <p>თქვენი საყვარელი უბნის მარკეტი ახალციხეში საუკეთესო ფასებითა და ასორტიმენტით.</p>
             </div>
             <div class="footer-col">
-                <h4>მისამართი & კონტაქტი</h4>
+                <h4>კონტაქტი & მისამართი</h4>
                 <p><i class="fa-solid fa-location-dot"></i> ქ. ახალციხე, იაძის ქუჩა №2</p>
                 <p><i class="fa-solid fa-phone"></i> +995 500 22 48 22</p>
             </div>
             <div class="footer-col">
                 <h4>სოციალური ქსელები</h4>
-                <a href="https://www.facebook.com/minimarketakhaltsike/" target="_blank"><i class="fa-brands fa-facebook"></i> Facebook</a>
-                <a href="https://www.instagram.com/minimarketakhaltsikhe/" target="_blank"><i class="fa-brands fa-instagram"></i> Instagram</a>
+                <a href="https://www.facebook.com/minimarketakhaltsike/" target="_blank"><i class="fa-brands fa-facebook"></i> Facebook გვერდი</a>
+                <a href="https://www.instagram.com/minimarketakhaltsikhe/" target="_blank"><i class="fa-brands fa-instagram"></i> Instagram გვერდი</a>
             </div>
         </div>
-        <div class="copy">
+        <div class="copyright">
             &copy; MINI MARKET Akhaltsikhe. ყველა უფლება დაცულია. (სატესტო რეჟიმი)
         </div>
     </footer>
 
-    <!-- JavaScript - პროდუქცია, ფასები და ლოგიკა -->
+    <!-- JavaScript - ლოგიკა და პროდუქცია -->
     <script>
-        // პროდუქციის სრული ბაზა რეალური ფასებითა და შედარებით
-        const db = [
+        // პროდუქციის სრული მონაცემები
+        const productsDB = [
             // ხორცპროდუქტები
-            { id: 1, name: "საქონლის ხორცი (ახალი, 1კგ)", cat: "meat", price: 21.50, oldPrice: 24.00, icon: "fa-drumstick-bite" },
-            { id: 2, name: "ღორის ხორცი (რბილი, 1კგ)", cat: "meat", price: 16.00, oldPrice: 18.50, icon: "fa-drumstick-bite" },
-            { id: 3, name: "ქათმის ფილე (1კგ)", cat: "meat", price: 13.20, oldPrice: 15.00, icon: "fa-drumstick-bite" },
-            { id: 4, name: "საქონლის კუპატი (1კგ)", cat: "meat", price: 17.50, oldPrice: 20.00, icon: "fa-drumstick-bite" },
-            { id: 5, name: "სოსისი "ივერია" (1კგ)", cat: "meat", price: 10.50, oldPrice: 12.50, icon: "fa-drumstick-bite" },
-            { id: 6, name: "მოხარშული ძეხვი (1კგ)", cat: "meat", price: 9.80, oldPrice: 11.50, icon: "fa-drumstick-bite" },
+            { id: 1, title: "საქონლის ხორცი (ახალი, 1კგ)", category: "meat", price: 21.50, oldPrice: 24.00, icon: "fa-drumstick-bite" },
+            { id: 2, title: "ღორის ხორცი (რბილი, 1კგ)", category: "meat", price: 16.00, oldPrice: 18.50, icon: "fa-drumstick-bite" },
+            { id: 3, title: "ქათმის ფილე (1კგ)", category: "meat", price: 13.20, oldPrice: 15.00, icon: "fa-drumstick-bite" },
+            { id: 4, title: "საქონლის კუპატი (1კგ)", category: "meat", price: 17.50, oldPrice: 20.00, icon: "fa-drumstick-bite" },
+            { id: 5, title: "სოსისი \"ივერია\" (1კგ)", category: "meat", price: 10.50, oldPrice: 12.50, icon: "fa-drumstick-bite" },
 
             // რძის ნაწარმი
-            { id: 7, name: "იმერული ყველი (1კგ)", cat: "dairy", price: 13.80, oldPrice: 16.00, icon: "fa-cheese" },
-            { id: 8, name: "სულგუნი (1კგ)", cat: "dairy", price: 18.50, oldPrice: 21.00, icon: "fa-cheese" },
-            { id: 9, name: "არაჟანი "სანტე" (400გრ)", cat: "dairy", price: 3.80, oldPrice: 4.40, icon: "fa-blender" },
-            { id: 10, name: "კარაქი "პრეზიდენტი" (200გრ)", cat: "dairy", price: 7.20, oldPrice: 8.50, icon: "fa-cube" },
-            { id: 11, name: "რძე "სანტე" 3.2% (1ლ)", cat: "dairy", price: 4.10, oldPrice: 4.80, icon: "fa-bottle-droplet" },
-            { id: 12, name: "ხაჭო (250გრ)", cat: "dairy", price: 2.80, oldPrice: 3.50, icon: "fa-bowl-food" },
+            { id: 6, title: "იმერული ყველი (1კგ)", category: "dairy", price: 13.80, oldPrice: 16.00, icon: "fa-cheese" },
+            { id: 7, title: "სულგუნი (1კგ)", category: "dairy", price: 18.50, oldPrice: 21.00, icon: "fa-cheese" },
+            { id: 8, title: "არაჟანი \"სანტე\" (400გრ)", category: "dairy", price: 3.80, oldPrice: 4.40, icon: "fa-blender" },
+            { id: 9, title: "კარაქი \"პრეზიდენტი\" (200გრ)", category: "dairy", price: 7.20, oldPrice: 8.50, icon: "fa-cube" },
 
             // პურ-ფუნთუშეული
-            { id: 13, name: "ქარხნული პური", cat: "bakery", price: 1.10, oldPrice: 1.30, icon: "fa-bread-slice" },
-            { id: 14, name: "თონის პური", cat: "bakery", price: 1.30, oldPrice: 1.50, icon: "fa-bread-slice" },
-            { id: 15, name: "ფუნთუშა შოკოლადით", cat: "bakery", price: 1.40, oldPrice: 1.80, icon: "fa-cookie" },
+            { id: 10, title: "ქარხნული პური", category: "bakery", price: 1.10, oldPrice: 1.30, icon: "fa-bread-slice" },
+            { id: 11, title: "თონის პური", category: "bakery", price: 1.30, oldPrice: 1.50, icon: "fa-bread-slice" },
+            { id: 12, title: "ფუნთუშა შოკოლადით", category: "bakery", price: 1.40, oldPrice: 1.80, icon: "fa-cookie" },
 
             // სასმელები
-            { id: 16, name: "კოკა-კოლა (1.5ლ)", cat: "drinks", price: 3.10, oldPrice: 3.60, icon: "fa-bottle-water" },
-            { id: 17, name: "ფანტა (1.5ლ)", cat: "drinks", price: 3.10, oldPrice: 3.60, icon: "fa-bottle-water" },
-            { id: 18, name: "ბორჯომი (მინა 0.5ლ)", cat: "drinks", price: 1.30, oldPrice: 1.60, icon: "fa-wine-bottle" },
-            { id: 19, name: "წყალი "ნაბეღლავი" (1ლ)", cat: "drinks", price: 1.40, oldPrice: 1.70, icon: "fa-bottle-water" },
-            { id: 20, name: "ნატურალური წვენი "სანტალი" (1ლ)", cat: "drinks", price: 4.50, oldPrice: 5.30, icon: "fa-glass-water" },
+            { id: 13, title: "კოკა-კოლა (1.5ლ)", category: "drinks", price: 3.10, oldPrice: 3.60, icon: "fa-bottle-water" },
+            { id: 14, title: "ფანტა (1.5ლ)", category: "drinks", price: 3.10, oldPrice: 3.60, icon: "fa-bottle-water" },
+            { id: 15, title: "ბორჯომი (0.5ლ)", category: "drinks", price: 1.30, oldPrice: 1.60, icon: "fa-wine-bottle" },
+            { id: 16, title: "წვენი \"სანტალი\" (1ლ)", category: "drinks", price: 4.50, oldPrice: 5.30, icon: "fa-glass-water" },
 
             // ტკბილეული / სნექები
-            { id: 21, name: "შოკოლადი Alpen Gold", cat: "snacks", price: 2.80, oldPrice: 3.40, icon: "fa-cookie-bite" },
-            { id: 22, name: "ჩიფსი Lays (დიდი)", cat: "snacks", price: 3.50, oldPrice: 4.20, icon: "fa-box-open" },
-            { id: 23, name: "ორცხობილა "ორაო" (154გრ)", cat: "snacks", price: 2.60, oldPrice: 3.20, icon: "fa-cookie" },
+            { id: 17, title: "შოკოლადი Alpen Gold", category: "snacks", price: 2.80, oldPrice: 3.40, icon: "fa-cookie-bite" },
+            { id: 18, title: "ჩიფსი Lays (დიდი)", category: "snacks", price: 3.50, oldPrice: 4.20, icon: "fa-box-open" },
 
             // საყოფაცხოვრებო
-            { id: 24, name: "ჭურჭლის სარეცხი სითხე Fairy", cat: "chem", price: 3.80, oldPrice: 4.50, icon: "fa-soap" },
-            { id: 25, name: "ხელსახოცი (ორფენიანი)", cat: "chem", price: 1.20, oldPrice: 1.60, icon: "fa-box" }
+            { id: 19, title: "სარეცხი სითხე Fairy", category: "chem", price: 3.80, oldPrice: 4.50, icon: "fa-soap" },
+            { id: 20, title: "ხელსახოცი (ორფენიანი)", category: "chem", price: 1.20, oldPrice: 1.60, icon: "fa-box" }
         ];
 
         let cart = [];
         let activeCategory = 'all';
 
         // პროდუქტების გამოჩენა
-        function render() {
-            const grid = document.getElementById('productGrid');
+        function displayProducts() {
+            const grid = document.getElementById('productsGrid');
             grid.innerHTML = '';
 
-            const items = db.filter(item => activeCategory === 'all' || item.cat === activeCategory);
+            const filtered = productsDB.filter(p => activeCategory === 'all' || p.category === activeCategory);
 
-            items.forEach(item => {
-                const el = document.createElement('div');
-                el.className = 'card';
-                el.innerHTML = `
-                    <div class="badge"><i class="fa-solid fa-arrow-down"></i> დაბალი ფასი</div>
-                    <div class="img-box">
+            filtered.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <div class="discount-badge"><i class="fa-solid fa-arrow-down"></i> დაბალი ფასი</div>
+                    <div class="product-thumb">
                         <i class="fa-solid ${item.icon} fa-4x"></i>
                     </div>
-                    <div class="card-body">
-                        <div class="card-title">${item.name}</div>
-                        <div class="prices">
-                            <span class="old-p">${item.oldPrice.toFixed(2)} ₾</span>
-                            <span class="new-p">${item.price.toFixed(2)} ₾</span>
+                    <div class="product-details">
+                        <div class="product-title">${item.title}</div>
+                        <div class="price-row">
+                            <span class="current-price">${item.price.toFixed(2)} ₾</span>
+                            <span class="old-price">${item.oldPrice.toFixed(2)} ₾</span>
                         </div>
-                        <button class="btn-add" onclick="addToCart(${item.id})">
-                            <i class="fa-solid fa-cart-plus"></i> კალათაში დამატება
+                        <button class="add-btn" onclick="addToCart(${item.id})">
+                            <i class="fa-solid fa-cart-plus"></i> დამატება
                         </button>
                     </div>
                 `;
-                grid.appendChild(el);
+                grid.appendChild(card);
             });
         }
 
-        // ფილტრი
-        function filterCat(cat, e) {
+        // კატეგორიის არჩევა
+        function selectCategory(cat, e) {
             activeCategory = cat;
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.cat-chip').forEach(btn => btn.classList.remove('active'));
             e.target.classList.add('active');
-            render();
+            displayProducts();
         }
 
-        // ძებნა
-        function searchProducts() {
-            const q = document.getElementById('searchInput').value.toLowerCase();
-            const cards = document.querySelectorAll('.card');
+        // პროდუქტის ძებნა
+        function filterProducts() {
+            const term = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.product-card');
             cards.forEach(card => {
-                const title = card.querySelector('.card-title').innerText.toLowerCase();
-                card.style.display = title.includes(q) ? 'flex' : 'none';
+                const title = card.querySelector('.product-title').innerText.toLowerCase();
+                card.style.display = title.includes(term) ? 'flex' : 'none';
             });
         }
 
-        // კალათა
+        // კალათის ლოგიკა
         function addToCart(id) {
-            const prod = db.find(p => p.id === id);
-            const inCart = cart.find(c => c.id === id);
-            if (inCart) {
-                inCart.qty++;
+            const item = productsDB.find(p => p.id === id);
+            const exist = cart.find(c => c.id === id);
+            if (exist) {
+                exist.qty++;
             } else {
-                cart.push({ ...prod, qty: 1 });
+                cart.push({ ...item, qty: 1 });
             }
-            updateCartUI();
+            updateCart();
         }
 
-        function updateCartUI() {
+        function updateCart() {
             const list = document.getElementById('cartList');
             const badge = document.getElementById('cartBadge');
             const totalEl = document.getElementById('cartTotal');
 
             list.innerHTML = '';
             let total = 0;
-            let qtySum = 0;
+            let count = 0;
 
             if (cart.length === 0) {
-                list.innerHTML = '<p style="text-align: center; color: #888;">კალათა ცარიელია</p>';
+                list.innerHTML = '<p style="text-align: center; color: #9ca3af; padding: 20px;">კალათა ცარიელია</p>';
             } else {
                 cart.forEach(item => {
-                    const sub = item.price * item.qty;
-                    total += sub;
-                    qtySum += item.qty;
+                    const subtotal = item.price * item.qty;
+                    total += subtotal;
+                    count += item.qty;
 
                     const row = document.createElement('div');
-                    row.className = 'cart-item';
+                    row.className = 'cart-item-row';
                     row.innerHTML = `
                         <div>
-                            <strong>${item.name}</strong><br>
-                            <small>${item.price.toFixed(2)} ₾ x ${item.qty}</small>
+                            <strong style="font-size:14px;">${item.title}</strong><br>
+                            <small style="color:#6b7280;">${item.price.toFixed(2)} ₾ x ${item.qty}</small>
                         </div>
-                        <div>
-                            <button onclick="changeQty(${item.id}, -1)" style="padding:2px 8px; font-weight:bold;">-</button>
-                            <span style="margin:0 5px; font-weight:bold;">${item.qty}</span>
-                            <button onclick="changeQty(${item.id}, 1)" style="padding:2px 8px; font-weight:bold;">+</button>
+                        <div class="qty-controls">
+                            <button class="qty-btn" onclick="changeQty(${item.id}, -1)">-</button>
+                            <span>${item.qty}</span>
+                            <button class="qty-btn" onclick="changeQty(${item.id}, 1)">+</button>
                         </div>
                     `;
                     list.appendChild(row);
                 });
             }
 
-            badge.innerText = qtySum;
+            badge.innerText = count;
             totalEl.innerText = `სულ: ${total.toFixed(2)} ₾`;
         }
 
         function changeQty(id, delta) {
-            const item = cart.find(i => i.id === id);
+            const item = cart.find(c => c.id === id);
             if (item) {
                 item.qty += delta;
-                if (item.qty <= 0) cart = cart.filter(i => i.id !== id);
+                if (item.qty <= 0) cart = cart.filter(c => c.id !== id);
             }
-            updateCartUI();
+            updateCart();
         }
 
         function openCartModal() { document.getElementById('cartModal').style.display = 'flex'; }
         function closeCartModal() { document.getElementById('cartModal').style.display = 'none'; }
 
-        // WhatsApp-ზე შეკვეთა
+        // WhatsApp შეკვეთა
         function sendOrderToWhatsApp() {
             if (cart.length === 0) {
                 alert('კალათა ცარიელია!');
                 return;
             }
 
-            let text = "გამარჯობა, მინდა შეკვეთის გაფორმება MINI MARKET-იდან:\n\n";
+            let text = "გამარჯობა! მინდა შეკვეთის გაფორმება MINI MARKET-იდან:\n\n";
             let sum = 0;
 
             cart.forEach(i => {
                 const s = i.price * i.qty;
                 sum += s;
-                text += `• ${i.name} - ${i.qty} ცალი (${s.toFixed(2)} ₾)\n`;
+                text += `• ${i.title} - ${i.qty} ცალი (${s.toFixed(2)} ₾)\n`;
             });
 
             text += `\n*სულ ჯამი:* ${sum.toFixed(2)} ₾`;
@@ -856,51 +905,51 @@
         }
 
         // AI ჩატბოტი
-        function toggleAI() {
-            const el = document.getElementById('aiModal');
-            el.style.display = el.style.display === 'flex' ? 'none' : 'flex';
+        function toggleAIChat() {
+            const win = document.getElementById('aiWindow');
+            win.style.display = win.style.display === 'flex' ? 'none' : 'flex';
         }
 
-        function chatKey(e) { if (e.key === 'Enter') sendMsg(); }
+        function handleAIKey(e) { if (e.key === 'Enter') sendAIMessage(); }
 
-        function sendMsg() {
-            const input = document.getElementById('chatInput');
-            const text = input.value.trim();
-            if (!text) return;
+        function sendAIMessage() {
+            const input = document.getElementById('aiInput');
+            const msg = input.value.trim();
+            if (!msg) return;
 
-            const msgs = document.getElementById('chatMsgs');
+            const body = document.getElementById('aiBody');
 
             const uMsg = document.createElement('div');
-            uMsg.className = 'msg user';
-            uMsg.innerText = text;
-            msgs.appendChild(uMsg);
+            uMsg.className = 'ai-msg user';
+            uMsg.innerText = msg;
+            body.appendChild(uMsg);
 
             input.value = '';
-            msgs.scrollTop = msgs.scrollHeight;
+            body.scrollTop = body.scrollHeight;
 
             setTimeout(() => {
                 const bMsg = document.createElement('div');
-                bMsg.className = 'msg bot';
-                const lower = text.toLowerCase();
+                bMsg.className = 'ai-msg bot';
+                const lower = msg.toLowerCase();
 
                 if (lower.includes('მისამართი') || lower.includes('სად')) {
-                    bMsg.innerText = "მაღაზია მდებარეობს ქალაქ ახალციხეში, იაძის ქუჩა №2-ში.";
+                    bMsg.innerText = "ჩვენი მაღაზია მდებარეობს ქალაქ ახალციხეში, იაძის ქუჩა №2-ში.";
                 } else if (lower.includes('საათი') || lower.includes('როდის')) {
-                    bMsg.innerText = "ვმუშაობთ ყოველდღე 08:00-დან 23:00 საათამდე.";
+                    bMsg.innerText = "ვმუშაობთ ყოველდღე 08:00-დან 18:00 საათამდე.";
                 } else if (lower.includes('ფასი') || lower.includes('იაფი')) {
                     bMsg.innerText = "ჩვენთან ყველა პროდუქტი ახალციხეში არსებულ სხვა მაღაზიებთან შედარებით დაბალ ფასადაა!";
                 } else {
                     bMsg.innerHTML = `გმადლობთ შეკითხვისთვის! თქვენი შეკითხვა იგზავნება WhatsApp-ზე:\n<br><br>
-                    <a href="https://wa.me/995500224822?text=${encodeURIComponent('კითხვა: ' + text)}" target="_blank" style="color:#0084ff; font-weight:bold;">დააჭირეთ აქ პასუხის მისაღებად</a>`;
+                    <a href="https://wa.me/995500224822?text=${encodeURIComponent('კითხვა საიტიდან: ' + msg)}" target="_blank" style="color:#2563eb; font-weight:bold;">დააჭირეთ აქ პასუხის მისაღებად</a>`;
                 }
 
-                msgs.appendChild(bMsg);
-                msgs.scrollTop = msgs.scrollHeight;
+                body.appendChild(bMsg);
+                body.scrollTop = body.scrollHeight;
             }, 500);
         }
 
-        // ჩატვირთვა
-        render();
+        // საწყისი ჩატვირთვა
+        displayProducts();
     </script>
 </body>
 </html>
