@@ -234,7 +234,7 @@
 
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
             gap: 20px;
         }
 
@@ -270,13 +270,25 @@
         }
 
         .product-thumb {
-            height: 150px;
-            background: #fafafa;
+            height: 180px;
+            background: #ffffff;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--brand-green);
+            overflow: hidden;
             border-bottom: 1px solid #f3f4f6;
+            padding: 10px;
+        }
+
+        .product-thumb img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover .product-thumb img {
+            transform: scale(1.05);
         }
 
         .product-details {
@@ -732,47 +744,46 @@
         </div>
     </footer>
 
-    <!-- JavaScript - ლოგიკა და პროდუქცია -->
+    <!-- JavaScript - ლოგიკა და პროდუქცია (რეალური სურათების ბმულებით) -->
     <script>
-        // პროდუქციის სრული მონაცემები
         const productsDB = [
             // ხორცპროდუქტები
-            { id: 1, title: "საქონლის ხორცი (ახალი, 1კგ)", category: "meat", price: 21.50, oldPrice: 24.00, icon: "fa-drumstick-bite" },
-            { id: 2, title: "ღორის ხორცი (რბილი, 1კგ)", category: "meat", price: 16.00, oldPrice: 18.50, icon: "fa-drumstick-bite" },
-            { id: 3, title: "ქათმის ფილე (1კგ)", category: "meat", price: 13.20, oldPrice: 15.00, icon: "fa-drumstick-bite" },
-            { id: 4, title: "საქონლის კუპატი (1კგ)", category: "meat", price: 17.50, oldPrice: 20.00, icon: "fa-drumstick-bite" },
-            { id: 5, title: "სოსისი \"ივერია\" (1კგ)", category: "meat", price: 10.50, oldPrice: 12.50, icon: "fa-drumstick-bite" },
+            { id: 1, title: "საქონლის ხორცი (ახალი, 1კგ)", category: "meat", price: 21.50, oldPrice: 24.00, img: "https://images.unsplash.com/photo-1603048588665-791ca8aea617?w=500&auto=format&fit=crop&q=80" },
+            { id: 2, title: "ღორის ხორცი (რბილი, 1კგ)", category: "meat", price: 16.00, oldPrice: 18.50, img: "https://images.unsplash.com/photo-1602470520998-f4a52199a3d6?w=500&auto=format&fit=crop&q=80" },
+            { id: 3, title: "ქათმის ფილე (1კგ)", category: "meat", price: 13.20, oldPrice: 15.00, img: "https://images.unsplash.com/photo-1604503468506-a8da13d82791?w=500&auto=format&fit=crop&q=80" },
+            { id: 4, title: "საქონლის კუპატი (1კგ)", category: "meat", price: 17.50, oldPrice: 20.00, img: "https://images.unsplash.com/photo-1544025162-d76694265947?w=500&auto=format&fit=crop&q=80" },
+            { id: 5, title: "სოსისი \"ივერია\" (1კგ)", category: "meat", price: 10.50, oldPrice: 12.50, img: "https://images.unsplash.com/photo-1528607929212-2636ec44253e?w=500&auto=format&fit=crop&q=80" },
 
             // რძის ნაწარმი
-            { id: 6, title: "იმერული ყველი (1კგ)", category: "dairy", price: 13.80, oldPrice: 16.00, icon: "fa-cheese" },
-            { id: 7, title: "სულგუნი (1კგ)", category: "dairy", price: 18.50, oldPrice: 21.00, icon: "fa-cheese" },
-            { id: 8, title: "არაჟანი \"სანტე\" (400გრ)", category: "dairy", price: 3.80, oldPrice: 4.40, icon: "fa-blender" },
-            { id: 9, title: "კარაქი \"პრეზიდენტი\" (200გრ)", category: "dairy", price: 7.20, oldPrice: 8.50, icon: "fa-cube" },
+            { id: 6, title: "იმერული ყველი (1კგ)", category: "dairy", price: 13.80, oldPrice: 16.00, img: "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=500&auto=format&fit=crop&q=80" },
+            { id: 7, title: "სულგუნი (1კგ)", category: "dairy", price: 18.50, oldPrice: 21.00, img: "https://images.unsplash.com/photo-1628102491629-778571d893a3?w=500&auto=format&fit=crop&q=80" },
+            { id: 8, title: "არაჟანი \"სანტე\" (400გრ)", category: "dairy", price: 3.80, oldPrice: 4.40, img: "https://images.unsplash.com/photo-1576186726115-4d51598775d1?w=500&auto=format&fit=crop&q=80" },
+            { id: 9, title: "კარაქი \"პრეზიდენტი\" (200გრ)", category: "dairy", price: 7.20, oldPrice: 8.50, img: "https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=500&auto=format&fit=crop&q=80" },
 
             // პურ-ფუნთუშეული
-            { id: 10, title: "ქარხნული პური", category: "bakery", price: 1.10, oldPrice: 1.30, icon: "fa-bread-slice" },
-            { id: 11, title: "თონის პური", category: "bakery", price: 1.30, oldPrice: 1.50, icon: "fa-bread-slice" },
-            { id: 12, title: "ფუნთუშა შოკოლადით", category: "bakery", price: 1.40, oldPrice: 1.80, icon: "fa-cookie" },
+            { id: 10, title: "ქარხნული პური", category: "bakery", price: 1.10, oldPrice: 1.30, img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500&auto=format&fit=crop&q=80" },
+            { id: 11, title: "თონის პური", category: "bakery", price: 1.30, oldPrice: 1.50, img: "https://images.unsplash.com/photo-1549931319-a545dcf3bc73?w=500&auto=format&fit=crop&q=80" },
+            { id: 12, title: "ფუნთუშა შოკოლადით", category: "bakery", price: 1.40, oldPrice: 1.80, img: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=500&auto=format&fit=crop&q=80" },
 
             // სასმელები
-            { id: 13, title: "კოკა-კოლა (1.5ლ)", category: "drinks", price: 3.10, oldPrice: 3.60, icon: "fa-bottle-water" },
-            { id: 14, title: "ფანტა (1.5ლ)", category: "drinks", price: 3.10, oldPrice: 3.60, icon: "fa-bottle-water" },
-            { id: 15, title: "ბორჯომი (0.5ლ)", category: "drinks", price: 1.30, oldPrice: 1.60, icon: "fa-wine-bottle" },
-            { id: 16, title: "წვენი \"სანტალი\" (1ლ)", category: "drinks", price: 4.50, oldPrice: 5.30, icon: "fa-glass-water" },
+            { id: 13, title: "კოკა-კოლა (1.5ლ)", category: "drinks", price: 3.10, oldPrice: 3.60, img: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=500&auto=format&fit=crop&q=80" },
+            { id: 14, title: "ფანტა (1.5ლ)", category: "drinks", price: 3.10, oldPrice: 3.60, img: "https://images.unsplash.com/photo-1624517452488-04869289c4ca?w=500&auto=format&fit=crop&q=80" },
+            { id: 15, title: "ბორჯომი (0.5ლ)", category: "drinks", price: 1.30, oldPrice: 1.60, img: "https://images.unsplash.com/photo-1560023907-5f3132d1e60f?w=500&auto=format&fit=crop&q=80" },
+            { id: 16, title: "წვენი \"სანტალი\" (1ლ)", category: "drinks", price: 4.50, oldPrice: 5.30, img: "https://images.unsplash.com/photo-1613478223719-2ab802602423?w=500&auto=format&fit=crop&q=80" },
 
             // ტკბილეული / სნექები
-            { id: 17, title: "შოკოლადი Alpen Gold", category: "snacks", price: 2.80, oldPrice: 3.40, icon: "fa-cookie-bite" },
-            { id: 18, title: "ჩიფსი Lays (დიდი)", category: "snacks", price: 3.50, oldPrice: 4.20, icon: "fa-box-open" },
+            { id: 17, title: "შოკოლადი Alpen Gold", category: "snacks", price: 2.80, oldPrice: 3.40, img: "https://images.unsplash.com/photo-1582176647440-3b137b3106e4?w=500&auto=format&fit=crop&q=80" },
+            { id: 18, title: "ჩიფსი Lays (დიდი)", category: "snacks", price: 3.50, oldPrice: 4.20, img: "https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=500&auto=format&fit=crop&q=80" },
 
             // საყოფაცხოვრებო
-            { id: 19, title: "სარეცხი სითხე Fairy", category: "chem", price: 3.80, oldPrice: 4.50, icon: "fa-soap" },
-            { id: 20, title: "ხელსახოცი (ორფენიანი)", category: "chem", price: 1.20, oldPrice: 1.60, icon: "fa-box" }
+            { id: 19, title: "სარეცხი სითხე Fairy", category: "chem", price: 3.80, oldPrice: 4.50, img: "https://images.unsplash.com/photo-1585832770485-e68a5fcfad52?w=500&auto=format&fit=crop&q=80" },
+            { id: 20, title: "ხელსახოცი (ორფენიანი)", category: "chem", price: 1.20, oldPrice: 1.60, img: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=500&auto=format&fit=crop&q=80" }
         ];
 
         let cart = [];
         let activeCategory = 'all';
 
-        // პროდუქტების გამოჩენა
+        // პროდუქტების გამოჩენა სურათებით
         function displayProducts() {
             const grid = document.getElementById('productsGrid');
             grid.innerHTML = '';
@@ -785,7 +796,7 @@
                 card.innerHTML = `
                     <div class="discount-badge"><i class="fa-solid fa-arrow-down"></i> დაბალი ფასი</div>
                     <div class="product-thumb">
-                        <i class="fa-solid ${item.icon} fa-4x"></i>
+                        <img src="${item.img}" alt="${item.title}" loading="lazy">
                     </div>
                     <div class="product-details">
                         <div class="product-title">${item.title}</div>
@@ -935,7 +946,7 @@
                 if (lower.includes('მისამართი') || lower.includes('სად')) {
                     bMsg.innerText = "ჩვენი მაღაზია მდებარეობს ქალაქ ახალციხეში, იაძის ქუჩა №2-ში.";
                 } else if (lower.includes('საათი') || lower.includes('როდის')) {
-                    bMsg.innerText = "ვმუშაობთ ყოველდღე 08:00-დან 18:00 საათამდე.";
+                    bMsg.innerText = "ვმუშაობთ ყოველდღე 08:00-დან 23:00 საათამდე.";
                 } else if (lower.includes('ფასი') || lower.includes('იაფი')) {
                     bMsg.innerText = "ჩვენთან ყველა პროდუქტი ახალციხეში არსებულ სხვა მაღაზიებთან შედარებით დაბალ ფასადაა!";
                 } else {
