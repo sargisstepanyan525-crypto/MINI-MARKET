@@ -3,223 +3,191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>მინი მარკეტი ახალციხე | Mini-Market Akhaltsikhe - ონლაინ მაღაზია</title>
-    <meta name="description" content="მინი მარკეტი ახალციხეში - იაძის ქ. 2. ფართო ასორტიმენტი, ახალი ხილი, ბოსტნეული, რძის პროდუქტები და სხვა. შეუკვეთეთ ონლაინ!">
+    <title>Mini-Market Akhaltsikhe | Թարմություն և բարձր որակ</title>
+    <meta name="description" content="მინი მარკეტი ახალციხეში - იაძის ქ. 2. ყოველთვის ახალი პროდუქტები, საუკეთესო ფასები და სწრაფი მომსახურება.">
     <style>
         :root {
             --primary: #1e3d59;
             --accent: #17b978;
-            --accent-hover: #129461;
-            --bg-color: #f4f7f6;
+            --whatsapp: #25d366;
+            --bg-color: #f8fafc;
             --text-color: #333;
             --card-bg: #fff;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; }
         
-        /* Header */
-        header { background: linear-gradient(135deg, #1e3d59 0%, #112233 100%); color: white; padding: 30px 20px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        header { background: linear-gradient(135deg, #1e3d59 0%, #0f1d2b 100%); color: white; padding: 30px 20px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.15); }
         .logo-container { margin-bottom: 15px; }
-        .logo-img { width: 130px; height: 130px; border-radius: 50%; object-fit: cover; border: 4px solid white; box-shadow: 0 6px 15px rgba(0,0,0,0.3); background: #fff; }
-        header h1 { font-size: 28px; margin-bottom: 5px; font-weight: 700; letter-spacing: 0.5px; }
-        header p { font-size: 16px; opacity: 0.9; }
+        .logo-img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 4px solid white; box-shadow: 0 6px 15px rgba(0,0,0,0.3); background: #fff; }
+        header h1 { font-size: 28px; margin-bottom: 5px; font-weight: 700; }
+        header p { font-size: 16px; opacity: 0.95; }
 
-        /* Navigation / Categories Bar */
-        .nav-bar { background: #112233; padding: 10px; text-align: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
-        .nav-bar a { color: white; text-decoration: none; padding: 8px 15px; margin: 0 5px; border-radius: 20px; font-size: 14px; display: inline-block; transition: background 0.3s; }
-        .nav-bar a:hover { background: var(--accent); }
+        .lang-bar { background: #0b1520; padding: 8px; text-align: center; }
+        .lang-btn { background: transparent; border: 1px solid rgba(255,255,255,0.3); color: white; padding: 4px 12px; margin: 0 3px; border-radius: 4px; cursor: pointer; font-size: 12px; transition: background 0.2s; }
+        .lang-btn:hover, .lang-btn.active { background: var(--accent); border-color: var(--accent); }
 
-        /* Container */
-        .container { max-width: 1100px; margin: 30px auto; padding: 0 20px; }
+        .container { max-width: 1100px; margin: 25px auto; padding: 0 20px; }
 
-        /* Section Titles */
-        .section-header { text-align: center; margin-bottom: 30px; }
-        .section-header h2 { color: var(--primary); font-size: 26px; position: relative; display: inline-block; padding-bottom: 10px; }
+        /* Trust & Catchy Banner */
+        .promo-banner { background: linear-gradient(135deg, #17b978 0%, #129461 100%); color: white; padding: 15px; border-radius: 10px; text-align: center; margin-bottom: 25px; font-weight: bold; box-shadow: 0 4px 10px rgba(23,185,120,0.2); }
+
+        .section-header { text-align: center; margin-bottom: 25px; }
+        .section-header h2 { color: var(--primary); font-size: 26px; position: relative; display: inline-block; padding-bottom: 8px; }
         .section-header h2::after { content: ''; position: absolute; width: 60%; height: 3px; background: var(--accent); bottom: 0; left: 20%; border-radius: 2px; }
 
-        /* Search & Filter */
-        .search-box { text-align: center; margin-bottom: 30px; }
-        .search-box input { width: 100%; max-width: 450px; padding: 12px 20px; font-size: 16px; border: 2px solid #ddd; border-radius: 30px; outline: none; transition: border-color 0.3s; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .search-box { text-align: center; margin-bottom: 25px; }
+        .search-box input { width: 100%; max-width: 450px; padding: 12px 20px; font-size: 15px; border: 2px solid #ddd; border-radius: 30px; outline: none; transition: border-color 0.3s; }
         .search-box input:focus { border-color: var(--accent); }
 
-        /* Product Grid */
         .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
-        .product-card { background: var(--card-bg); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.06); transition: transform 0.3s, box-shadow 0.3s; display: flex; flex-direction: column; justify-content: space-between; }
-        .product-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.12); }
-        .product-img { width: 100%; height: 180px; background: #eef2f5; display: flex; align-items: center; justify-content: center; font-size: 50px; color: #555; position: relative; }
-        .product-body { padding: 20px; }
-        .product-body h3 { font-size: 18px; color: var(--primary); margin-bottom: 8px; }
-        .product-body p { font-size: 14px; color: #666; margin-bottom: 15px; }
-        .product-footer { display: flex; align-items: center; justify-content: space-between; padding: 0 20px 20px 20px; }
-        .price { font-size: 16px; font-weight: bold; color: #e44d26; }
-        .order-btn { background: var(--accent); color: white; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-weight: bold; transition: background 0.3s; }
-        .order-btn:hover { background: var(--accent-hover); }
+        .product-card { background: var(--card-bg); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); transition: transform 0.3s; display: flex; flex-direction: column; justify-content: space-between; }
+        .product-card:hover { transform: translateY(-5px); }
+        .product-img { width: 100%; height: 160px; background: #eef2f5; display: flex; align-items: center; justify-content: center; font-size: 50px; }
+        .product-body { padding: 18px; }
+        .product-body h3 { font-size: 18px; color: var(--primary); margin-bottom: 6px; }
+        .product-body p { font-size: 14px; color: #666; margin-bottom: 12px; }
+        .product-footer { display: flex; align-items: center; justify-content: space-between; padding: 0 18px 18px 18px; }
+        .price { font-size: 17px; font-weight: bold; color: #e44d26; }
+        .order-btn { background: var(--whatsapp); color: white; border: none; padding: 8px 14px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 13px; display: inline-flex; align-items: center; gap: 5px; transition: background 0.3s; }
+        .order-btn:hover { background: #1ebd56; }
 
-        /* Quick Order / Message Section */
-        .order-section { background: white; border-radius: 12px; padding: 35px 25px; margin-top: 50px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
-        .order-form { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
-        .form-group { display: flex; flex-direction: column; }
-        .form-group.full { grid-column: span 2; }
-        .form-group label { margin-bottom: 8px; font-weight: 600; color: var(--primary); }
-        .form-group input, .form-group textarea { padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 15px; outline: none; transition: border-color 0.3s; }
-        .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); }
-        .submit-btn { background: var(--primary); color: white; border: none; padding: 14px; font-size: 16px; font-weight: bold; border-radius: 8px; cursor: pointer; grid-column: span 2; transition: background 0.3s; }
-        .submit-btn:hover { background: #112233; }
+        /* AI Assistant Section */
+        .ai-assistant { background: white; border-radius: 12px; padding: 25px; margin-top: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border: 2px solid var(--accent); }
+        .ai-chat-box { background: #f9f9f9; border: 1px solid #ddd; border-radius: 8px; height: 160px; overflow-y: auto; padding: 12px; margin-bottom: 15px; font-size: 14px; }
+        .ai-input-group { display: flex; gap: 10px; }
+        .ai-input-group input { flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; outline: none; }
+        .ai-send-btn { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: bold; }
 
-        /* Contact & Info Box */
-        .info-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 50px; }
-        .info-card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.06); }
-        .info-card h3 { color: var(--primary); margin-bottom: 15px; font-size: 20px; border-bottom: 2px solid #f0f0f0; padding-bottom: 8px; }
-        .info-item { margin: 12px 0; font-size: 15px; display: flex; align-items: center; gap: 10px; }
+        /* Contact & WhatsApp Box */
+        .info-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-top: 40px; }
+        .info-card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+        .info-card h3 { color: var(--primary); margin-bottom: 12px; font-size: 18px; border-bottom: 2px solid #f0f0f0; padding-bottom: 6px; }
+        .info-item { margin: 10px 0; font-size: 14px; }
         .info-item a { color: var(--primary); text-decoration: none; font-weight: 600; }
-        .info-item a:hover { color: var(--accent); }
 
-        .social-buttons { margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap; }
-        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: bold; color: white; transition: opacity 0.3s; }
+        .social-buttons { margin-top: 15px; display: flex; gap: 10px; flex-wrap: wrap; }
+        .btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 18px; border-radius: 6px; text-decoration: none; font-weight: bold; color: white; font-size: 13px; }
         .btn-call { background: #27ae60; }
+        .btn-wa { background: var(--whatsapp); }
         .btn-insta { background: #e1306c; }
-        .btn:hover { opacity: 0.9; }
 
-        /* Footer */
-        footer { text-align: center; padding: 30px; background: #112233; color: #aaa; margin-top: 60px; font-size: 14px; }
-
-        @media (max-width: 768px) {
-            .order-form { grid-template-columns: 1fr; }
-            .form-group.full { grid-column: span 1; }
-            .submit-btn { grid-column: span 1; }
-        }
+        footer { text-align: center; padding: 25px; background: #0f1d2b; color: #aaa; margin-top: 50px; font-size: 13px; }
     </style>
 </head>
 <body>
+
+    <div class="lang-bar">
+        <button class="lang-btn active" onclick="setLang('ka')">ქართული</button>
+        <button class="lang-btn" onclick="setLang('hy')">Հայերեն</button>
+        <button class="lang-btn" onclick="setLang('ru')">Русский</button>
+        <button class="lang-btn" onclick="setLang('en')">English</button>
+    </div>
 
     <header>
         <div class="logo-container">
             <img src="logo.jpg" alt="Mini Market Logo" class="logo-img" onerror="this.style.display='none'">
         </div>
-        <h1>მინი მარკეტი / Mini-Market Akhaltsikhe</h1>
-        <p>საკვები და სხვა პროდუქციის ონლაინ მაღაზია | Թարմ մթերք և ապրանքներ Ախալցխայում</p>
+        <h1 data-i18n="title">მინი მარკეტი / Mini-Market</h1>
+        <p data-i18n="subtitle">🌟 Որակյալ ապրանքներ, ամենամոտ իրական ցածր գներ և բարձրակարգ սպասարկում</p>
     </header>
-
-    <div class="nav-bar">
-        <a href="#catalog">კატალոგი / Catalog</a>
-        <a href="#order">სწრაფი შეკვეთა / Order</a>
-        <a href="#contact">კონտაქტი / Contact</a>
-    </div>
 
     <div class="container">
 
-        <!-- Search Bar -->
-        <div class="search-box">
-            <input type="text" id="searchInput" placeholder="ძებნა პროდუქტებში... / Search products..." onkeyup="searchProducts()">
+        <div class="promo-banner" data-i18n="promo_text">
+            🔥 Բարձր որակ և մատչելի գներ ամեն օր։ Պատվիրեք անմիջապես WhatsApp-ով։
         </div>
 
-        <!-- Catalog Section -->
-        <div id="catalog" class="section-header">
-            <h2>პროდუქტების კატალოგი / Ապրանքների տեսականի</h2>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="ძებნა... / Search... / Որոնել..." onkeyup="searchProducts()">
+        </div>
+
+        <div class="section-header">
+            <h2 data-i18n="catalog_title">Ապրանքների տեսականի և գներ</h2>
         </div>
 
         <div class="product-grid" id="productGrid">
             
-            <div class="product-card" data-name="ხილი ბოსტნეული apple banana fruit">
+            <div class="product-card" data-name="ხილი ბოსტნეული fruit vegetables մրգեր բանջարեղեն фрукты овощи">
                 <div class="product-img">🍎</div>
                 <div class="product-body">
-                    <h3>թարմ մրգեր և բանջարեղեն / ახალი ხილი და ბოსტნეული</h3>
-                    <p>Ամեն օր թարմ մրգերի և բանջարեղենի մեծ տեսականի ուղղակիորեն խանութից։</p>
+                    <h3 data-i18n="p1_name">Թարմ մրգեր և բանջարեղեն</h3>
+                    <p data-i18n="p1_desc">Ամենաթարմը ձեր սեղանին՝ ուղղակիորեն ընտիր հավաքածուից</p>
                 </div>
                 <div class="product-footer">
-                    <span class="price">Լավագույն գնով</span>
-                    <button class="order-btn" onclick="selectProduct('ხილი და ბოსტნეული')">Պատվիրել</button>
+                    <span class="price" data-i18n="p1_price">1.50 ₾ -ից</span>
+                    <button class="order-btn" onclick="orderWhatsApp('Թարմ մրգեր և բանջարեղեն')" data-i18n="order_btn">💬 Պատվիրել</button>
                 </div>
             </div>
 
-            <div class="product-card" data-name="կաթնամթերք հյութ milk dairy juice">
+            <div class="product-card" data-name="կաթնամթերք milk dairy կաթ պանիր молочные продукты">
                 <div class="product-img">🥛</div>
                 <div class="product-body">
-                    <h3>կաթնամթերք և հյութեր / რძის პროდუქტები და წვენები</h3>
-                    <p>Բնական կաթ, պանիր, մածուն, հյութեր և այլն։</p>
+                    <h3 data-i18n="p2_name">Կաթնամթերք (կաթ, պանիր)</h3>
+                    <p data-i18n="p2_desc">Բնական, համեղ և բարձրորակ կաթնամթերք ամեն օր</p>
                 </div>
                 <div class="product-footer">
-                    <span class="price">Լավագույն գնով</span>
-                    <button class="order-btn" onclick="selectProduct('რძის პროდუქტები')">Պատվիրել</button>
+                    <span class="price" data-i18n="p2_price">2.00 ₾ -ից</span>
+                    <button class="order-btn" onclick="orderWhatsApp('Կաթնամթերք')" data-i18n="order_btn">💬 Պատվիրել</button>
                 </div>
             </div>
 
-            <div class="product-card" data-name="մսամթերք կիսաֆաբրիկատներ meat">
+            <div class="product-card" data-name="մսամթերք meat միս мясные изделия">
                 <div class="product-img">🥩</div>
                 <div class="product-body">
-                    <h3>մսամթերք և կիսաֆաբրիկատներ / ხორცპროდუქტები</h3>
-                    <p>Թարմ միս և որակյալ մսամթերք անմիջապես խանութից։</p>
+                    <h3 data-i18n="p3_name">Որակյալ մսամթերք</h3>
+                    <p data-i18n="p3_desc">Թարմ և վստահելի մսամթերք՝ խիստ վերահսկվող որակով</p>
                 </div>
                 <div class="product-footer">
-                    <span class="price">Լավագույն գնով</span>
-                    <button class="order-btn" onclick="selectProduct('ხორცპროდუქტები')">Պատվիրել</button>
+                    <span class="price" data-i18n="p3_price">5.00 ₾ -ից</span>
+                    <button class="order-btn" onclick="orderWhatsApp('Մսամթերք')" data-i18n="order_btn">💬 Պատվիրել</button>
                 </div>
             </div>
 
-            <div class="product-card" data-name="սնունդ ապրանքներ groceries food">
-                <div class="product-img">🛒</div>
+            <div class="product-card" data-name="ըմպելիք հյութ drinks water напитки соки">
+                <div class="product-img">🧃</div>
                 <div class="product-body">
-                    <h3>ամենօրյա սպառման ապրանքներ / ყოველდღიური პროდუქტები</h3>
-                    <p>Լայն տեսականի ձեր և ձեր ընտանիքի համար։</p>
+                    <h3 data-i18n="p4_name">Ըմպելիքներ և հյութեր</h3>
+                    <p data-i18n="p4_desc">Զովացուցիչ ըմպելիքներ, բնական հյութեր և մաքուր ջուր</p>
                 </div>
                 <div class="product-footer">
-                    <span class="price">Լավագույն գնով</span>
-                    <button class="order-btn" onclick="selectProduct('სხვა პროდუქტები')">Պատվիրել</button>
+                    <span class="price" data-i18n="p4_price">1.00 ₾ -ից</span>
+                    <button class="order-btn" onclick="orderWhatsApp('Ըմպելիքներ և հյութեր')" data-i18n="order_btn">💬 Պատվիրել</button>
                 </div>
             </div>
 
         </div>
 
-        <!-- Quick Order Form Section -->
-        <div id="order" class="order-section">
-            <div class="section-header" style="margin-bottom: 20px;">
-                <h2>արագ պատվեր կամ հարցում / სწრაფი შეკვეთა</h2>
-            </div>
-            <p style="text-align: center; color: #666; margin-bottom: 20px;">Լրացրեք ձեր տվյալները և նշեք, թե ինչ ապրանք է ձեզ անհրաժեշտ, մենք արագ կկապվենք ձեզ հետ։</p>
+        <!-- AI Assistant Section -->
+        <div class="ai-assistant">
+            <h3 style="color: var(--primary); margin-bottom: 10px;" data-i18n="ai_title">🤖 Առցանց AI Օգնական</h3>
+            <p style="font-size: 13px; color: #666; margin-bottom: 15px;" data-i18n="ai_desc">Ստացեք արագ պատասխաններ ապրանքների, գների և հասցեի մասին մեկ վայրում:</p>
             
-            <form class="order-form" onsubmit="sendOrder(event)">
-                <div class="form-group">
-                    <label for="clientName">Ձեր անունը / სახელი:</label>
-                    <input type="text" id="clientName" required placeholder="Օր.՝ Սարգիս">
-                </div>
-                <div class="form-group">
-                    <label for="clientPhone">Հեռախոսահամար / ტელეფონი:</label>
-                    <input type="tel" id="clientPhone" required placeholder="Օր.՝ 555738891">
-                </div>
-                <div class="form-group full">
-                    <label for="clientMessage">Ապրանքների ցանկ կամ հաղորդագրություն / შეკვეთა:</label>
-                    <textarea id="clientMessage" rows="4" required placeholder="Գրեք, թե ինչ ապրանքներ եք ուզում պատվիրել..."></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Ուղարկել պատվերը / შეკვეთის გაგზავნა</button>
-            </form>
+            <div class="ai-chat-box" id="aiChatBox">
+                <div style="color: #444;"><b>AI:</b> <span data-i18n="ai_welcome">Բարև ձեզ։ Սիրով կօգնեմ ձեզ կողմնորոշվել տեսականու մեջ։ Ի՞նչ է ձեզ հարկավոր։</span></div>
+            </div>
+            
+            <div class="ai-input-group">
+                <input type="text" id="aiInput" data-i18n-placeholder="ai_placeholder" placeholder="Գրեք ձեր հարցը այստեղ..." onkeypress="checkAIEnter(event)">
+                <button class="ai-send-btn" onclick="askAI()" data-i18n="ai_send">Ուղարկել</button>
+            </div>
         </div>
 
         <!-- Contact & Location Info -->
-        <div id="contact" class="info-container">
+        <div class="info-container">
             <div class="info-card">
-                <h3>📍 հասցե և տեղանք</h3>
-                <div class="info-item">
-                    <span>ქ. ახალციხე, იაძის ქუჩა 2</span>
-                </div>
-                <div class="info-item">
-                    <span>Ախալցխա, Իաձե փողոց 2</span>
-                </div>
+                <h3 data-i18n="contact_title">📍 Մեր հասցեն</h3>
+                <div class="info-item" data-i18n="address_text">ք. Ախալցխա, Իաձե փողոց 2 (ქ. ახალციხე, იაძის ქ. 2)</div>
             </div>
 
             <div class="info-card">
-                <h3>📞 կապ և հեռախոսահամարներ</h3>
-                <div class="info-item">
-                    <span>Հեռ. 1:</span> <a href="tel:500224822">500 22 48 22</a>
-                </div>
-                <div class="info-item">
-                    <span>Հեռ. 2:</span> <a href="tel:555738891">555 73 88 91</a>
-                </div>
-                <div class="info-item">
-                    <span>Էլ. փոստ:</span> <a href="mailto:info.minimarket.akhaltsikhe@gmail.com">info.minimarket.akhaltsikhe@gmail.com</a>
-                </div>
+                <h3 data-i18n="phone_title">📞 Արագ կապ</h3>
+                <div class="info-item">Հեռ. / Tel: <a href="tel:500224822">500 22 48 22</a></div>
+                <div class="info-item">Email: <a href="mailto:info.minimarket.akhaltsikhe@gmail.com">info.minimarket.akhaltsikhe@gmail.com</a></div>
                 
                 <div class="social-buttons">
-                    <a href="tel:500224822" class="btn btn-call">📞 Զանգահարել</a>
+                    <a href="https://wa.me/995500224822" target="_blank" class="btn btn-wa">💬 WhatsApp-ով գրել</a>
+                    <a href="tel:500224822" class="btn btn-call" data-i18n="call_btn">📞 Զանգահարել</a>
                     <a href="https://www.instagram.com/minimarketakhaltsikhe?igsh=MXAyZ2d2aXpxMmw5OA==" target="_blank" class="btn btn-insta">📸 Instagram</a>
                 </div>
             </div>
@@ -228,14 +196,162 @@
     </div>
 
     <footer>
-        <p>&copy; 2026 Mini-Market Akhaltsikhe. All rights reserved. | Created for online trade in Akhaltsikhe.</p>
+        <p>&copy; 2026 Mini-Market Akhaltsikhe. All rights reserved.</p>
     </footer>
 
     <script>
+        let currentLang = 'ka';
+
+        const translations = {
+            ka: {
+                title: "მინი მარკეტი / Mini-Market",
+                subtitle: "🌟 ხარისხიანი პროდუქტები, საუკეთესო დაბალი ფასები და პირնათელი მომსახურება",
+                promo_text: "🔥 ყოველდღიურად ახალი და საუკეთესო პროდუქტები. შეუკვეთეთ პირდაპირ WhatsApp-ით!",
+                catalog_title: "პროდუქტების კატალოგი და ფასები",
+                p1_name: "ახალი ხილი და ბოსტნეული",
+                p1_desc: "ყველაზე სოციალური და გემովანი პროდუქტები პირდაპირ თქვენი სუფրისთვის",
+                p1_price: "1.50 ₾ -ից",
+                p2_name: "რძის პროდუქტები",
+                p2_desc: "ბუნებრივი, გემრიელი და სუფთა რძე, ყველი და მძიმე რძე",
+                p2_price: "2.00 ₾ -ից",
+                p3_name: "ხარისხიანი ხორცპროდუქტები",
+                p3_desc: "სუფთა და სანდო ხორცი მკაცრი ხარისხის კონტროլით",
+                p3_price: "5.00 ₾ -ից",
+                p4_name: "სასმელები და წვენები",
+                p4_desc: "გამაგრილებელი სასმელები, ბუნებრივი წვენები და წყალი",
+                p4_price: "1.00 ₾ -ից",
+                order_btn: "💬 შეკვეთა",
+                ai_title: "🤖 ონლაინ AI ასისტენტი",
+                ai_desc: "მიიღეთ სწრაფი პასუხები პროდუქტებსა და ფასებზე ერთ სივრცეში:",
+                ai_welcome: "გამარჯობა! სიამოვნებით დაგეხმარებით არჩევანში. რით შემიძლია დაგეხმაროთ?",
+                ai_placeholder: "ჩაწერეთ თქვენი შეკითხვა...",
+                ai_send: "გაგზავნა",
+                contact_title: "📍 მისამართი",
+                address_text: "ქ. ახალციხე, იაძის ქუჩა 2",
+                phone_title: "📞 კონტაქტი",
+                call_btn: "ზარი"
+            },
+            hy: {
+                title: "Մինի-Մարկետ Ախալցխա",
+                subtitle: "🌟 Որակյալ ապրանքներ, ամենամոտ իրական ցածր գներ և բարձրակարգ սպասարկում",
+                promo_text: "🔥 Բարձր որակ և մատչելի գներ ամեն օր։ Պատվիրեք անմիջապես WhatsApp-ով։",
+                catalog_title: "Ապրանքների տեսականի և գներ",
+                p1_name: "Թարմ մրգեր և բանջարեղեն",
+                p1_desc: "Ամենաթարմը ձեր սեղանին՝ ուղղակիորեն ընտիր հավաքածուից",
+                p1_price: "1.50 ₾ -ից",
+                p2_name: "Կաթնամթերք (կաթ, պանիր)",
+                p2_desc: "Բնական, համեղ և բարձրորակ կաթնամթերք ամեն օր",
+                p2_price: "2.00 ₾ -ից",
+                p3_name: "Որակյալ մսամթերք",
+                p3_desc: "Թարմ և վստահելի մսամթերք՝ խիստ վերահսկվող որակով",
+                p3_price: "5.00 ₾ -ից",
+                p4_name: "Ըմպելիքներ և հյութեր",
+                p4_desc: "Զովացուցիչ ըմպելիքներ, բնական հյութեր և մաքուր ջուր",
+                p4_price: "1.00 ₾ -ից",
+                order_btn: "💬 Պատվիրել",
+                ai_title: "🤖 Առցանց AI Օգնական",
+                ai_desc: "Ստացեք արագ պատասխաններ ապրանքների, գների և հասցեի մասին մեկ վայրում:",
+                ai_welcome: "Բարև ձեզ։ Սիրով կօգնեմ ձեզ կողմնորոշվել տեսականու մեջ։ Ի՞նչ է ձեզ հարկավոր։",
+                ai_placeholder: "Գրեք ձեր հարցը այստեղ...",
+                ai_send: "Ուղարկել",
+                contact_title: "📍 Մեր հասցեն",
+                address_text: "ք. Ախալցխա, Իաձե փողոց 2",
+                phone_title: "📞 Արագ կապ",
+                call_btn: "Զանգահարել"
+            },
+            ru: {
+                title: "Мини-Маркет Ахалцихе",
+                subtitle: "🌟 Качественные продукты, честные низкие цены и безупречный сервис",
+                promo_text: "🔥 Свежие товары и выгодные цены каждый день. Заказывайте прямо в WhatsApp!",
+                catalog_title: "Ассортимент и цены",
+                p1_name: "Свежие фрукты и овощи",
+                p1_desc: "Самое свежее и отборное для вашего стола",
+                p1_price: "от 1.50 ₾",
+                p2_name: "Молочные продукты",
+                p2_desc: "Натуральное молоко, сыр и свежие молочные изделия",
+                p2_price: "от 2.00 ₾",
+                p3_name: "Качественные мясные изделия",
+                p3_desc: "Свежее мясо и полуфабрикаты с гарантией качества",
+                p3_price: "от 5.00 ₾",
+                p4_name: "Напитки и соки",
+                p4_desc: "Освежающие напитки, натуральные соки и чистая вода",
+                p4_price: "от 1.00 ₾",
+                order_btn: "💬 Заказать",
+                ai_title: "🤖 ИИ Ассистент",
+                ai_desc: "Получите быстрый ответ о товарах и ценах в любое время:",
+                ai_welcome: "Здравствуйте! С удовольствием помогу вам. Что вас интересует?",
+                ai_placeholder: "Введите ваш вопрос...",
+                ai_send: "Отправить",
+                contact_title: "📍 Наш адрес",
+                address_text: "г. Ахалцихе, ул. Иадзе 2",
+                phone_title: "📞 Связь",
+                call_btn: "Позвонить"
+            },
+            en: {
+                title: "Mini-Market Akhaltsikhe",
+                subtitle: "🌟 Fresh products, best affordable prices and premium service",
+                promo_text: "🔥 High quality and best prices every day. Order directly via WhatsApp!",
+                catalog_title: "Products & Prices",
+                p1_name: "Fresh Fruits & Vegetables",
+                p1_desc: "The freshest selection directly for your daily table",
+                p1_price: "from 1.50 ₾",
+                p2_name: "Dairy Products",
+                p2_desc: "Natural, delicious milk, cheese and daily dairy",
+                p2_price: "from 2.00 ₾",
+                p3_name: "Quality Meat Products",
+                p3_desc: "Fresh and reliable meat with strict quality control",
+                p3_price: "from 5.00 ₾",
+                p4_name: "Drinks & Juices",
+                p4_desc: "Refreshing beverages, natural juices and clean water",
+                p4_price: "from 1.00 ₾",
+                order_btn: "💬 Order",
+                ai_title: "🤖 AI Assistant",
+                ai_desc: "Get instant answers about products and prices in one place:",
+                ai_welcome: "Hello! I will gladly help you find what you need. How can I assist you?",
+                ai_placeholder: "Type your question here...",
+                ai_send: "Send",
+                contact_title: "📍 Address",
+                address_text: "Akhaltsikhe, Iadze St. 2",
+                phone_title: "📞 Contact",
+                call_btn: "Call"
+            }
+        };
+
+        function setLang(lang) {
+            currentLang = lang;
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            const elems = document.querySelectorAll('[data-i18n]');
+            elems.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if(translations[lang][key]) {
+                    el.innerText = translations[lang][key];
+                }
+            });
+
+            const inputs = document.querySelectorAll('[data-i18n-placeholder]');
+            inputs.forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if(translations[lang][key]) {
+                    el.placeholder = translations[lang][key];
+                }
+            });
+        }
+
+        function orderWhatsApp(productName) {
+            let text = "Բարև ձեզ, ցանկանում եմ պատվիրել հետևյալ ապրանքը՝ " + productName;
+            if(currentLang === 'ka') text = "გამარჯობა, მინდა შევუკვეთო პროდუქტი: " + productName;
+            if(currentLang === 'ru') text = "Здравствуйте, я хочу заказать товар: " + productName;
+            if(currentLang === 'en') text = "Hello, I would like to order: " + productName;
+            
+            let url = "https://wa.me/995500224822?text=" + encodeURIComponent(text);
+            window.open(url, '_blank');
+        }
+
         function searchProducts() {
             let input = document.getElementById('searchInput').value.toLowerCase();
             let cards = document.getElementsByClassName('product-card');
-            
             for (let i = 0; i < cards.length; i++) {
                 let name = cards[i].getAttribute('data-name').toLowerCase();
                 let text = cards[i].innerText.toLowerCase();
@@ -247,23 +363,32 @@
             }
         }
 
-        function selectProduct(productName) {
-            let messageBox = document.getElementById('clientMessage');
-            messageBox.value = "Ցանկանում եմ պատվիրել: " + productName + ". ";
-            document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
+        function checkAIEnter(e) {
+            if(e.key === 'Enter') askAI();
         }
 
-        function sendOrder(event) {
-            event.preventDefault();
-            let name = document.getElementById('clientName').value;
-            let phone = document.getElementById('clientPhone5').value || document.getElementById('clientPhone').value;
-            let message = document.getElementById('clientMessage').value;
-            
-            let subject = encodeURIComponent("Նոր պատվեր Mini-Market-ից: " + name);
-            let body = encodeURIComponent("Անուն: " + name + "\nՀեռախոս: " + phone + "\nՊատվեր/Հաղորդագրություն:\n" + message);
-            
-            window.location.href = "mailto:info.minimarket.akhaltsikhe@gmail.com?subject=" + subject + "&body=" + body;
-            alert("Շնորհակալություն! Ձեր պատվերը պատրաստ է ուղարկման էլ. փոստի միջոցով:");
+        function askAI() {
+            let inputField = document.getElementById('aiInput');
+            let text = inputField.value.trim();
+            if(!text) return;
+
+            let chatBox = document.getElementById('aiChatBox');
+            chatBox.innerHTML += `<div style="margin: 6px 0;"><b>You:</b> ${text}</div>`;
+            inputField.value = "";
+
+            setTimeout(() => {
+                let reply = "Մենք գտնվում ենք ք. Ախալցխա, Իաձե փողոց 2 հասցեում։ Կարող եք պատվիրել կամ կապվել մեզ հետ WhatsApp-ով՝ +995 500 22 48 22:";
+                if(currentLang === 'ka') {
+                    reply = "ჩვენ ვმდებარეობთ მისამართზე: ქ. ახალციხე, იაძის ქ. 2. შეგიძლიათ შეუკვეთოთ ან დაგვიკავშირდეთ WhatsApp-ით: +995 500 22 48 22.";
+                } else if(currentLang === 'ru') {
+                    reply = "Мы находимся по адресу: г. Ахалцихе, ул. Иадзе 2. Свяжитесь с нами в WhatsApp: +995 500 22 48 22.";
+                } else if(currentLang === 'en') {
+                    reply = "We are located at Akhaltsikhe, Iadze St. 2. Contact us via WhatsApp at +995 500 22 48 22.";
+                }
+
+                chatBox.innerHTML += `<div style="margin: 6px 0; color: #1e3d59;"><b>AI:</b> ${reply}</div>`;
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }, 600);
         }
     </script>
 
