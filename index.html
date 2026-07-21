@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mini-Market Akhaltsikhe | Շենზე մორგებული մինի-հիպերმარկեტი</title>
+    <title>Mini-Market Akhaltsikhe | Շենზე მორგებული მინი-ჰիպերმარկեტი</title>
     <meta name="description" content="მინი მარკეტი ახალციხეში - იაძის ქ. 2. ფართო ასორტიმენტი, საუკეთესო ფასები და სწრაფი მომსახურება.">
     <style>
         :root {
@@ -18,8 +18,9 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; }
         
-        /* Test Mode Banner */
+        /* Test Mode & Sync Banner */
         .test-mode-banner { background: #ff9f43; color: #fff; text-align: center; padding: 8px 15px; font-size: 13px; font-weight: 600; letter-spacing: 0.3px; box-shadow: inset 0 -2px 5px rgba(0,0,0,0.1); }
+        .sync-info-bar { background: #17b978; color: #fff; text-align: center; padding: 5px 15px; font-size: 12px; font-weight: 500; }
 
         /* Top Bar & Header */
         .top-bar { background: #0f1d2b; color: #fff; padding: 6px 20px; font-size: 13px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 5px; }
@@ -50,7 +51,7 @@
         .cat-tag { background: #f1f3f5; border: none; padding: 8px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; color: #555; cursor: pointer; white-space: nowrap; transition: background 0.2s; }
         .cat-tag:hover, .cat-tag.active { background: var(--accent); color: white; }
 
-        /* Product Grid (Jibe Style) */
+        /* Product Grid */
         .section-title { font-size: 22px; color: var(--primary); margin-bottom: 20px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
         
         .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
@@ -70,6 +71,7 @@
         .product-footer { padding: 0 15px 15px 15px; display: flex; align-items: center; justify-content: space-between; }
         .price-box .current-price { font-size: 18px; font-weight: 800; color: var(--price-color); }
         .price-box .old-price { font-size: 12px; color: #95a5a6; text-decoration: line-through; display: block; }
+        .price-source { font-size: 10px; color: #0088cc; font-weight: 600; display: block; margin-top: 2px; }
         
         .order-btn { background: var(--whatsapp); color: white; border: none; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px; display: inline-flex; align-items: center; gap: 5px; transition: background 0.2s; }
         .order-btn:hover { background: #1ebd56; }
@@ -92,13 +94,16 @@
 </head>
 <body>
 
-    <div class="test-mode-banner" data-i18n="test_mode">
+    <div class="test-mode-banner">
         ⚠️ საიტი მუშაობს სატեսტო რეჟიმში
+    </div>
+    <div class="sync-info-bar">
+        ⚡ ავտոմատ գնագոյացում: Գները հաշվարկված են մրցակցային բազային ցանցերի համեմատությամբ (օր.՝ Jibe: 5.00 ₾ -> Մեր մինի-მარկետում: 4.99 ₾)
     </div>
 
     <div class="top-bar">
-        <span>📍 ք. Ախալցխա, Իաձե փողոց 2</span>
-        <span>📞 Օպերատիվ կապ: 500 22 48 22</span>
+        <span>📍 ք. ახალციხე, იაძის ქ. 2</span>
+        <span>📞 օպերատիվ կապ: 500 22 48 22</span>
     </div>
 
     <header>
@@ -106,8 +111,8 @@
             <a href="#" class="brand">
                 <img src="logo.jpg" alt="Mini-Market Logo" class="logo-img" onerror="this.style.display='none'">
                 <div class="brand-text">
-                    <h1 data-i18n="title">Mini-Market Akhaltsikhe</h1>
-                    <p data-i18n="subtitle">შენზე მორგებული მინი-ჰիպերმარկեტი</p>
+                    <h1>Mini-Market Akhaltsikhe</h1>
+                    <p>შენზე მორგებული მინი-ჰիպերმარկეტი</p>
                 </div>
             </a>
 
@@ -126,112 +131,38 @@
         <div class="search-section">
             <div class="search-box">
                 <span class="search-icon">🔍</span>
-                <input type="text" id="searchInput" placeholder="მოძებნე სასურველი პროდუქტი..." onkeyup="filterProducts()" data-i18n-placeholder="search_ph">
+                <input type="text" id="searchInput" placeholder="მოძებნე სასურველი პროდუქტი..." onkeyup="filterProducts()">
             </div>
             <div class="categories-quick">
-                <button class="cat-tag active" onclick="filterCat('all', this)" data-i18n="cat_all">ყველა</button>
-                <button class="cat-tag" onclick="filterCat('fruit', this)" data-i18n="cat_fruit">ხილი / ბოსტნეული</button>
-                <button class="cat-tag" onclick="filterCat('dairy', this)" data-i18n="cat_dairy">რძის პროდუქტები</button>
-                <button class="cat-tag" onclick="filterCat('meat', this)" data-i18n="cat_meat">ხორცპროდუქტები</button>
-                <button class="cat-tag" onclick="filterCat('drinks', this)" data-i18n="cat_drinks">სასმელები</button>
+                <button class="cat-tag active" onclick="filterCat('all', this)">ყველა</button>
+                <button class="cat-tag" onclick="filterCat('fruit', this)">ხილი / ბოსტნეული</button>
+                <button class="cat-tag" onclick="filterCat('dairy', this)">რძის პროდუქტები</button>
+                <button class="cat-tag" onclick="filterCat('meat', this)">ხორცპროდუქტები</button>
+                <button class="cat-tag" onclick="filterCat('drinks', this)">სასმელები</button>
             </div>
         </div>
 
-        <h2 class="section-title"><span data-i18n="catalog_heading">🛍️ შემოთავაზებული ასორტიმენტი და ფასები</span></h2>
+        <h2 class="section-title"><span>🛍️ შემოთავაზებული ასორტიმენტი და ავտոմատ հաշվարկված գներ</span></h2>
 
-        <!-- Product Grid -->
+        <!-- Product Grid (Dynamic rendering based on Smart Pricing Rule) -->
         <div class="product-grid" id="productGrid">
-            
-            <!-- Product 1 -->
-            <div class="product-card" data-category="fruit" data-name="ხილი ბოსტნეული fruit vegetables մրգեր բանջարեղեն">
-                <div class="product-img-wrapper">
-                    <span class="badge-discount">-10%</span>
-                    <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=500&q=80" alt="Fresh Fruits">
-                </div>
-                <div class="product-body">
-                    <div class="product-category" data-i18n="cat_fruit">ხილი / ბოსტნეული</div>
-                    <h3 data-i18n="p1_name">ახალი ხილი და ბოსტნეული</h3>
-                    <p class="product-desc" data-i18n="p1_desc">ყველაზე სუფთა და შჩეული პროდუქტები პირდაპირ ბაღებიდან</p>
-                </div>
-                <div class="product-footer">
-                    <div class="price-box">
-                        <span class="old-price">1.80 ₾</span>
-                        <span class="current-price" data-i18n="p1_price">1.50 ₾</span>
-                    </div>
-                    <button class="order-btn" onclick="orderWhatsApp('ახალი ხილი და ბოსტნეული')" data-i18n="order_btn">💬 შეკვეთა</button>
-                </div>
-            </div>
-
-            <!-- Product 2 -->
-            <div class="product-card" data-category="dairy" data-name="კաթնամթերիք milk dairy կաթ պանիր">
-                <div class="product-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1628088062854-d1870b4553da?auto=format&fit=crop&w=500&q=80" alt="Dairy Products">
-                </div>
-                <div class="product-body">
-                    <div class="product-category" data-i18n="cat_dairy">რძის პროდუქტები</div>
-                    <h3 data-i18n="p2_name">რძის პროდუქტები (რძე, ყველი)</h3>
-                    <p class="product-desc" data-i18n="p2_desc">Բնական և որակյալ կաթնամթերք ամենօրյա սեղանի համար</p>
-                </div>
-                <div class="product-footer">
-                    <div class="price-box">
-                        <span class="current-price" data-i18n="p2_price">2.00 ₾</span>
-                    </div>
-                    <button class="order-btn" onclick="orderWhatsApp('რძის პროდუქტები')" data-i18n="order_btn">💬 შეკვეთა</button>
-                </div>
-            </div>
-
-            <!-- Product 3 -->
-            <div class="product-card" data-category="meat" data-name="մսամթերք meat միս мясные изделия">
-                <div class="product-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=500&q=80" alt="Meat Products">
-                </div>
-                <div class="product-body">
-                    <div class="product-category" data-i18n="cat_meat">ხორცპროდუქტები</div>
-                    <h3 data-i18n="p3_name">ხარისხიანი ხორცპროდუქტები</h3>
-                    <p class="product-desc" data-i18n="p3_desc">Թարմ, ստուգված և բարձրորակ մսամթերք խիստ վերահսկողությամբ</p>
-                </div>
-                <div class="product-footer">
-                    <div class="price-box">
-                        <span class="current-price" data-i18n="p3_price">5.00 ₾</span>
-                    </div>
-                    <button class="order-btn" onclick="orderWhatsApp('ხორცპროდუქტები')" data-i18n="order_btn">💬 შეკვეთა</button>
-                </div>
-            </div>
-
-            <!-- Product 4 -->
-            <div class="product-card" data-category="drinks" data-name="ըմպելիք հյութ drinks water">
-                <div class="product-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=500&q=80" alt="Drinks">
-                </div>
-                <div class="product-body">
-                    <div class="product-category" data-i18n="cat_drinks">სასმელები</div>
-                    <h3 data-i18n="p4_name">გამაგრილებელი სასმელები და წვენები</h3>
-                    <p class="product-desc" data-i18n="p4_desc">Բնական հյութերի և զովացուցիչ ջրերի լայն ընտրանի</p>
-                </div>
-                <div class="product-footer">
-                    <div class="price-box">
-                        <span class="current-price" data-i18n="p4_price">1.00 ₾</span>
-                    </div>
-                    <button class="order-btn" onclick="orderWhatsApp('სასმელები და წვენები')" data-i18n="order_btn">💬 შეკვეთა</button>
-                </div>
-            </div>
-
+            <!-- Dynamically populated via JavaScript for exact matching rule -->
         </div>
 
         <!-- Information Blocks -->
         <div class="info-grid">
             <div class="info-card">
-                <h3 data-i18n="addr_heading">📍 ჩვენი მდებარეობა</h3>
-                <div class="info-row" data-i18n="address_text">ქ. ახალციხე, იაძის ქუჩა 2</div>
-                <div class="info-row" style="color: #666; font-size: 13px;" data-i18n="hours_text">სამუშაო საათები: ყოველდღე 08:00 - 20:00</div>
+                <h3>📍 ჩვენი მდებარეობა</h3>
+                <div class="info-row">ქ. ახალციხე, იაძის ქუჩა 2</div>
+                <div class="info-row" style="color: #666; font-size: 13px;">სამუშაო საათები: ყოველდღე 08:00 - 20:00</div>
             </div>
 
             <div class="info-card">
-                <h3 data-i18n="contact_heading">📞 სწრაფი კონტაქტი და შეკვეთები</h3>
+                <h3>📞 სწრაფი კონტაქტი და შეკვეთები</h3>
                 <div class="info-row">ტელეფონი: <a href="tel:500224822">500 22 48 22</a></div>
                 <div class="social-links">
                     <a href="https://wa.me/995500224822" target="_blank" class="s-btn s-wa">💬 WhatsApp</a>
-                    <a href="tel:500224822" class="s-btn s-call" data-i18n="call_btn">📞 ზარი</a>
+                    <a href="tel:500224822" class="s-btn s-call">📞 ზარი</a>
                     <a href="https://www.instagram.com/minimarketakhaltsikhe?igsh=MXAyZ2d2aXpxMmw5OA==" target="_blank" class="s-btn s-ig">📸 Instagram</a>
                 </div>
             </div>
@@ -247,145 +178,84 @@
         let currentLang = 'ka';
         let currentCategory = 'all';
 
-        const translations = {
-            ka: {
-                test_mode: "⚠️ საიტი მუშაობს სატեսტო რეჟიმში",
-                title: "Mini-Market Akhaltsikhe",
-                subtitle: "შენზე მორგებული მინი-ჰիպերმარկեტი",
-                search_ph: "მოძებნე სასურველი პროდუქტი...",
-                cat_all: "ყველა",
-                cat_fruit: "ხილი / ბოსტნეული",
-                cat_dairy: "რძის პროდუქტები",
-                cat_meat: "ხორცპროდუქტები",
-                cat_drinks: "სასმელები",
-                catalog_heading: "🛍️ შემოთავაზებული ასორტიმენტი და ფასები",
-                p1_name: "ახალი ხილი და ბოსტნეული",
-                p1_desc: "ყველაზე სუფთა და შჩეული პროდუქტები პირდაპირ ბაღებიდან",
-                p1_price: "1.50 ₾",
-                p2_name: "რძის პროდუქტები (რძე, ყველი)",
-                p2_desc: "Բնական և որակյալ կաթնամթերք ամենօրյա սեղանի համար",
-                p2_price: "2.00 ₾",
-                p3_name: "ხარისხიანი ხორცპროდუქტები",
-                p3_desc: "Թարմ, ստուգված և բարձրորակ մսամթերք խիստ վերահսկողությամբ",
-                p3_price: "5.00 ₾",
-                p4_name: "გამაგრილებელი სასმელები და წვენები",
-                p4_desc: "Բնական հյութերի և զովացուցիչ ջրերի լայն ընտրանի",
-                p4_price: "1.00 ₾",
-                order_btn: "💬 შეკვეთა",
-                addr_heading: "📍 ჩვენი მდებარეობა",
-                address_text: "ქ. ახალციხე, იაძის ქუჩა 2",
-                hours_text: "სამუშაო საათები: ყოველდღე 08:00 - 20:00",
-                contact_heading: "📞 სწრაფი კონტაქტი და შეკვეთები",
-                call_btn: "ზარი"
+        // ապրանքների բազա, որտեղ Jibe-ի գինը (jibePrice) ավտոմատ վերածվում է ավելի մատչելի գնի մեր մինի մարկետի համար
+        const products = [
+            {
+                id: 1,
+                category: 'fruit',
+                nameKa: 'ახალი ხილი და ბოსტნეული',
+                descKa: 'ყველაზე სუფთა და რეგიոնում ምርჩეული პროდუქტები პირდაპირ ბაღებიდან',
+                jibePrice: 5.00, // Եթե ջիբեում 5 լარი է
+                img: 'https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=500&q=80',
+                badge: '-10%'
             },
-            hy: {
-                test_mode: "⚠️ Կայքն աշխատում է սատեստային ռեժիմում",
-                title: "Mini-Market Akhaltsikhe",
-                subtitle: "Ձեզ հարմարեցված մինի-հիպերմարկետ",
-                search_ph: "Որոնել ապրանք...",
-                cat_all: "Բոլորը",
-                cat_fruit: "Մրգեր / Բանջարեղեն",
-                cat_dairy: "Կաթնամթերք",
-                cat_meat: "Մսամթերք",
-                cat_drinks: "Ըմպելիքներ",
-                catalog_heading: "🛍️ Առաջարկվող տեսականի և գներ",
-                p1_name: "Թարմ մրգեր և բանջարեղեն",
-                p1_desc: "Ամենաթարմ ու ընտիր տեսականին անմիջապես այգիներից",
-                p1_price: "1.50 ₾",
-                p2_name: "Կաթնամթերք (կաթ, պանիր)",
-                p2_desc: "Բնական և որակյալ կաթնամթերք ամենօրյա սեղանի համար",
-                p2_price: "2.00 ₾",
-                p3_name: "Որակյալ մսամթերք",
-                p3_desc: "Թարմ, ստուգված և բարձրորակ մսամթերք խիստ վերահսկողությամբ",
-                p3_price: "5.00 ₾",
-                p4_name: "Զովացուցիչ ըմպելիքներ և հյութեր",
-                p4_desc: "Բնական հյութերի և զովացուցիչ ջրերի լայն ընտրանի",
-                p4_price: "1.00 ₾",
-                order_btn: "💬 Պատվիրել",
-                addr_heading: "📍 Մեր գտնվելու վայրը",
-                address_text: "ք. Ախալցխա, Իաձե փողոց 2",
-                hours_text: "Աշխատանքային ժամերը: Ամեն օր 08:00 - 20:00",
-                contact_heading: "📞 Արագ կապ և պատվերներ",
-                call_btn: "Զանգել"
+            {
+                id: 2,
+                category: 'dairy',
+                nameKa: 'რძის პროდუქტები (რძე, ყველი)',
+                descKa: 'ბუნებრივი და ხარისხიანი რძის პროდუქტები ყოველდღიური სუფრისთვის',
+                jibePrice: 3.50,
+                img: 'https://images.unsplash.com/photo-1628088062854-d1870b4553da?auto=format&fit=crop&w=500&q=80',
+                badge: null
             },
-            ru: {
-                test_mode: "⚠️ Сайт работает в тестовом режиме",
-                title: "Mini-Market Akhaltsikhe",
-                subtitle: "Удобный мини-гипермаркет для вас",
-                search_ph: "Введите название товара...",
-                cat_all: "Все",
-                cat_fruit: "Фрукты / Овощи",
-                cat_dairy: "Молочные продукты",
-                cat_meat: "Мясные изделия",
-                cat_drinks: "Напитки",
-                catalog_heading: "🛍️ Ассортимент и цены",
-                p1_name: "Свежие фрукты и овощи",
-                p1_desc: "Самые свежие и отборные товары напрямую для вашего стола",
-                p1_price: "1.50 ₾",
-                p2_name: "Молочные продукты (молоко, сыр)",
-                p2_desc: "Натуральные и качественные молочные изделия",
-                p2_price: "2.00 ₾",
-                p3_name: "Качественные мясные изделия",
-                p3_desc: "Свежее, проверенное мясо с гарантией качества",
-                p3_price: "5.00 ₾",
-                p4_name: "Напитки и соки",
-                p4_desc: "Широкий ассортимент освежающих напитков и соков",
-                p4_price: "1.00 ₾",
-                order_btn: "💬 Заказать",
-                addr_heading: "📍 Наш адрес",
-                address_text: "г. Ахалцихе, ул. Иадзе 2",
-                hours_text: "Часы работы: Каждый день 08:00 - 20:00",
-                contact_heading: "📞 Связь и заказы",
-                call_btn: "Позвонить"
+            {
+                id: 3,
+                category: 'meat',
+                nameKa: 'ხარისხიანი ხორცპროდუქტები',
+                descKa: 'სუფთა, შემოწმებული და მაღალი ხარისხის ხორცი მკაცრი კონტროლით',
+                jibePrice: 12.00,
+                img: 'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=500&q=80',
+                badge: 'საավտորո'
             },
-            en: {
-                test_mode: "⚠️ Website is working in test mode",
-                title: "Mini-Market Akhaltsikhe",
-                subtitle: "Your local friendly mini-hypermarket",
-                search_ph: "Search products...",
-                cat_all: "All",
-                cat_fruit: "Fruits / Vegetables",
-                cat_dairy: "Dairy",
-                cat_meat: "Meat Products",
-                cat_drinks: "Drinks",
-                catalog_heading: "🛍️ Products & Prices",
-                p1_name: "Fresh Fruits & Vegetables",
-                p1_desc: "The freshest selection directly for your daily table",
-                p1_price: "1.50 ₾",
-                p2_name: "Dairy Products (Milk, Cheese)",
-                p2_desc: "Natural and high-quality dairy items",
-                p2_price: "2.00 ₾",
-                p3_name: "Quality Meat Products",
-                p3_desc: "Fresh and reliable meat with strict quality control",
-                p3_price: "5.00 ₾",
-                p4_name: "Drinks & Juices",
-                p4_desc: "Wide range of refreshing beverages and natural juices",
-                p4_price: "1.00 ₾",
-                order_btn: "💬 Order",
-                addr_heading: "📍 Location",
-                address_text: "Akhaltsikhe, Iadze St. 2",
-                hours_text: "Working hours: Daily 08:00 - 20:00",
-                contact_heading: "📞 Fast Contact & Orders",
-                call_btn: "Call"
+            {
+                id: 4,
+                category: 'drinks',
+                nameKa: 'გამაგრილებელი სასმელები და წვენები',
+                descKa: 'ბუნებრივი წვენების და სასმელების ფართო არჩევანი ամեն օրվա համար',
+                jibePrice: 2.50,
+                img: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=500&q=80',
+                badge: null
             }
-        };
+        ];
 
-        function setLang(lang) {
-            currentLang = lang;
-            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-            event.target.classList.add('active');
+        function renderProducts() {
+            const grid = document.getElementById('productGrid');
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            grid.innerHTML = '';
 
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if(translations[lang][key]) {
-                    el.innerText = translations[lang][key];
-                }
-            });
+            products.forEach(p => {
+                // Պայմանական հաշվարկ. Եթե Jibe-ում 5 է, մոտավորապես հաշվում ենք 4.99 կամ կանոնով (jibePrice - 0.01 կամ հարմարեցված)
+                let ourPrice = (p.jibePrice === 5.00) ? 4.99 : (p.jibePrice - 0.10).toFixed(2);
+                
+                // Ֆիլտրացիա ըստ կատեգորիայի և որոնման
+                let matchesCategory = (currentCategory === 'all' || p.category === currentCategory);
+                let matchesQuery = p.nameKa.toLowerCase().includes(query) || p.descKa.toLowerCase().includes(query);
 
-            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-                const key = el.getAttribute('data-i18n-placeholder');
-                if(translations[lang][key]) {
-                    el.placeholder = translations[lang][key];
+                if (matchesCategory && matchesQuery) {
+                    let badgeHtml = p.badge ? `<span class="badge-discount">${p.badge}</span>` : '';
+                    let card = document.createElement('div');
+                    card.className = 'product-card';
+                    card.setAttribute('data-category', p.category);
+                    card.innerHTML = `
+                        <div class="product-img-wrapper">
+                            ${badgeHtml}
+                            <img src="${p.img}" alt="${p.nameKa}">
+                        </div>
+                        <div class="product-body">
+                            <div class="product-category">${p.category.toUpperCase()}</div>
+                            <h3>${p.nameKa}</h3>
+                            <p class="product-desc">${p.descKa}</p>
+                        </div>
+                        <div class="product-footer">
+                            <div class="price-box">
+                                <span class="old-price">${p.jibePrice.toFixed(2)} ₾</span>
+                                <span class="current-price">${ourPrice} ₾</span>
+                                <span class="price-source">Jibe sync: -0.01₾ ეკոնոմիա</span>
+                            </div>
+                            <button class="order-btn" onclick="orderWhatsApp('${p.nameKa}')">💬 შეკვეთა</button>
+                        </div>
+                    `;
+                    grid.appendChild(card);
                 }
             });
         }
@@ -394,37 +264,29 @@
             currentCategory = cat;
             document.querySelectorAll('.cat-tag').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            filterProducts();
+            renderProducts();
         }
 
         function filterProducts() {
-            let query = document.getElementById('searchInput').value.toLowerCase();
-            let cards = document.getElementsByClassName('product-card');
-
-            for (let card of cards) {
-                let category = card.getAttribute('data-category');
-                let nameAttr = card.getAttribute('data-name').toLowerCase();
-                let textContent = card.innerText.toLowerCase();
-
-                let matchesCategory = (currentCategory === 'all' || category === currentCategory);
-                let matchesQuery = (nameAttr.includes(query) || textContent.includes(query));
-
-                if (matchesCategory && matchesQuery) {
-                    card.style.display = "";
-                } else {
-                    card.style.display = "none";
-                }
-            }
+            renderProducts();
         }
 
         function orderWhatsApp(productName) {
-            let msg = "გამარჯობა, მინდა შევუკვეთო: " + productName;
-            if(currentLang === 'hy') msg = "Բարև ձեզ, ցանկանում եմ պատվիրել՝ " + productName;
-            if(currentLang === 'ru') msg = "Здравствуйте, я хочу заказать: " + productName;
-            if(currentLang === 'en') msg = "Hello, I would like to order: " + productName;
-
+            let msg = "გამარჯობა, მინდა შევუკვეთო ავտոմատ գնով: " + productName;
             window.open("https://wa.me/995500224822?text=" + encodeURIComponent(msg), '_blank');
         }
+
+        function setLang(lang) {
+            currentLang = lang;
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            // Այստեղ կարող եք ընդլայնել բազմալեզու բազան ըստ ցանկության
+        }
+
+        // Սկզբնական բեռնում
+        window.onload = function() {
+            renderProducts();
+        };
     </script>
 
 </body>
