@@ -3,42 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>მინი მარკეტი | ახალციხე</title>
+    <title>ჩემი მინი მარკეტი | ახალი ხორცი & პირველადი პროდუქტები</title>
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
+            --primary-meat: #8d1c1c;
+            --primary-meat-hover: #ab2323;
             --cozy-green: #2e7d32;
-            --cozy-light-green: #e8f5e9;
             --cozy-warm: #fff8e1;
-            --cozy-accent: #f57c00;
-            --cozy-text: #2c3e50;
-            --bg-body: #f7f9fa;
-            --prize-gold: #ffb300;
+            --cozy-accent: #ff8f00;
+            --text-dark: #2c3e50;
+            --bg-light: #f8f9fa;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Georgia, sans-serif;
         }
 
         body {
-            background-color: var(--bg-body);
-            color: var(--cozy-text);
+            background-color: var(--bg-light);
+            color: var(--text-dark);
             padding-bottom: 90px;
         }
 
-        /* Top Bar */
+        /* Notice Bar */
         .top-notice {
-            background-color: var(--cozy-warm);
-            color: #8f6d00;
+            background-color: #3e2723;
+            color: #ffe0b2;
             text-align: center;
             padding: 8px 15px;
             font-size: 13px;
             font-weight: 600;
-            border-bottom: 1px solid #ffe082;
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -47,14 +46,14 @@
         /* Header */
         header {
             background-color: #ffffff;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
             position: sticky;
             top: 33px;
             z-index: 999;
         }
 
         .header-container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 12px 20px;
             display: flex;
@@ -72,51 +71,51 @@
         }
 
         .logo-icon {
-            background: var(--cozy-green);
+            background: var(--primary-meat);
             color: white;
-            width: 48px;
-            height: 48px;
+            width: 50px;
+            height: 50px;
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 22px;
-            box-shadow: 0 3px 8px rgba(46,125,50,0.2);
+            font-size: 24px;
+            box-shadow: 0 3px 10px rgba(141, 28, 28, 0.3);
         }
 
         .logo-text h1 {
             font-size: 20px;
-            color: var(--cozy-green);
-            font-weight: 800;
+            color: var(--primary-meat);
+            font-weight: 900;
             line-height: 1.1;
         }
 
         .logo-text span {
             font-size: 12px;
             color: #666;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .search-container {
             flex: 1;
-            max-width: 400px;
+            max-width: 420px;
             position: relative;
         }
 
         .search-container input {
             width: 100%;
-            padding: 10px 40px 10px 16px;
+            padding: 11px 42px 11px 18px;
             border: 1.5px solid #e0e0e0;
-            border-radius: 20px;
+            border-radius: 25px;
             font-size: 14px;
             outline: none;
-            background: var(--cozy-light-green);
+            background: #fff;
             transition: all 0.2s;
         }
 
         .search-container input:focus {
-            border-color: var(--cozy-green);
-            background: #ffffff;
+            border-color: var(--primary-meat);
+            box-shadow: 0 0 8px rgba(141, 28, 28, 0.15);
         }
 
         .search-container i {
@@ -136,7 +135,7 @@
         .contact-btn {
             background-color: #25D366;
             color: white;
-            padding: 8px 14px;
+            padding: 9px 16px;
             border-radius: 20px;
             text-decoration: none;
             font-size: 13px;
@@ -144,174 +143,157 @@
             display: flex;
             align-items: center;
             gap: 6px;
+            box-shadow: 0 3px 8px rgba(37,211,102,0.2);
         }
 
-        .social-btn {
-            color: #555;
-            font-size: 18px;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .social-btn:hover {
-            color: var(--cozy-green);
-        }
-
-        /* Banner Sections */
-        .cozy-banner {
-            max-width: 1100px;
+        /* Hero Banner */
+        .hero-section {
+            max-width: 1200px;
             margin: 20px auto 10px auto;
             padding: 0 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section { grid-template-columns: 1fr; }
+        }
+
+        .main-banner {
+            background: linear-gradient(135deg, #7b1fa2, #8d1c1c);
+            color: white;
+            border-radius: 18px;
+            padding: 25px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
         }
 
-        .banner-card {
-            background: linear-gradient(135deg, #2e7d32, #1b5e20);
+        .main-banner h2 { font-size: 22px; margin-bottom: 8px; font-weight: 800; }
+        .main-banner p { font-size: 14px; opacity: 0.95; line-height: 1.4; }
+
+        .side-banner {
+            background: linear-gradient(135deg, #ff8f00, #e65100);
             color: white;
-            border-radius: 16px;
-            padding: 20px 25px;
+            border-radius: 18px;
+            padding: 20px;
             display: flex;
-            align-items: center;
+            flex-direction: column;
             justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 15px;
+            box-shadow: 0 4px 15px rgba(255,143,0,0.2);
         }
 
-        .prize-banner {
-            background: linear-gradient(135deg, #ff8f00, #ff6f00);
-            color: white;
-            border-radius: 16px;
-            padding: 16px 25px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 15px;
-            box-shadow: 0 4px 12px rgba(255,111,0,0.25);
-        }
-
-        .banner-text h2 {
-            font-size: 18px;
-            margin-bottom: 4px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .banner-text p {
-            font-size: 13px;
-            opacity: 0.95;
-        }
-
-        .banner-badge {
-            background: var(--cozy-warm);
-            color: #5d4037;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-weight: 700;
-            font-size: 13px;
-        }
-
-        .prize-badge {
-            background: #ffffff;
-            color: #e65100;
-            padding: 8px 16px;
-            border-radius: 20px;
+        .side-banner h3 { font-size: 16px; margin-bottom: 6px; }
+        .side-banner p { font-size: 12px; }
+        .side-badge {
+            align-self: flex-start;
+            background: #fff;
+            color: #d84315;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 12px;
             font-weight: 800;
-            font-size: 13px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            margin-top: 10px;
         }
 
-        /* Categories Nav */
+        /* Category Chips */
         .categories-nav {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 15px auto;
             padding: 0 20px;
             display: flex;
-            gap: 8px;
+            gap: 10px;
             overflow-x: auto;
-            padding-bottom: 5px;
+            padding-bottom: 8px;
         }
 
         .cat-chip {
             background: white;
             border: 1px solid #e0e0e0;
-            padding: 8px 16px;
-            border-radius: 18px;
+            padding: 10px 18px;
+            border-radius: 20px;
             font-size: 13px;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
             white-space: nowrap;
             transition: all 0.2s;
-            color: #555;
+            color: #444;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .cat-chip.active, .cat-chip:hover {
-            background: var(--cozy-green);
+            background: var(--primary-meat);
             color: white;
-            border-color: var(--cozy-green);
+            border-color: var(--primary-meat);
         }
 
-        /* Products Grid */
+        /* Grid */
         .products-section {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 15px auto;
             padding: 0 20px;
         }
 
+        .section-title {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 18px;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
         }
 
         .product-card {
             background: white;
-            border-radius: 12px;
-            border: 1px solid #eef2f5;
+            border-radius: 14px;
+            border: 1px solid #eaeaea;
             overflow: hidden;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
-            transition: transform 0.2s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            transition: transform 0.2s, box-shadow 0.2s;
             position: relative;
         }
 
         .product-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.06);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
         }
 
-        /* Prize Tag on Card */
-        .card-prize-tag {
+        .prize-tag {
             position: absolute;
             top: 10px;
             left: 10px;
-            background: #ff6f00;
+            background: var(--cozy-accent);
             color: white;
             font-size: 11px;
             font-weight: 800;
-            padding: 4px 8px;
+            padding: 4px 10px;
             border-radius: 12px;
             box-shadow: 0 2px 6px rgba(0,0,0,0.15);
             z-index: 2;
-            display: flex;
-            align-items: center;
-            gap: 4px;
         }
 
         .product-thumb {
-            height: 150px;
-            background: #ffffff;
+            height: 160px;
+            background: #fff;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
-            padding: 10px;
-            border-bottom: 1px solid #f5f5f5;
+            padding: 12px;
+            border-bottom: 1px solid #f7f7f7;
         }
 
         .product-thumb img {
@@ -321,15 +303,23 @@
         }
 
         .product-details {
-            padding: 12px;
+            padding: 14px;
+        }
+
+        .product-category {
+            font-size: 11px;
+            color: #888;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 4px;
         }
 
         .product-title {
             font-size: 14px;
             font-weight: 700;
-            color: var(--cozy-text);
-            margin-bottom: 6px;
-            height: 36px;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            height: 38px;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
@@ -339,30 +329,30 @@
         .price-row {
             display: flex;
             align-items: baseline;
-            gap: 6px;
-            margin-bottom: 10px;
+            gap: 8px;
+            margin-bottom: 12px;
         }
 
         .current-price {
-            font-size: 18px;
+            font-size: 19px;
             font-weight: 800;
-            color: var(--cozy-green);
+            color: var(--primary-meat);
         }
 
         .old-price {
             font-size: 12px;
-            color: #9e9e9e;
+            color: #a0a0a0;
             text-decoration: line-through;
         }
 
         .add-btn {
             width: 100%;
-            background: var(--cozy-light-green);
-            color: var(--cozy-green);
+            background: #ffebee;
+            color: var(--primary-meat);
             border: none;
-            padding: 8px;
-            border-radius: 8px;
-            font-weight: 700;
+            padding: 9px;
+            border-radius: 9px;
+            font-weight: 800;
             font-size: 13px;
             cursor: pointer;
             display: flex;
@@ -373,71 +363,72 @@
         }
 
         .add-btn:hover {
-            background: var(--cozy-green);
+            background: var(--primary-meat);
             color: white;
         }
 
-        /* Cart & AI Floating Buttons */
+        /* Floating Controls */
         .cart-trigger {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: var(--cozy-green);
+            background: var(--primary-meat);
             color: white;
-            width: 58px;
-            height: 58px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 22px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(141, 28, 28, 0.4);
             cursor: pointer;
             z-index: 1000;
         }
 
         .cart-counter {
             position: absolute;
-            top: 0;
-            right: 0;
+            top: -2px;
+            right: -2px;
             background: var(--cozy-accent);
             color: white;
             font-size: 11px;
             font-weight: 800;
-            width: 20px;
-            height: 20px;
+            width: 22px;
+            height: 22px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            border: 2px solid #fff;
         }
 
         .ai-trigger {
             position: fixed;
-            bottom: 88px;
+            bottom: 90px;
             right: 20px;
             background: #1976d2;
             color: white;
-            width: 58px;
-            height: 58px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 24px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(25, 118, 210, 0.3);
             cursor: pointer;
             z-index: 1000;
         }
 
-        /* Cart Modal */
+        /* Modal Cart */
         .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.4);
+            background: rgba(0,0,0,0.5);
             display: none;
             align-items: center;
             justify-content: center;
@@ -447,10 +438,10 @@
         .modal-card {
             background: white;
             width: 90%;
-            max-width: 440px;
-            border-radius: 16px;
-            padding: 18px;
-            max-height: 80vh;
+            max-width: 450px;
+            border-radius: 18px;
+            padding: 20px;
+            max-height: 85vh;
             display: flex;
             flex-direction: column;
         }
@@ -460,7 +451,7 @@
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
+            padding-bottom: 12px;
             margin-bottom: 12px;
         }
 
@@ -474,40 +465,27 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 8px 0;
-            border-bottom: 1px solid #f9f9f9;
-        }
-
-        .qty-controls {
-            display: flex;
-            align-items: center;
-            gap: 6px;
+            padding: 10px 0;
+            border-bottom: 1px solid #f5f5f5;
         }
 
         .qty-btn {
             background: #eee;
             border: none;
-            width: 26px;
-            height: 26px;
+            width: 28px;
+            height: 28px;
             border-radius: 6px;
             font-weight: bold;
             cursor: pointer;
         }
 
-        .cart-summary {
-            font-size: 16px;
-            font-weight: 800;
-            text-align: right;
-            margin-bottom: 12px;
-        }
-
-        .checkout-wa-btn {
+        .checkout-btn {
             width: 100%;
             background: #25D366;
             color: white;
             border: none;
-            padding: 12px;
-            border-radius: 10px;
+            padding: 14px;
+            border-radius: 12px;
             font-weight: 800;
             font-size: 15px;
             cursor: pointer;
@@ -520,13 +498,13 @@
         /* AI Chat Window */
         .ai-window {
             position: fixed;
-            bottom: 155px;
+            bottom: 160px;
             right: 20px;
-            width: 320px;
-            height: 380px;
+            width: 330px;
+            height: 400px;
             background: white;
-            border-radius: 14px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             display: none;
             flex-direction: column;
             z-index: 1000;
@@ -537,12 +515,11 @@
         .ai-header {
             background: #1976d2;
             color: white;
-            padding: 10px 14px;
+            padding: 12px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             font-weight: 700;
-            font-size: 14px;
         }
 
         .ai-body {
@@ -551,34 +528,34 @@
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 8px;
-            background: #fafafa;
+            gap: 10px;
+            background: #f9f9f9;
         }
 
         .ai-msg {
             max-width: 85%;
-            padding: 8px 10px;
-            border-radius: 10px;
+            padding: 9px 12px;
+            border-radius: 12px;
             font-size: 13px;
-            line-height: 1.3;
+            line-height: 1.4;
         }
 
         .ai-msg.bot { background: #e0e0e0; color: #333; align-self: flex-start; }
         .ai-msg.user { background: #1976d2; color: white; align-self: flex-end; }
 
         .ai-footer {
-            padding: 8px;
+            padding: 10px;
             border-top: 1px solid #eee;
             display: flex;
-            gap: 6px;
+            gap: 8px;
             background: white;
         }
 
         .ai-footer input {
             flex: 1;
-            padding: 6px 10px;
+            padding: 8px 12px;
             border: 1px solid #ccc;
-            border-radius: 15px;
+            border-radius: 20px;
             outline: none;
             font-size: 13px;
         }
@@ -587,58 +564,49 @@
             background: #1976d2;
             color: white;
             border: none;
-            padding: 6px 10px;
+            padding: 8px 12px;
             border-radius: 50%;
             cursor: pointer;
         }
 
         /* Footer */
         footer {
-            background: #212121;
+            background: #1c1917;
             color: white;
-            padding: 30px 20px 15px 20px;
-            margin-top: 40px;
+            padding: 35px 20px 20px 20px;
+            margin-top: 50px;
         }
 
         .footer-grid {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
         }
 
-        .footer-col h4 { color: #ffe082; margin-bottom: 10px; font-size: 15px; }
-        .footer-col p, .footer-col a { color: #bbb; font-size: 13px; line-height: 1.6; text-decoration: none; display: block; }
-
-        .copyright {
-            text-align: center;
-            margin-top: 20px;
-            padding-top: 15px;
-            border-top: 1px solid #333;
-            font-size: 12px;
-            color: #777;
-        }
+        .footer-col h4 { color: #ffe0b2; margin-bottom: 12px; font-size: 16px; }
+        .footer-col p, .footer-col a { color: #aaa; font-size: 13px; line-height: 1.6; text-decoration: none; }
     </style>
 </head>
 <body>
 
     <div class="top-notice">
-        <i class="fa-solid fa-store"></i> თქვენი უბნის პატარა და მყუდრო მარკეტი ახალციხეში
+        <i class="fa-solid fa-drumstick-bite"></i> ყოველდღე ახალი საქონლისა და ღორის ხორცი | იაძის ქუჩა №2
     </div>
 
     <header>
         <div class="header-container">
             <a href="#" class="logo-area">
-                <div class="logo-icon"><i class="fa-solid fa-shop"></i></div>
+                <div class="logo-icon"><i class="fa-solid fa-utensils"></i></div>
                 <div class="logo-text">
                     <h1>ჩემი მინი მარკეტი</h1>
-                    <span>ახალციხე, იაძის ქ. №2ი</span>
+                    <span>ახალციხე | ხორცი & პირველადი ნივთები</span>
                 </div>
             </a>
 
             <div class="search-container">
-                <input type="text" id="searchInput" onkeyup="filterProducts()" placeholder="ძებნა (მაგ: ყავა Latino, ყველი, პური)...">
+                <input type="text" id="searchInput" onkeyup="filterProducts()" placeholder="ძებნა: ხორცი, სოსისი, პური, ყავა Latino...">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </div>
 
@@ -646,51 +614,43 @@
                 <a href="https://wa.me/995500224822" target="_blank" class="contact-btn">
                     <i class="fa-brands fa-whatsapp"></i> +995 500 22 48 22
                 </a>
-                <a href="https://www.facebook.com/minimarketakhaltsike/" target="_blank" class="social-btn"><i class="fa-brands fa-facebook"></i></a>
-                <a href="https://www.instagram.com/minimarketakhaltsikhe/" target="_blank" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
             </div>
         </div>
     </header>
 
-    <div class="cozy-banner">
-        <!-- მყუდრო მარკეტის ბანერი -->
-        <div class="banner-card">
-            <div class="banner-text">
-                <h2><i class="fa-solid fa-heart"></i> ყოველთვის ახალი და იაფი პროდუქცია</h2>
-                <p>ჩვენ ვზრუნავთ თქვენს ყოველდღიურ კომფორტზე — საუკეთესო ფასები თქვენს უბანში.</p>
-            </div>
-            <div class="banner-badge">
-                იაძის ქუჩა №2
-            </div>
+    <div class="hero-section">
+        <div class="main-banner">
+            <h2>🥩 ყოველდღიურად ახალი ხორცპროდუქტები</h2>
+            <p>ადგილობრივი, უმაღლესი ხარისხის საქონლისა და ღორის ხორცი, სოსისი და ძეხვეული საუკეთესო ფასად თქვენს უბანში.</p>
         </div>
-
-        <!-- პრიზების ბანერი -->
-        <div class="prize-banner">
-            <div class="banner-text">
-                <h2><i class="fa-solid fa-gift"></i> იპოვე პრიზები ჩვენს მარკეტში!</h2>
-                <p>შეიძინეთ გარკვეული პროდუქტები (მაგალითად: **სომხური ყავა Latino**) და მოიგეთ სიურპრიზები!</p>
+        <div class="side-banner">
+            <div>
+                <h3>🎁 საჩუქრები & პრიზები</h3>
+                <p>შეიძინეთ **სომხური ყავა LATINO** და იპოვეთ სპეციალური სიურპრიზები!</p>
             </div>
-            <div class="prize-badge">
-                🎁 მოჰყვება საჩუქრები
-            </div>
+            <div class="side-badge"><i class="fa-solid fa-gift"></i> აქცია მოქმედებს</div>
         </div>
     </div>
 
     <div class="categories-nav">
-        <button class="cat-chip active" onclick="selectCategory('all', event)">ყველა</button>
-        <button class="cat-chip" onclick="selectCategory('prizes', event)">🎁 პრიზიანი პროდუქტები</button>
-        <button class="cat-chip" onclick="selectCategory('drinks', event)">ყავა & სასმელები</button>
-        <button class="cat-chip" onclick="selectCategory('dairy', event)">რძის ნაწარმი</button>
-        <button class="cat-chip" onclick="selectCategory('meat', event)">ხორცპროდუქტები</button>
-        <button class="cat-chip" onclick="selectCategory('bakery', event)">პური & ტკბილეული</button>
+        <button class="cat-chip active" onclick="selectCategory('all', event)"><i class="fa-solid fa-border-all"></i> ყველა</button>
+        <button class="cat-chip" onclick="selectCategory('meat', event)"><i class="fa-solid fa-drumstick-bite"></i> ახალი ხორცი</button>
+        <button class="cat-chip" onclick="selectCategory('sausage', event)"><i class="fa-solid fa-hotdog"></i> ძეხვეული & სოსისი</button>
+        <button class="cat-chip" onclick="selectCategory('essential', event)"><i class="fa-solid fa-basket-shopping"></i> პირველადი საჭიროების</button>
+        <button class="cat-chip" onclick="selectCategory('dairy', event)"><i class="fa-solid fa-cheese"></i> რძის ნაწარმი</button>
+        <button class="cat-chip" onclick="selectCategory('prizes', event)"><i class="fa-solid fa-gift"></i> 🎁 პრიზიანი</button>
     </div>
 
     <div class="products-section">
+        <div class="section-title">
+            <i class="fa-solid fa-store" style="color: var(--primary-meat);"></i> პროდუქცია
+        </div>
         <div class="products-grid" id="productsGrid">
             <!-- ჩაიტვირთება დინამიურად JS-ით -->
         </div>
     </div>
 
+    <!-- Floating Buttons -->
     <div class="ai-trigger" onclick="toggleAIChat()" title="ასისტენტი">
         <i class="fa-solid fa-robot"></i>
     </div>
@@ -700,6 +660,7 @@
         <div class="cart-counter" id="cartBadge">0</div>
     </div>
 
+    <!-- AI Chat -->
     <div class="ai-window" id="aiWindow">
         <div class="ai-header">
             <span><i class="fa-solid fa-robot"></i> მარკეტის ასისტენტი</span>
@@ -707,28 +668,29 @@
         </div>
         <div class="ai-body" id="aiBody">
             <div class="ai-msg bot">
-                გამარჯობა! მე ვარ მარკეტის ასისტენტი. იცოდით, რომ **სომხურ ყავა Latino-ს** და სხვა პროდუქტებს პრიზები მოჰყვება? 🎁
+                გამარჯობა! მე ვარ მარკეტის ასისტენტი. დღეს გვაქვს ახალი საქონლის ხორცი და პრიზიანი **სომხური ყავა LATINO** 🎁
             </div>
         </div>
         <div class="ai-footer">
-            <input type="text" id="aiInput" placeholder="დაწერეთ..." onkeypress="handleAIKey(event)">
+            <input type="text" id="aiInput" placeholder="დაწერეთ კითხვა..." onkeypress="handleAIKey(event)">
             <button onclick="sendAIMessage()"><i class="fa-solid fa-paper-plane"></i></button>
         </div>
     </div>
 
+    <!-- Modal Cart -->
     <div class="modal-overlay" id="cartModal">
         <div class="modal-card">
             <div class="modal-header">
-                <h3>თქვენი კალათა</h3>
+                <h3><i class="fa-solid fa-basket-shopping"></i> თქვენი კალათა</h3>
                 <i class="fa-solid fa-xmark" style="cursor: pointer;" onclick="closeCartModal()"></i>
             </div>
             <div class="cart-items-list" id="cartList">
                 <p style="text-align: center; color: #999; padding: 20px;">კალათა ცარიელია</p>
             </div>
-            <div class="cart-summary" id="cartTotal">
+            <div style="font-size: 16px; font-weight: 800; text-align: right; margin-bottom: 12px;" id="cartTotal">
                 სულ: 0.00 ₾
             </div>
-            <button class="checkout-wa-btn" onclick="sendOrderToWhatsApp()">
+            <button class="checkout-btn" onclick="sendOrderToWhatsApp()">
                 <i class="fa-brands fa-whatsapp"></i> შეკვეთა WhatsApp-ით
             </button>
         </div>
@@ -738,91 +700,43 @@
         <div class="footer-grid">
             <div class="footer-col">
                 <h4>ჩემი მინი მარკეტი</h4>
-                <p>პატარა, მყუდრო და საიმედო მაღაზია თქვენს მეზობლად.</p>
+                <p>თქვენი უბნის პატარა, მყუდრო მარკეტი. ყოველთვის ახალი ხორცი და პირველადი საჭიროების პროდუქცია.</p>
             </div>
             <div class="footer-col">
-                <h4>მისამართი</h4>
+                <h4>მისამართი & კონტაქტი</h4>
                 <p><i class="fa-solid fa-location-dot"></i> ქ. ახალციხე, იაძის ქუჩა №2</p>
                 <p><i class="fa-solid fa-phone"></i> +995 500 22 48 22</p>
             </div>
             <div class="footer-col">
                 <h4>სოციალური ქსელები</h4>
-                <a href="https://www.facebook.com/minimarketakhaltsike/" target="_blank"><i class="fa-brands fa-facebook"></i> Facebook</a>
-                <a href="https://www.instagram.com/minimarketakhaltsikhe/" target="_blank"><i class="fa-brands fa-instagram"></i> Instagram</a>
+                <p><a href="https://www.facebook.com/minimarketakhaltsike/" target="_blank"><i class="fa-brands fa-facebook"></i> Facebook გვერდი</a></p>
+                <p><a href="https://www.instagram.com/minimarketakhaltsikhe/" target="_blank"><i class="fa-brands fa-instagram"></i> Instagram</a></p>
             </div>
         </div>
-        <div class="copyright">
+        <div style="text-align: center; margin-top: 25px; padding-top: 15px; border-top: 1px solid #333; font-size: 12px; color: #777;">
             &copy; ჩემი მინი მარკეტი (ახალციხე). ყველა უფლება დაცულია.
         </div>
     </footer>
 
     <script>
-        // პროდუქტების ბაზა (დამატებულია პრიზიანი ყავა Latino)
+        // პროდუქტების განახლებული ბაზა (ხორცპროდუქტები & პირველადი ნივთები)
         const productsDB = [
-            { 
-                id: 101, 
-                title: "სომხური ყავა LATINO (100გრ)", 
-                category: "drinks", 
-                price: 2.50, 
-                oldPrice: 3.00, 
-                hasPrize: true,
-                prizeText: "🎁 მოჰყვება პრიზი!",
-                img: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=400&q=80" 
-            },
-            { 
-                id: 1, 
-                title: "იმერული ყველი (1კგ)", 
-                category: "dairy", 
-                price: 13.80, 
-                oldPrice: 16.00, 
-                hasPrize: false,
-                img: "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?auto=format&fit=crop&w=400&q=80" 
-            },
-            { 
-                id: 2, 
-                title: "სულგუნი (1კგ)", 
-                category: "dairy", 
-                price: 18.50, 
-                oldPrice: 21.00, 
-                hasPrize: false,
-                img: "https://images.unsplash.com/photo-1628102491629-778571d893a3?auto=format&fit=crop&w=400&q=80" 
-            },
-            { 
-                id: 3, 
-                title: "კარაქი (200გრ)", 
-                category: "dairy", 
-                price: 7.20, 
-                oldPrice: 8.50, 
-                hasPrize: false,
-                img: "https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?auto=format&fit=crop&w=400&q=80" 
-            },
-            { 
-                id: 4, 
-                title: "საქონლის ხორცი (1კგ)", 
-                category: "meat", 
-                price: 21.50, 
-                oldPrice: 24.00, 
-                hasPrize: false,
-                img: "https://images.unsplash.com/photo-1603048588665-791ca8aea617?auto=format&fit=crop&w=400&q=80" 
-            },
-            { 
-                id: 7, 
-                title: "თონის პური", 
-                category: "bakery", 
-                price: 1.30, 
-                oldPrice: 1.50, 
-                hasPrize: false,
-                img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=400&q=80" 
-            },
-            { 
-                id: 9, 
-                title: "კოკა-კოლა (1.5ლ)", 
-                category: "drinks", 
-                price: 3.10, 
-                oldPrice: 3.60, 
-                hasPrize: false,
-                img: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=400&q=80" 
-            }
+            // ხორცპროდუქტები
+            { id: 1, title: "ახალი საქონლის ხორცი (1კგ)", catName: "ახალი ხორცი", category: "meat", price: 22.00, oldPrice: 24.50, hasPrize: false, img: "https://images.unsplash.com/photo-1603048588665-791ca8aea617?auto=format&fit=crop&w=400&q=80" },
+            { id: 2, title: "ახალი ღორის რბილი ხორცი (1კგ)", catName: "ახალი ხორცი", category: "meat", price: 16.50, oldPrice: 18.50, hasPrize: false, img: "https://images.unsplash.com/photo-1602470520998-f4a52199a3d6?auto=format&fit=crop&w=400&q=80" },
+            { id: 3, title: "ქათმის ნორმალური ფილე (1კგ)", catName: "ახალი ხორცი", category: "meat", price: 13.50, oldPrice: 15.00, hasPrize: false, img: "https://images.unsplash.com/photo-1604503468506-a8da13d82791?auto=format&fit=crop&w=400&q=80" },
+            { id: 4, title: "სოსისი 'ივერია' (1კგ)", catName: "ძეხვეული", category: "sausage", price: 11.50, oldPrice: 13.00, hasPrize: false, img: "https://images.unsplash.com/photo-1528607929212-2636ec44253e?auto=format&fit=crop&w=400&q=80" },
+            { id: 5, title: "მონადირული ძეხვი (1კგ)", catName: "ძეხვეული", category: "sausage", price: 17.00, oldPrice: 19.50, hasPrize: false, img: "https://images.unsplash.com/photo-1595786802424-d6efbc413db5?auto=format&fit=crop&w=400&q=80" },
+            
+            // პირველადი საჭიროება & პრიზიანი
+            { id: 101, title: "სომხური ყავა LATINO (100გრ)", catName: "პირველადი საჭიროება", category: "essential", price: 2.50, oldPrice: 3.00, hasPrize: true, prizeText: "🎁 მოჰყვება პრიზი!", img: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=400&q=80" },
+            { id: 6, title: "თონის ცხელი პური", catName: "ცომეული", category: "essential", price: 1.30, oldPrice: 1.50, hasPrize: false, img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=400&q=80" },
+            { id: 7, title: "შაქარი (1კგ)", catName: "პირველადი საჭიროება", category: "essential", price: 2.80, oldPrice: 3.20, hasPrize: false, img: "https://images.unsplash.com/photo-1581441363689-1f3c3c414635?auto=format&fit=crop&w=400&q=80" },
+            { id: 8, title: "მზესუმზირის ზეთი (1ლ)", catName: "პირველადი საჭიროება", category: "essential", price: 4.50, oldPrice: 5.20, hasPrize: false, img: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=400&q=80" },
+            
+            // რძის ნაწარმი
+            { id: 9, title: "იმერული ყველი (1კგ)", catName: "რძის ნაწარმი", category: "dairy", price: 14.00, oldPrice: 16.00, hasPrize: false, img: "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?auto=format&fit=crop&w=400&q=80" },
+            { id: 10, title: "სულგუნი (1კგ)", catName: "რძის ნაწარმი", category: "dairy", price: 18.50, oldPrice: 21.00, hasPrize: false, img: "https://images.unsplash.com/photo-1628102491629-778571d893a3?auto=format&fit=crop&w=400&q=80" }
         ];
 
         let cart = [];
@@ -830,7 +744,7 @@
 
         function handleImgError(image) {
             image.onerror = null;
-            image.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 24 24' fill='none' stroke='%232e7d32' stroke-width='1.5'%3E%3Cpath d='M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z'%3E%3C/path%3E%3Cline x1='3' y1='6' x2='21' y2='6'%3E%3C/line%3E%3Cpath d='M16 10a4 4 0 0 1-8 0'%3E%3C/path%3E%3C/svg%3E";
+            image.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 24 24' fill='none' stroke='%238d1c1c' stroke-width='1.5'%3E%3Cpath d='M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z'%3E%3C/path%3E%3Cline x1='3' y1='6' x2='21' y2='6'%3E%3C/line%3E%3Cpath d='M16 10a4 4 0 0 1-8 0'%3E%3C/path%3E%3C/svg%3E";
         }
 
         function displayProducts() {
@@ -847,18 +761,19 @@
                 const card = document.createElement('div');
                 card.className = 'product-card';
                 card.innerHTML = `
-                    ${item.hasPrize ? `<div class="card-prize-tag"><i class="fa-solid fa-gift"></i> ${item.prizeText}</div>` : ''}
+                    ${item.hasPrize ? `<div class="prize-tag"><i class="fa-solid fa-gift"></i> ${item.prizeText}</div>` : ''}
                     <div class="product-thumb">
                         <img src="${item.img}" alt="${item.title}" onerror="handleImgError(this)" loading="lazy">
                     </div>
                     <div class="product-details">
+                        <div class="product-category">${item.catName}</div>
                         <div class="product-title">${item.title}</div>
                         <div class="price-row">
                             <span class="current-price">${item.price.toFixed(2)} ₾</span>
                             <span class="old-price">${item.oldPrice.toFixed(2)} ₾</span>
                         </div>
                         <button class="add-btn" onclick="addToCart(${item.id})">
-                            <i class="fa-solid fa-basket-shopping"></i> დამატება
+                            <i class="fa-solid fa-basket-shopping"></i> კალათაში
                         </button>
                     </div>
                 `;
@@ -869,7 +784,7 @@
         function selectCategory(cat, e) {
             activeCategory = cat;
             document.querySelectorAll('.cat-chip').forEach(btn => btn.classList.remove('active'));
-            e.target.classList.add('active');
+            e.currentTarget.classList.add('active');
             displayProducts();
         }
 
@@ -915,10 +830,10 @@
                     row.innerHTML = `
                         <div>
                             <strong style="font-size:13px;">${item.title}</strong>
-                            ${item.hasPrize ? ' <small style="color:#e65100; font-weight:bold;">(🎁 მოჰყვება პრიზი!)</small>' : ''}<br>
+                            ${item.hasPrize ? ' <small style="color:#e65100; font-weight:bold;">(🎁 პრიზით)</small>' : ''}<br>
                             <small style="color:#777;">${item.price.toFixed(2)} ₾ x ${item.qty}</small>
                         </div>
-                        <div class="qty-controls">
+                        <div style="display:flex; align-items:center; gap:6px;">
                             <button class="qty-btn" onclick="changeQty(${item.id}, -1)">-</button>
                             <span>${item.qty}</span>
                             <button class="qty-btn" onclick="changeQty(${item.id}, 1)">+</button>
@@ -991,12 +906,12 @@
                 bMsg.className = 'ai-msg bot';
                 const lower = msg.toLowerCase();
 
-                if (lower.includes('პრიზ') || lower.includes('ლატინო') || lower.includes('latino') || lower.includes('ყავა')) {
-                    bMsg.innerText = "დიახ! ჩვენს მარკეტში სომხურ ყავა Latino-ს და სხვა არჩეულ პროდუქტებს მოჰყვება სიურპრიზები და პრიზები 🎁";
+                if (lower.includes('ხორც') || lower.includes('საქონლის')) {
+                    bMsg.innerText = "ჩვენთან ყოველდღე ახალი საქონლისა და ღორის ხორცია! ფასი: საქონელი - 22₾, ღორი - 16.50₾.";
+                } else if (lower.includes('პრიზ') || lower.includes('ლატინო') || lower.includes('latino')) {
+                    bMsg.innerText = "დიახ! სომხურ ყავა Latino-ს მოჰყვება სიურპრიზები და პრიზები 🎁";
                 } else if (lower.includes('მისამართი') || lower.includes('სად')) {
                     bMsg.innerText = "ჩვენი მარკეტი მდებარეობს ქ. ახალციხეში, იაძის ქუჩა №2-ში.";
-                } else if (lower.includes('საათი') || lower.includes('როდის')) {
-                    bMsg.innerText = "ღია ვართ ყოველდღე 08:00-დან 23:00 საათამდე.";
                 } else {
                     bMsg.innerHTML = `მადლობა შეკითხვისთვის! მოგვწერეთ პირდაპირ WhatsApp-ში:\n<br><br>
                     <a href="https://wa.me/995500224822?text=${encodeURIComponent('კითხვა: ' + msg)}" target="_blank" style="color:#1976d2; font-weight:bold;">WhatsApp-ზე გადასვლა</a>`;
