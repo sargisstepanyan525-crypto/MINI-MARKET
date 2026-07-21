@@ -3,215 +3,218 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MINI MARKET | Premium Store</title>
+    <title>MINI MARKET |მინი მარკეტი</title>
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #0d47a1;
-            --accent: #d32f2f;
-            --gold: #ffb300;
-            --bg: #f4f6f9;
-            --dark: #1e293b;
+            --primary: #0052cc;
+            --secondary: #ff9800;
+            --accent: #e53935;
+            --bg: #f4f6f8;
+            --dark: #172b4d;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background: var(--bg); color: #333; padding-bottom: 90px; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; }
+        body { background: var(--bg); color: #333; padding-bottom: 80px; }
 
-        /* Top Header */
-        .top-nav {
-            background: var(--dark); color: white; padding: 8px 20px;
-            display: flex; justify-content: space-between; align-items: center;
-            font-size: 13px; flex-wrap: wrap; gap: 10px;
+        /* Header & Topbar */
+        .top-bar {
+            background: var(--dark); color: white; padding: 6px 20px;
+            display: flex; justify-content: space-between; align-items: center; font-size: 13px;
         }
 
-        .lang-picker button {
-            background: rgba(255,255,255,0.15); color: white; border: none;
-            padding: 4px 10px; border-radius: 6px; cursor: pointer; font-weight: bold;
+        .lang-switch button {
+            background: rgba(255,255,255,0.2); color: white; border: none;
+            padding: 3px 8px; border-radius: 4px; cursor: pointer; font-weight: bold;
         }
-        .lang-picker button.active { background: var(--gold); color: black; }
+        .lang-switch button.active { background: var(--secondary); color: black; }
 
         header {
-            background: white; padding: 15px 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            background: white; padding: 12px 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
             position: sticky; top: 0; z-index: 999;
         }
 
-        .header-wrap {
+        .header-container {
             max-width: 1200px; margin: 0 auto; display: flex;
             align-items: center; justify-content: space-between; gap: 15px; flex-wrap: wrap;
         }
 
-        .brand-logo { display: flex; align-items: center; gap: 15px; text-decoration: none; }
-        .brand-logo img { width: 65px; height: 65px; border-radius: 50%; object-fit: cover; box-shadow: 0 3px 10px rgba(0,0,0,0.15); }
-        .brand-title h1 { font-size: 24px; color: var(--primary); font-weight: 900; line-height: 1; }
-        .brand-title span { font-size: 12px; color: var(--accent); font-weight: 700; }
+        .logo-area { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .logo-area img { width: 55px; height: 55px; border-radius: 50%; object-fit: cover; }
+        .logo-area h1 { font-size: 22px; color: var(--primary); font-weight: 900; }
 
-        .search-box { flex: 1; max-width: 400px; position: relative; }
-        .search-box input {
-            width: 100%; padding: 10px 40px 10px 16px; border: 2px solid #e2e8f0;
-            border-radius: 25px; outline: none; font-size: 14px;
+        .search-area { flex: 1; max-width: 450px; position: relative; }
+        .search-area input {
+            width: 100%; padding: 10px 40px 10px 15px; border: 2px solid #dfe1e6;
+            border-radius: 20px; outline: none; font-size: 14px;
         }
-        .search-box i { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: #94a3b8; }
+        .search-area i { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: #7a869a; }
 
-        /* Banner */
-        .hero { max-width: 1200px; margin: 20px auto; padding: 0 20px; }
-        .hero-card {
-            background: linear-gradient(135deg, #0d47a1, #1e88e5); color: white;
-            border-radius: 20px; padding: 30px; display: flex;
-            justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;
+        /* Jibe Style Banner */
+        .banner-section { max-width: 1200px; margin: 15px auto; padding: 0 20px; }
+        .banner {
+            background: linear-gradient(90deg, #0052cc 0%, #0747a6 100%);
+            color: white; border-radius: 12px; padding: 25px;
+            display: flex; justify-content: space-between; align-items: center;
         }
+        .banner h2 { font-size: 22px; margin-bottom: 5px; }
 
-        /* Products Grid */
-        .main-container { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
+        /* Product Grid */
+        .main-content { max-width: 1200px; margin: 20px auto; padding: 0 20px; }
+        .section-title { font-size: 20px; font-weight: 800; margin-bottom: 15px; color: var(--dark); }
+
         .products-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px;
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 18px;
         }
 
-        .card {
-            background: white; border-radius: 16px; overflow: hidden;
-            border: 1px solid #e2e8f0; transition: transform 0.2s, box-shadow 0.2s;
+        .product-card {
+            background: white; border-radius: 12px; overflow: hidden;
+            border: 1px solid #dfe1e6; transition: all 0.2s;
             display: flex; flex-direction: column; justify-content: space-between;
         }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .product-card:hover { box-shadow: 0 8px 20px rgba(0,0,0,0.1); transform: translateY(-3px); }
 
-        .card-img { height: 190px; width: 100%; background: #fff; overflow: hidden; }
-        .card-img img { width: 100%; height: 100%; object-fit: cover; }
+        .img-container { height: 180px; width: 100%; padding: 10px; text-align: center; background: #fff; }
+        .img-container img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
-        .card-body { padding: 15px; }
-        .card-title { font-size: 15px; font-weight: 700; margin-bottom: 8px; color: var(--dark); }
-        .card-price { font-size: 20px; font-weight: 900; color: var(--accent); margin-bottom: 12px; }
+        .card-info { padding: 12px; }
+        .product-name { font-size: 14px; font-weight: 700; height: 38px; overflow: hidden; color: var(--dark); }
+        .product-price { font-size: 18px; font-weight: 900; color: var(--accent); margin: 8px 0; }
 
-        .buy-btn {
-            width: 100%; background: var(--primary); color: white; border: none;
-            padding: 10px; border-radius: 10px; font-weight: 700; cursor: pointer;
-            display: flex; align-items: center; justify-content: center; gap: 8px;
+        .btn-wa {
+            width: 100%; background: #25D366; color: white; border: none;
+            padding: 9px; border-radius: 8px; font-weight: 700; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 13px;
         }
 
-        /* Floating AI & Cart */
-        .ai-float {
-            position: fixed; bottom: 85px; right: 20px; background: #2563eb;
-            color: white; width: 60px; height: 60px; border-radius: 50%;
+        /* AI Voice Floating Button & Box */
+        .ai-btn {
+            position: fixed; bottom: 20px; right: 20px; background: var(--primary);
+            color: white; width: 58px; height: 58px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            font-size: 26px; cursor: pointer; box-shadow: 0 5px 20px rgba(37,99,235,0.4); z-index: 1000;
+            font-size: 24px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,82,204,0.4); z-index: 1000;
         }
 
-        .cart-float {
-            position: fixed; bottom: 15px; right: 20px; background: var(--accent);
-            color: white; width: 60px; height: 60px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 24px; cursor: pointer; box-shadow: 0 5px 20px rgba(211,47,47,0.4); z-index: 1000;
+        .ai-chat-window {
+            position: fixed; bottom: 85px; right: 20px; width: 330px; height: 420px;
+            background: white; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: none; flex-direction: column; z-index: 1000; overflow: hidden; border: 1px solid #ccc;
         }
-
-        /* AI Window */
-        .ai-box {
-            position: fixed; bottom: 155px; right: 20px; width: 340px; height: 430px;
-            background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            display: none; flex-direction: column; z-index: 1000; overflow: hidden; border: 1px solid #ddd;
-        }
-        .ai-head { background: #2563eb; color: white; padding: 12px 15px; font-weight: 700; display: flex; justify-content: space-between; }
-        .ai-body { flex: 1; padding: 12px; overflow-y: auto; background: #f8fafc; display: flex; flex-direction: column; gap: 10px; }
-        .ai-msg { padding: 10px 14px; border-radius: 12px; font-size: 13px; max-width: 85%; line-height: 1.4; }
-        .ai-msg.bot { background: #e2e8f0; align-self: flex-start; color: #0f172a; }
-        .ai-msg.user { background: #2563eb; color: white; align-self: flex-end; }
-        .ai-input { padding: 10px; display: flex; gap: 6px; border-top: 1px solid #eee; background: white; }
-        .ai-input input { flex: 1; padding: 8px 12px; border: 1px solid #ccc; border-radius: 20px; outline: none; }
-        .ai-input button { background: #2563eb; color: white; border: none; padding: 8px 12px; border-radius: 50%; cursor: pointer; }
+        .ai-header { background: var(--primary); color: white; padding: 12px; font-weight: 700; display: flex; justify-content: space-between; }
+        .ai-body { flex: 1; padding: 12px; overflow-y: auto; background: #f4f5f7; display: flex; flex-direction: column; gap: 8px; }
+        .msg { padding: 8px 12px; border-radius: 10px; font-size: 13px; max-width: 85%; }
+        .msg.bot { background: #ebecf0; color: #172b4d; align-self: flex-start; }
+        .msg.user { background: var(--primary); color: white; align-self: flex-end; }
+        .ai-footer { padding: 8px; display: flex; gap: 5px; background: white; border-top: 1px solid #eee; }
+        .ai-footer input { flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 15px; outline: none; }
+        .ai-footer button { background: var(--primary); color: white; border: none; padding: 8px 12px; border-radius: 50%; cursor: pointer; }
     </style>
 </head>
 <body>
 
-    <!-- Top Bar -->
-    <div class="top-nav">
+    <!-- Top Navigation -->
+    <div class="top-bar">
         <div>📍 ქ. ახალციხე, იაძის ქ. №2 | 📞 +995 500 22 48 22</div>
-        <div class="lang-picker">
-            <button class="active" onclick="setLang('ka', this)">KA</button>
-            <button onclick="setLang('en', this)">EN</button>
-            <button onclick="setLang('ru', this)">RU</button>
+        <div class="lang-switch">
+            <button class="active" onclick="switchLang('ka', this)">KA</button>
+            <button onclick="switchLang('en', this)">EN</button>
+            <button onclick="switchLang('ru', this)">RU</button>
         </div>
     </div>
 
     <!-- Header -->
     <header>
-        <div class="header-wrap">
-            <a href="#" class="brand-logo">
-                <!-- ლოგოს სურათი ჩასმულია პირდაპირ -->
-                <img src="WhatsApp Image 2026-06-27 at 20.59.49.jpeg" alt="MINI MARKET Logo" id="mainLogo">
-                <div class="brand-title">
+        <div class="header-container">
+            <a href="#" class="logo-area">
+                <img src="WhatsApp Image 2026-06-27 at 20.59.49.jpeg" alt="Logo">
+                <div>
                     <h1>MINI MARKET</h1>
-                    <span id="subTitle">თქვენი უბნის მარკეტი</span>
                 </div>
             </a>
 
-            <div class="search-box">
-                <input type="text" id="searchInput" onkeyup="filterProducts()" placeholder="ძებნა...">
+            <div class="search-area">
+                <input type="text" id="searchInput" onkeyup="searchProduct()" placeholder="ძებნა Jibe.ge კატალოგში...">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </div>
         </div>
     </header>
 
     <!-- Banner -->
-    <div class="hero">
-        <div class="hero-card">
+    <div class="banner-section">
+        <div class="banner">
             <div>
-                <h2 id="heroTitle">🥩 ყოველდღე ახალი ხორცპროდუქტები</h2>
-                <p id="heroDesc">საუკეთესო ხარისხის საქონლისა და ღორის ხორცი ახალციხეში!</p>
+                <h2 id="bTitle">🛒 მინი მარკეტი ახალციხეში</h2>
+                <p id="bDesc">საუკეთესო ფასები და ახალი პროდუქცია ყოველდღე!</p>
             </div>
         </div>
     </div>
 
-    <!-- Products Grid -->
-    <div class="main-container">
+    <!-- Products -->
+    <div class="main-content">
+        <div class="section-title" id="secTitle">🔥 პოპულარული პროდუქტები</div>
         <div class="products-grid" id="productsGrid"></div>
     </div>
 
-    <!-- Floating Buttons -->
-    <div class="ai-float" onclick="toggleAI()"><i class="fa-solid fa-robot"></i></div>
-    <div class="cart-float"><i class="fa-solid fa-basket-shopping"></i></div>
+    <!-- Floating AI Button -->
+    <div class="ai-btn" onclick="toggleAIChat()"><i class="fa-solid fa-robot"></i></div>
 
-    <!-- AI Voice Assistant -->
-    <div class="ai-box" id="aiBox">
-        <div class="ai-head">
-            <span><i class="fa-solid fa-robot"></i> Voice AI Assistant</span>
-            <i class="fa-solid fa-xmark" onclick="toggleAI()" style="cursor:pointer;"></i>
+    <!-- AI Voice Assistant Window -->
+    <div class="ai-chat-window" id="aiWindow">
+        <div class="ai-header">
+            <span><i class="fa-solid fa-robot"></i> AI Voice Assistant</span>
+            <i class="fa-solid fa-xmark" onclick="toggleAIChat()" style="cursor:pointer;"></i>
         </div>
         <div class="ai-body" id="aiBody">
-            <div class="ai-msg bot" id="aiWelcome">გამარჯობა! მე ვარ MINI MARKET-ის AI ასისტენტი. რით დაგეხმაროთ? 🔊</div>
+            <div class="msg bot" id="aiWelcomeMsg">გამარჯობა! მე ვარ MINI MARKET-ის AI ასისტენტი. რით დაგეხმაროთ? 🔊</div>
         </div>
-        <div class="ai-input">
-            <input type="text" id="aiIn" placeholder="Write message..." onkeypress="if(event.key==='Enter') sendAI()">
-            <button onclick="sendAI()"><i class="fa-solid fa-paper-plane"></i></button>
+        <div class="ai-footer">
+            <input type="text" id="aiInput" placeholder="Write question..." onkeypress="if(event.key==='Enter') sendAIMessage()">
+            <button onclick="sendAIMessage()"><i class="fa-solid fa-paper-plane"></i></button>
         </div>
     </div>
 
     <script>
         let currentLang = 'ka';
 
-        // პროდუქტები რეალური, მაღალი ხარისხის ფოტოებით Unsplash-იდან
+        // რეალური პროდუქტები Jibe.ge სტილით და ნამდვილი ფოტოებით
         const products = [
             {
                 id: 1,
-                name: { ka: "ახალი საქონლის ხორცი (1კგ)", en: "Fresh Beef (1kg)", ru: "Свежая говядина (1кг)" },
-                price: 22.00,
-                img: "https://images.unsplash.com/photo-1603048588665-791ca8aea617?auto=format&fit=crop&w=600&q=80"
+                name: { ka: "ლუდი ჰაინეკენი (Heineken) 0.5L ბოთლი", en: "Heineken Beer 0.5L Bottle", ru: "Пиво Heineken 0.5л бутылка" },
+                price: 3.80,
+                img: "https://images.unsplash.com/photo-1608270586620-248524c67de9?auto=format&fit=crop&w=500&q=80"
             },
             {
                 id: 2,
-                name: { ka: "ახალი ღორის ხორცი (1კგ)", en: "Fresh Pork (1kg)", ru: "Свежая свинина (1кг)" },
-                price: 16.50,
-                img: "https://images.unsplash.com/photo-1602470520998-f4a52199a3d6?auto=format&fit=crop&w=600&q=80"
+                name: { ka: "ახალი საქონლის რბილი ხორცი (1კგ)", en: "Fresh Beef Meat (1kg)", ru: "Свежая говядина (1кг)" },
+                price: 22.00,
+                img: "https://images.unsplash.com/photo-1603048588665-791ca8aea617?auto=format&fit=crop&w=500&q=80"
             },
             {
                 id: 3,
-                name: { ka: "ყავა LATINO (100გრ) + პრიზი", en: "Coffee LATINO + Prize", ru: "Кофе LATINO + Приз" },
-                price: 2.50,
-                img: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=600&q=80"
+                name: { ka: "ახალი ქათმის ფილე (1კგ)", en: "Fresh Chicken Fillet (1kg)", ru: "Куриное филе (1кг)" },
+                price: 13.50,
+                img: "https://images.unsplash.com/photo-1604503468506-a8da13d82791?auto=format&fit=crop&w=500&q=80"
             },
             {
                 id: 4,
-                name: { ka: "შაქარი (1კგ)", en: "Sugar (1kg)", ru: "Сахар (1кг)" },
+                name: { ka: "ქათმის კვერცხი C1 (10 ცალი)", en: "Chicken Eggs C1 (10 pcs)", ru: "Куриные яйца С1 (10 шт)" },
+                price: 4.50,
+                img: "https://images.unsplash.com/photo-1516467508483-a7212febe31a?auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 5,
+                name: { ka: "ყავა Jacobs Monarch (100გრ)", en: "Coffee Jacobs Monarch (100g)", ru: "Кофе Jacobs Monarch (100г)" },
+                price: 10.50,
+                img: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 6,
+                name: { ka: "შაქარი თეთრი (1კგ)", en: "White Sugar (1kg)", ru: "Сахар белый (1кг)" },
                 price: 2.80,
-                img: "https://images.unsplash.com/photo-1581441363689-1f3c3c414635?auto=format&fit=crop&w=600&q=80"
+                img: "https://images.unsplash.com/photo-1581441363689-1f3c3c414635?auto=format&fit=crop&w=500&q=80"
             }
         ];
 
@@ -220,13 +223,15 @@
             grid.innerHTML = '';
             products.forEach(p => {
                 grid.innerHTML += `
-                    <div class="card">
-                        <div class="card-img"><img src="${p.img}" alt="${p.name[currentLang]}"></div>
-                        <div class="card-body">
-                            <div class="card-title">${p.name[currentLang]}</div>
-                            <div class="card-price">${p.price.toFixed(2)} ₾</div>
-                            <button class="buy-btn" onclick="buyWA('${p.name[currentLang]}')">
-                                <i class="fa-brands fa-whatsapp"></i> WhatsApp Buy
+                    <div class="product-card">
+                        <div class="img-container">
+                            <img src="${p.img}" alt="${p.name[currentLang]}">
+                        </div>
+                        <div class="card-info">
+                            <div class="product-name">${p.name[currentLang]}</div>
+                            <div class="product-price">${p.price.toFixed(2)} ₾</div>
+                            <button class="btn-wa" onclick="orderWA('${p.name[currentLang]}')">
+                                <i class="fa-brands fa-whatsapp"></i> WhatsApp შეკვეთა
                             </button>
                         </div>
                     </div>
@@ -234,76 +239,85 @@
             });
         }
 
-        function setLang(lang, btn) {
+        function switchLang(lang, btn) {
             currentLang = lang;
-            document.querySelectorAll('.lang-picker button').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.lang-switch button').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
 
             if(lang === 'ka') {
-                document.getElementById('subTitle').innerText = "თქვენი უბნის მარკეტი";
-                document.getElementById('heroTitle').innerText = "🥩 ყოველდღე ახალი ხორცპროდუქტები";
-                document.getElementById('aiWelcome').innerText = "გამარჯობა! მე ვარ MINI MARKET-ის AI ასისტენტი. რით დაგეხმაროთ? 🔊";
+                document.getElementById('bTitle').innerText = "🛒 ონლაინ ჰიპერმარკეტი ახალციხეში";
+                document.getElementById('bDesc').innerText = "საუკეთესო ფასები და ახალი პროდუქცია ყოველდღე!";
+                document.getElementById('secTitle').innerText = "🔥 პოპულარული პროდუქტები";
+                document.getElementById('aiWelcomeMsg').innerText = "გამარჯობა! მე ვარ MINI MARKET-ის AI ასისტენტი. რით დაგეხმაროთ? 🔊";
             } else if(lang === 'en') {
-                document.getElementById('subTitle').innerText = "Your Neighborhood Market";
-                document.getElementById('heroTitle').innerText = "🥩 Daily Fresh Meat Products";
-                document.getElementById('aiWelcome').innerText = "Hello! I am MINI MARKET's AI Assistant. How can I help you? 🔊";
+                document.getElementById('bTitle').innerText = "🛒 Online Hypermarket in Akhaltsikhe";
+                document.getElementById('bDesc').innerText = "Best prices and fresh products every day!";
+                document.getElementById('secTitle').innerText = "🔥 Popular Products";
+                document.getElementById('aiWelcomeMsg').innerText = "Hello! I am MINI MARKET's AI Assistant. How can I help you? 🔊";
             } else if(lang === 'ru') {
-                document.getElementById('subTitle').innerText = "Маркет вашего района";
-                document.getElementById('heroTitle').innerText = "🥩 Ежедневно свежее мясо";
-                document.getElementById('aiWelcome').innerText = "Здравствуйте! Я AI ассистент MINI MARKET. Чем могу помочь? 🔊";
+                document.getElementById('bTitle').innerText = "🛒 Онлайн Гипермаркет в Ахалцихе";
+                document.getElementById('bDesc').innerText = "Лучшие цены и свежие продукты каждый день!";
+                document.getElementById('secTitle').innerText = "🔥 Популярные Товары";
+                document.getElementById('aiWelcomeMsg').innerText = "Здравствуйте! Я AI ассистент MINI MARKET. Чем могу помочь? 🔊";
             }
             renderProducts();
         }
 
-        function toggleAI() {
-            const box = document.getElementById('aiBox');
-            box.style.display = box.style.display === 'flex' ? 'none' : 'flex';
+        function toggleAIChat() {
+            const win = document.getElementById('aiWindow');
+            win.style.display = win.style.display === 'flex' ? 'none' : 'flex';
         }
 
-        function speak(text, lang) {
+        function speakText(text, lang) {
             if ('speechSynthesis' in window) {
-                const u = new SpeechSynthesisUtterance(text);
-                if(lang === 'ka') u.lang = 'ka-GE';
-                else if(lang === 'en') u.lang = 'en-US';
-                else if(lang === 'ru') u.lang = 'ru-RU';
-                window.speechSynthesis.speak(u);
+                const utterance = new SpeechSynthesisUtterance(text);
+                if(lang === 'ka') utterance.lang = 'ka-GE';
+                else if(lang === 'en') utterance.lang = 'en-US';
+                else if(lang === 'ru') utterance.lang = 'ru-RU';
+                window.speechSynthesis.speak(utterance);
             }
         }
 
-        function sendAI() {
-            const input = document.getElementById('aiIn');
+        function sendAIMessage() {
+            const input = document.getElementById('aiInput');
             const txt = input.value.trim();
             if(!txt) return;
 
             const body = document.getElementById('aiBody');
-            body.innerHTML += `<div class="ai-msg user">${txt}</div>`;
+            body.innerHTML += `<div class="msg user">${txt}</div>`;
             input.value = '';
 
             setTimeout(() => {
-                let reply = "";
+                let answer = "";
                 if(currentLang === 'ka') {
-                    reply = "გმადლობთ შეკითხვისთვის! ზუსტი პასუხისთვის შეგიძლიათ მოგვწეროთ პირდაპირ WhatsApp-ში.";
+                    answer = "მადლობა შეკითხვისთვის! თქვენი შეკითხვა შეგიძლიათ გადააგზავნოთ პირდაპირ WhatsApp-ში ადმინისტრატორთან.";
                 } else if(currentLang === 'en') {
-                    reply = "Thank you for asking! For immediate support, click to write us on WhatsApp.";
+                    answer = "Thanks for asking! You can send your question directly to WhatsApp administrator.";
                 } else {
-                    reply = "Спасибо за вопрос! Для точного ответа вы можете написать нам прямо в WhatsApp.";
+                    answer = "Спасибо за вопрос! Вы можете отправить ваш вопрос прямо администратору в WhatsApp.";
                 }
 
-                body.innerHTML += `<div class="ai-msg bot">${reply} <br><br> <a href="https://wa.me/995500224822?text=${encodeURIComponent(txt)}" target="_blank" style="color:#0d47a1; font-weight:bold;">📲 Send to WhatsApp</a></div>`;
+                body.innerHTML += `
+                    <div class="msg bot">
+                        ${answer} <br><br>
+                        <a href="https://wa.me/995500224822?text=${encodeURIComponent('კითხვა საიტიდან: ' + txt)}" target="_blank" style="color:#0052cc; font-weight:bold;">
+                            📲 გაგზავნა WhatsApp-ზე
+                        </a>
+                    </div>`;
                 body.scrollTop = body.scrollHeight;
-                speak(reply, currentLang);
-            }, 500);
+                speakText(answer, currentLang);
+            }, 400);
         }
 
-        function buyWA(name) {
-            window.open(`https://wa.me/995500224822?text=გამარჯობა, მინდა შევიძინო: ${encodeURIComponent(name)}`, '_blank');
+        function orderWA(productName) {
+            window.open(`https://wa.me/995500224822?text=გამარჯობა, მინდა შევიძინო: ${encodeURIComponent(productName)}`, '_blank');
         }
 
-        function filterProducts() {
-            const v = document.getElementById('searchInput').value.toLowerCase();
-            document.querySelectorAll('.card').forEach(c => {
-                const t = c.querySelector('.card-title').innerText.toLowerCase();
-                c.style.display = t.includes(v) ? 'flex' : 'none';
+        function searchProduct() {
+            const val = document.getElementById('searchInput').value.toLowerCase();
+            document.querySelectorAll('.product-card').forEach(card => {
+                const title = card.querySelector('.product-name').innerText.toLowerCase();
+                card.style.display = title.includes(val) ? 'flex' : 'none';
             });
         }
 
