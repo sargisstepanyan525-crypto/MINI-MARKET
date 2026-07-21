@@ -44,7 +44,7 @@
 
         .brand-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
         .brand-logo img { width: 55px; height: 55px; border-radius: 50%; object-fit: cover; }
-        .brand-logo h1 { font-size: 24px; color: var(--primary); font-weight: 900; }
+        .brand-logo h1 { font-size: 22px; color: var(--primary); font-weight: 900; }
 
         .search-box { flex: 1; max-width: 450px; position: relative; }
         .search-box input {
@@ -52,6 +52,16 @@
             border-radius: 25px; outline: none; font-size: 14px; background: #fafbfc;
         }
         .search-box i { position: absolute; right: 18px; top: 50%; transform: translateY(-50%); color: #6b778c; }
+
+        /* Countries Section */
+        .countries-bar {
+            background: #fff; border-bottom: 1px solid #e2e8f0; padding: 12px 20px;
+        }
+        .countries-container {
+            max-width: 1200px; margin: 0 auto; display: flex; align-items: center;
+            justify-content: center; gap: 20px; flex-wrap: wrap; font-size: 14px; font-weight: 600;
+        }
+        .country-item { display: flex; align-items: center; gap: 6px; background: #f8fafc; padding: 6px 14px; border-radius: 20px; border: 1px solid #e2e8f0; }
 
         /* Banner & Delivery Info */
         .hero { max-width: 1200px; margin: 20px auto; padding: 0 20px; }
@@ -72,6 +82,19 @@
         .delivery-badge h4 { color: var(--gold); font-size: 15px; margin-bottom: 5px; display: flex; align-items: center; gap: 8px; }
         .delivery-badge p { font-size: 13px; line-height: 1.4; }
 
+        /* Promo Banner (Latino Coffee) */
+        .promo-banner {
+            max-width: 1200px; margin: 0 auto 25px; padding: 0 20px;
+        }
+        .promo-box {
+            background: linear-gradient(135deg, #ff9800 0%, #e65100 100%);
+            color: white; border-radius: 16px; padding: 20px; display: flex;
+            align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px;
+            box-shadow: 0 6px 18px rgba(230, 81, 0, 0.25);
+        }
+        .promo-title { font-size: 20px; font-weight: 900; display: flex; align-items: center; gap: 10px; }
+        .promo-tag { background: #fff; color: #e65100; padding: 4px 10px; border-radius: 8px; font-size: 12px; font-weight: 800; }
+
         /* Product Grid */
         .container { max-width: 1200px; margin: 25px auto; padding: 0 20px; }
         .section-title { font-size: 22px; font-weight: 800; margin-bottom: 20px; color: var(--text-dark); display: flex; align-items: center; gap: 10px; }
@@ -84,16 +107,21 @@
             background: white; border-radius: 16px; overflow: hidden;
             border: 1px solid #dfe1e6; transition: all 0.25s ease;
             display: flex; flex-direction: column; justify-content: space-between;
+            position: relative;
         }
         .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.08); }
 
-        /* Vector Art Box */
+        .prize-badge {
+            position: absolute; top: 10px; right: 10px; background: var(--accent);
+            color: white; padding: 4px 8px; border-radius: 8px; font-size: 11px; font-weight: 800; z-index: 2;
+        }
+
         .card-img {
-            height: 190px; width: 100%; background: #f8fafc;
-            display: flex; align-items: center; justify-content: center; padding: 15px;
+            height: 190px; width: 100%; background: #fff;
+            display: flex; align-items: center; justify-content: center; padding: 10px;
             border-bottom: 1px solid #f4f5f7;
         }
-        .card-img svg { max-width: 100%; max-height: 100%; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); }
+        .card-img img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
         .card-body { padding: 15px; }
         .card-title { font-size: 14px; font-weight: 700; height: 38px; line-height: 1.3; color: var(--text-dark); overflow: hidden; }
@@ -158,12 +186,25 @@
         </div>
     </header>
 
+    <!-- Import Countries Section -->
+    <div class="countries-bar">
+        <div class="countries-container">
+            <span style="color:#6b778c; font-size: 13px;">პროდუქცია სხვადასხვა ქვეყნიდან:</span>
+            <div class="country-item">🇬🇪 საქართველო</div>
+            <div class="country-item">🇦🇲 სომხეთი</div>
+            <div class="country-item">🇹🇷 თურქეთი</div>
+            <div class="country-item">🇺🇦 უკრაინა</div>
+            <div class="country-item">🇷🇺 რუსეთი</div>
+            <div class="country-item">🇨🇳 ჩინეთი</div>
+        </div>
+    </div>
+
     <!-- Banner & Delivery -->
     <div class="hero">
         <div class="banner">
             <div class="banner-info">
-                <h2 id="bTitle">🛒 ონლაინ მარკეტი ახალციხეში</h2>
-                <p id="bDesc">ხარისხიანი პროდუქცია პირდაპირ თქვენს კართან</p>
+                <h2 id="bTitle">🏪 თქვენი უბნის მინი მარკეტი</h2>
+                <p id="bDesc">ახალი, მრავალფეროვანი და ხარისხიანი პროდუქცია ყოველდღე!</p>
             </div>
             <div class="delivery-badge">
                 <h4><i class="fa-solid fa-truck-fast"></i> მიწოდების სერვისი ახალციხეში</h4>
@@ -174,9 +215,20 @@
         </div>
     </div>
 
+    <!-- Promo Banner (Latino Coffee & Prizes) -->
+    <div class="promo-banner">
+        <div class="promo-box">
+            <div>
+                <div class="promo-title">🎁 საპრიზო აქცია MINI MARKET-ში!</div>
+                <p style="margin-top:5px; font-size:14px;">შეიძინეთ <b>სომხური ყავა Latino</b> და მოიგეთ ფასიანი საჩუქრები!</p>
+            </div>
+            <span class="promo-tag">✨ იპოვე პრიზი</span>
+        </div>
+    </div>
+
     <!-- Products Container -->
     <div class="container">
-        <div class="section-title" id="sTitle"><i class="fa-solid fa-cart-shopping" style="color:var(--primary)"></i> პროდუქციის კატალოგი</div>
+        <div class="section-title" id="sTitle"><i class="fa-solid fa-basket-shopping" style="color:var(--primary)"></i> პროდუქციის კატალოგი</div>
         <div class="grid" id="grid"></div>
     </div>
 
@@ -201,75 +253,49 @@
     <script>
         let currentLang = 'ka';
 
-        // პროდუქტები ჩაშენებული SVG ვექტორული ნახატებით (არასდროს გაფუჭდება!)
+        // პროდუქტების სია რეალისტური ფოტოებით
         const products = [
             {
                 id: 1,
-                name: { ka: "ახალი საქონლის ხორცი (1კგ)", en: "Fresh Beef Meat (1kg)", ru: "Свежая говядина (1кг)" },
-                price: 22.00,
-                // ხორცის ნახატი
-                svg: `<svg viewBox="0 0 100 100" width="130" height="130">
-                        <path d="M20,40 C15,20 50,10 75,25 C95,40 90,70 70,85 C45,100 25,80 20,60 Z" fill="#b71c1c"/>
-                        <path d="M30,45 C25,30 50,20 68,32 C82,42 78,65 62,75 C42,88 32,70 30,55 Z" fill="#e53935"/>
-                        <path d="M40,35 Q50,45 60,35 Q65,55 45,65 Z" fill="#ffcdd2" opacity="0.6"/>
-                      </svg>`
+                name: { ka: "სომხური ყავა Latino (საპრიზო 🎁)", en: "Armenian Coffee Latino (Prize 🎁)", ru: "Армянский кофе Latino (Призовой 🎁)" },
+                price: 3.50,
+                prize: true,
+                img: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=500&q=80"
             },
             {
                 id: 2,
-                name: { ka: "ახალი ქათმის ფილე (1კგ)", en: "Fresh Chicken Fillet (1kg)", ru: "Куриное филе (1кг)" },
-                price: 13.50,
-                // ქათმის ფილეს ნახატი
-                svg: `<svg viewBox="0 0 100 100" width="130" height="130">
-                        <path d="M15,50 C10,30 40,15 75,20 C90,22 95,45 80,65 C60,85 25,75 15,50 Z" fill="#ffcc80"/>
-                        <path d="M25,48 C20,35 45,22 70,28 C80,30 85,48 72,60 C55,75 30,68 25,48 Z" fill="#ffe0b2"/>
-                      </svg>`
+                name: { ka: "ახალი საქონლის ხორცი (1კგ)", en: "Fresh Beef Meat (1kg)", ru: "Свежая говядина (1кг)" },
+                price: 22.00,
+                prize: false,
+                img: "https://images.unsplash.com/photo-1588168333986-5078d3ae3976?auto=format&fit=crop&w=500&q=80"
             },
             {
                 id: 3,
-                name: { ka: "ქათმის კვერცხი C1 (10 ცალი)", en: "Chicken Eggs C1 (10 pcs)", ru: "Куриные яйца (10 шт)" },
-                price: 4.50,
-                // კვერცხების ნახატი
-                svg: `<svg viewBox="0 0 100 100" width="130" height="130">
-                        <ellipse cx="38" cy="55" rx="22" ry="30" fill="#d7ccc8" transform="rotate(-15 38 55)"/>
-                        <ellipse cx="62" cy="55" rx="22" ry="30" fill="#f5f5f5" transform="rotate(15 62 55)"/>
-                        <ellipse cx="50" cy="45" rx="20" ry="28" fill="#ffe0b2"/>
-                      </svg>`
+                name: { ka: "ახალი ქათმის ფილე (1კგ)", en: "Fresh Chicken Fillet (1kg)", ru: "Куриное филе (1кг)" },
+                price: 13.50,
+                prize: false,
+                img: "https://images.unsplash.com/photo-1604503468506-a8da13d82791?auto=format&fit=crop&w=500&q=80"
             },
             {
                 id: 4,
-                name: { ka: "ლუდი ჰაინეკენი (Heineken) 0.5L", en: "Heineken Beer 0.5L", ru: "Пиво Heineken 0.5л" },
-                price: 3.80,
-                // ლუდის ბოთლის ნახატი
-                svg: `<svg viewBox="0 0 100 100" width="130" height="130">
-                        <rect x="44" y="10" width="12" height="15" rx="2" fill="#2e7d32"/>
-                        <path d="M44,25 L35,40 L35,85 C35,88 40,90 50,90 C60,90 65,88 65,85 L65,40 L56,25 Z" fill="#388e3c"/>
-                        <rect x="36" y="50" width="28" height="22" fill="#e0e0e0" rx="3"/>
-                        <polygon points="50,54 53,62 61,62 54,66 57,74 50,69 43,74 46,66 39,62 47,62" fill="#d32f2f"/>
-                      </svg>`
+                name: { ka: "ქათმის კვერცხი C1 (10 ცალი)", en: "Chicken Eggs C1 (10 pcs)", ru: "Куриные яйца (10 шт)" },
+                price: 4.50,
+                prize: false,
+                img: "https://images.unsplash.com/photo-1582721478779-0ae163c05a60?auto=format&fit=crop&w=500&q=80"
             },
             {
                 id: 5,
-                name: { ka: "ყავა Jacobs Monarch (100გრ)", en: "Coffee Jacobs Monarch (100g)", ru: "Кофе Jacobs Monarch (100г)" },
-                price: 10.50,
-                // ყავის ქილის ნახატი
-                svg: `<svg viewBox="0 0 100 100" width="130" height="130">
-                        <rect x="32" y="15" width="36" height="12" rx="3" fill="#2e7d32"/>
-                        <path d="M30,27 L70,27 L65,85 L35,85 Z" fill="#43a047"/>
-                        <polygon points="35,40 65,40 60,70 40,70" fill="#ffb300"/>
-                        <text x="50" y="58" font-size="10" font-weight="bold" fill="#000" text-anchor="middle">JACOBS</text>
-                      </svg>`
+                name: { ka: "ლუდი ჰაინეკენი (Heineken) 0.5L", en: "Heineken Beer 0.5L", ru: "Пиво Heineken 0.5л" },
+                price: 3.80,
+                prize: false,
+                img: "https://images.unsplash.com/photo-1608270586620-248524c67de9?auto=format&fit=crop&w=500&q=80"
             },
             {
                 id: 6,
                 name: { ka: "შაქარი თეთრი (1კგ)", en: "White Sugar (1kg)", ru: "Сахар белый (1кг)" },
                 price: 2.80,
-                // შაქრის შეფუთვის ნახატი
-                svg: `<svg viewBox="0 0 100 100" width="130" height="130">
-                        <path d="M30,20 L70,20 L75,85 L25,85 Z" fill="#e0e0e0"/>
-                        <path d="M30,20 L70,20 L68,35 L32,35 Z" fill="#bbdefb"/>
-                        <text x="50" y="55" font-size="12" font-weight="bold" fill="#1976d2" text-anchor="middle">შაქარი</text>
-                        <text x="50" y="70" font-size="10" fill="#555" text-anchor="middle">1 კგ</text>
-                      </svg>`
+                prize: false,
+                img: "https://images.unsplash.com/photo-1581441363689-1f3c3c414635?auto=format&fit=crop&w=500&q=80"
             }
         ];
 
@@ -279,8 +305,9 @@
             products.forEach(p => {
                 g.innerHTML += `
                     <div class="card">
+                        ${p.prize ? '<span class="prize-badge">🎁 საპრიზო</span>' : ''}
                         <div class="card-img">
-                            ${p.svg}
+                            <img src="${p.img}" alt="${p.name[currentLang]}">
                         </div>
                         <div class="card-body">
                             <div class="card-title">${p.name[currentLang]}</div>
@@ -300,22 +327,22 @@
             btn.classList.add('active');
 
             if(lang === 'ka') {
-                document.getElementById('bTitle').innerText = "🛒 ონლაინ მარკეტი ახალციხეში";
-                document.getElementById('bDesc').innerText = "ხარისხიანი პროდუქცია პირდაპირ თქვენს კართან";
+                document.getElementById('bTitle').innerText = "🏪 თქვენი უბნის მინი მარკეტი";
+                document.getElementById('bDesc').innerText = "ახალი, მრავალფეროვანი და ხარისხიანი პროდუქცია ყოველდღე!";
                 document.getElementById('delInfo').innerHTML = "🚚 ქალაქის მასშტაბით ნებისმიერ წერტილში!<br>✨ <b>50 ₾-ზე ზემოთ:</b> უფასო მიწოდება<br>📦 <b>50 ₾-მდე შენაძენზე:</b> მიწოდება 5 ₾";
-                document.getElementById('sTitle').innerHTML = '<i class="fa-solid fa-cart-shopping" style="color:var(--primary)"></i> პროდუქციის კატალოგი';
+                document.getElementById('sTitle').innerHTML = '<i class="fa-solid fa-basket-shopping" style="color:var(--primary)"></i> პროდუქციის კატალოგი';
                 document.getElementById('aiWelcome').innerText = "გამარჯობა! მე ვარ MINI MARKET-ის AI ასისტენტი. რით დაგეხმაროთ? 🔊";
             } else if(lang === 'en') {
-                document.getElementById('bTitle').innerText = "🛒 Online Market in Akhaltsikhe";
-                document.getElementById('bDesc').innerText = "Quality products delivered to your door";
+                document.getElementById('bTitle').innerText = "🏪 Your Neighborhood Mini Market";
+                document.getElementById('bDesc').innerText = "Fresh, diverse and quality products every day!";
                 document.getElementById('delInfo').innerHTML = "🚚 Delivery anywhere in Akhaltsikhe!<br>✨ <b>Over 50 GEL:</b> Free Delivery<br>📦 <b>Under 50 GEL:</b> Delivery 5 GEL";
-                document.getElementById('sTitle').innerHTML = '<i class="fa-solid fa-cart-shopping" style="color:var(--primary)"></i> Product Catalog';
+                document.getElementById('sTitle').innerHTML = '<i class="fa-solid fa-basket-shopping" style="color:var(--primary)"></i> Product Catalog';
                 document.getElementById('aiWelcome').innerText = "Hello! I am MINI MARKET's AI Assistant. How can I help you? 🔊";
             } else if(lang === 'ru') {
-                document.getElementById('bTitle').innerText = "🛒 Онлайн Маркет в Ахалцихе";
-                document.getElementById('bDesc').innerText = "Качественные продукты прямо к вашей двери";
+                document.getElementById('bTitle').innerText = "🏪 Ваш районный Мини Маркет";
+                document.getElementById('bDesc').innerText = "Свежие, разнообразные и качественные продукты каждый день!";
                 document.getElementById('delInfo').innerHTML = "🚚 Доставка по всему Ахалцихе!<br>✨ <b>Свыше 50 Лари:</b> Бесплатная доставка<br>📦 <b>До 50 Лари:</b> Доставка 5 Лари";
-                document.getElementById('sTitle').innerHTML = '<i class="fa-solid fa-cart-shopping" style="color:var(--primary)"></i> Каталог Товаров';
+                document.getElementById('sTitle').innerHTML = '<i class="fa-solid fa-basket-shopping" style="color:var(--primary)"></i> Каталог Товаров';
                 document.getElementById('aiWelcome').innerText = "Здравствуйте! Я AI ассистент MINI MARKET. Чем могу помочь? 🔊";
             }
             render();
@@ -348,11 +375,11 @@
             setTimeout(() => {
                 let reply = "";
                 if(currentLang === 'ka') {
-                    reply = "მადლობა შეკითხვისთვის! ახალციხეში 50 ლარზე ზემოთ მიწოდება უფასოა. დამატებითი კითხვებისთვის მოგვწერეთ WhatsApp-ში.";
+                    reply = "მადლობა შეკითხვისთვის! ჩვენს მინი მარკეტში მოქმედებს 50 ლარზე ზემოთ უფასო მიწოდება ახალციხეში. ასევე გვაქვს საპრიზო ყავა Latino!";
                 } else if(currentLang === 'en') {
-                    reply = "Thanks for asking! Delivery over 50 GEL in Akhaltsikhe is free. Contact us on WhatsApp for details.";
+                    reply = "Thanks for asking! Free delivery in Akhaltsikhe for orders over 50 GEL. We also have prize coffee Latino!";
                 } else {
-                    reply = "Спасибо за вопрос! Доставка свыше 50 лари в Ахалцихе бесплатная. Напишите нам в WhatsApp.";
+                    reply = "Спасибо за вопрос! Бесплатная доставка по Ахалцихе при заказе от 50 лари. Также у нас есть призовой кофе Latino!";
                 }
 
                 body.innerHTML += `
