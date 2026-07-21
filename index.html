@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MINI MARKET |მინი მარკეტი</title>
+    <title>MINI MARKET | ონლაინ მარკეტი</title>
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -52,15 +52,6 @@
         }
         .search-area i { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: #7a869a; }
 
-        /* Jibe Style Banner */
-        .banner-section { max-width: 1200px; margin: 15px auto; padding: 0 20px; }
-        .banner {
-            background: linear-gradient(90deg, #0052cc 0%, #0747a6 100%);
-            color: white; border-radius: 12px; padding: 25px;
-            display: flex; justify-content: space-between; align-items: center;
-        }
-        .banner h2 { font-size: 22px; margin-bottom: 5px; }
-
         /* Product Grid */
         .main-content { max-width: 1200px; margin: 20px auto; padding: 0 20px; }
         .section-title { font-size: 20px; font-weight: 800; margin-bottom: 15px; color: var(--dark); }
@@ -89,7 +80,7 @@
             display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 13px;
         }
 
-        /* AI Voice Floating Button & Box */
+        /* AI Voice Floating */
         .ai-btn {
             position: fixed; bottom: 20px; right: 20px; background: var(--primary);
             color: white; width: 58px; height: 58px; border-radius: 50%;
@@ -114,7 +105,6 @@
 </head>
 <body>
 
-    <!-- Top Navigation -->
     <div class="top-bar">
         <div>📍 ქ. ახალციხე, იაძის ქ. №2 | 📞 +995 500 22 48 22</div>
         <div class="lang-switch">
@@ -124,7 +114,6 @@
         </div>
     </div>
 
-    <!-- Header -->
     <header>
         <div class="header-container">
             <a href="#" class="logo-area">
@@ -135,32 +124,19 @@
             </a>
 
             <div class="search-area">
-                <input type="text" id="searchInput" onkeyup="searchProduct()" placeholder="ძებნა Jibe.ge კატალოგში...">
+                <input type="text" id="searchInput" onkeyup="searchProduct()" placeholder="ძებნა კატალოგში...">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </div>
         </div>
     </header>
 
-    <!-- Banner -->
-    <div class="banner-section">
-        <div class="banner">
-            <div>
-                <h2 id="bTitle">🛒 მინი მარკეტი ახალციხეში</h2>
-                <p id="bDesc">საუკეთესო ფასები და ახალი პროდუქცია ყოველდღე!</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Products -->
     <div class="main-content">
-        <div class="section-title" id="secTitle">🔥 პოპულარული პროდუქტები</div>
+        <div class="section-title" id="secTitle">🛒 პროდუქციის კატალოგი</div>
         <div class="products-grid" id="productsGrid"></div>
     </div>
 
-    <!-- Floating AI Button -->
     <div class="ai-btn" onclick="toggleAIChat()"><i class="fa-solid fa-robot"></i></div>
 
-    <!-- AI Voice Assistant Window -->
     <div class="ai-chat-window" id="aiWindow">
         <div class="ai-header">
             <span><i class="fa-solid fa-robot"></i> AI Voice Assistant</span>
@@ -178,42 +154,48 @@
     <script>
         let currentLang = 'ka';
 
-        // რეალური პროდუქტები Jibe.ge სტილით და ნამდვილი ფოტოებით
+        // ზუსტი პროდუქტები - შემოწმებული და გასწორებული სურათების ბმულებით
         const products = [
             {
                 id: 1,
-                name: { ka: "ლუდი ჰაინეკენი (Heineken) 0.5L ბოთლი", en: "Heineken Beer 0.5L Bottle", ru: "Пиво Heineken 0.5л бутылка" },
-                price: 3.80,
-                img: "https://images.unsplash.com/photo-1608270586620-248524c67de9?auto=format&fit=crop&w=500&q=80"
+                name: { ka: "ქათმის კვერცხი C1 (10 ცალი)", en: "Chicken Eggs C1 (10 pcs)", ru: "Куриные яйца С1 (10 шт)" },
+                price: 4.50,
+                // ზუსტი კვერცხის სურათი
+                img: "https://images.unsplash.com/photo-1582721478779-0ae163c05a60?auto=format&fit=crop&w=500&q=80"
             },
             {
                 id: 2,
                 name: { ka: "ახალი საქონლის რბილი ხორცი (1კგ)", en: "Fresh Beef Meat (1kg)", ru: "Свежая говядина (1кг)" },
                 price: 22.00,
-                img: "https://images.unsplash.com/photo-1603048588665-791ca8aea617?auto=format&fit=crop&w=500&q=80"
+                // ზუსტი ხორცის სურათი
+                img: "https://images.unsplash.com/photo-1588168333986-5078d3ae3976?auto=format&fit=crop&w=500&q=80"
             },
             {
                 id: 3,
                 name: { ka: "ახალი ქათმის ფილე (1კგ)", en: "Fresh Chicken Fillet (1kg)", ru: "Куриное филе (1кг)" },
                 price: 13.50,
+                // ზუსტი ქათმის ხორცის სურათი
                 img: "https://images.unsplash.com/photo-1604503468506-a8da13d82791?auto=format&fit=crop&w=500&q=80"
             },
             {
                 id: 4,
-                name: { ka: "ქათმის კვერცხი C1 (10 ცალი)", en: "Chicken Eggs C1 (10 pcs)", ru: "Куриные яйца С1 (10 шт)" },
-                price: 4.50,
-                img: "https://images.unsplash.com/photo-1516467508483-a7212febe31a?auto=format&fit=crop&w=500&q=80"
+                name: { ka: "ლუდი ჰაინეკენი (Heineken) 0.5L ბოთლი", en: "Heineken Beer 0.5L Bottle", ru: "Пиво Heineken 0.5л бутылка" },
+                price: 3.80,
+                // ზუსტი ლუდის სურათი
+                img: "https://images.unsplash.com/photo-1608270586620-248524c67de9?auto=format&fit=crop&w=500&q=80"
             },
             {
                 id: 5,
                 name: { ka: "ყავა Jacobs Monarch (100გრ)", en: "Coffee Jacobs Monarch (100g)", ru: "Кофе Jacobs Monarch (100г)" },
                 price: 10.50,
+                // ზუსტი ყავის სურათი
                 img: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=500&q=80"
             },
             {
                 id: 6,
                 name: { ka: "შაქარი თეთრი (1კგ)", en: "White Sugar (1kg)", ru: "Сахар белый (1кг)" },
                 price: 2.80,
+                // ზუსტი შაქრის სურათი
                 img: "https://images.unsplash.com/photo-1581441363689-1f3c3c414635?auto=format&fit=crop&w=500&q=80"
             }
         ];
@@ -245,19 +227,13 @@
             btn.classList.add('active');
 
             if(lang === 'ka') {
-                document.getElementById('bTitle').innerText = "🛒 ონლაინ ჰიპერმარკეტი ახალციხეში";
-                document.getElementById('bDesc').innerText = "საუკეთესო ფასები და ახალი პროდუქცია ყოველდღე!";
-                document.getElementById('secTitle').innerText = "🔥 პოპულარული პროდუქტები";
+                document.getElementById('secTitle').innerText = "🛒 პროდუქციის კატალოგი";
                 document.getElementById('aiWelcomeMsg').innerText = "გამარჯობა! მე ვარ MINI MARKET-ის AI ასისტენტი. რით დაგეხმაროთ? 🔊";
             } else if(lang === 'en') {
-                document.getElementById('bTitle').innerText = "🛒 Online Hypermarket in Akhaltsikhe";
-                document.getElementById('bDesc').innerText = "Best prices and fresh products every day!";
-                document.getElementById('secTitle').innerText = "🔥 Popular Products";
+                document.getElementById('secTitle').innerText = "🛒 Product Catalog";
                 document.getElementById('aiWelcomeMsg').innerText = "Hello! I am MINI MARKET's AI Assistant. How can I help you? 🔊";
             } else if(lang === 'ru') {
-                document.getElementById('bTitle').innerText = "🛒 Онлайн Гипермаркет в Ахалцихе";
-                document.getElementById('bDesc').innerText = "Лучшие цены и свежие продукты каждый день!";
-                document.getElementById('secTitle').innerText = "🔥 Популярные Товары";
+                document.getElementById('secTitle').innerText = "🛒 Каталог Продуктов";
                 document.getElementById('aiWelcomeMsg').innerText = "Здравствуйте! Я AI ассистент MINI MARKET. Чем могу помочь? 🔊";
             }
             renderProducts();
