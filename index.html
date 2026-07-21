@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mini-Market Akhaltsikhe | მინი-მარკეტი ახალციხე</title>
-    <!-- Tailwind CSS CDN for modern design -->
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -22,22 +22,24 @@
 
     <!-- Top Notification Bar: Automatic Price Comparison Notice -->
     <div class="bg-gradient-to-r from-orange-600 to-amber-600 text-white text-xs sm:text-sm py-2 px-4 text-center font-medium shadow-inner">
-        <i class="fa-solid fa-bolt mr-2 animate-pulse"></i> ავტომატ ფასდაკლება: ფასები გამოთვლილია კონკურენტული ბაზრის ფასების შედარებით (მაგ. Jibe: 5.00 ₾ -> ჩვენს მინი-მარკეტში: 4.99 ₾)
+        <i class="fa-solid fa-bolt mr-2 animate-pulse"></i> ავტომატ გლობალური შედარება: ფასები გამოთვლილია Jibe.ge და 2nabiji.ge ფასების მიხედვით (ყოველთვის 1-2 თეთრით იაფი ჩვენთან!)
     </div>
 
     <!-- Header / Contact Info Bar -->
     <header class="bg-white border-b border-gray-100 shadow-sm sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-4">
             
-            <!-- Logo & Brand -->
+            <!-- Logo & Brand (Fixed Image/Logo Area) -->
             <div class="flex items-center space-x-3">
-                <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center border-2 border-orange-500 overflow-hidden shadow">
-                    <!-- Placeholder for Logo S -->
-                    <span class="text-orange-600 font-bold text-2xl bpg-font">S</span>
+                <div class="w-14 h-14 bg-orange-50 rounded-2xl flex items-center justify-center border-2 border-orange-500 overflow-hidden shadow-md">
+                    <!-- თუ გაქვთ ლოგოს სურათის ლინკი, ჩასვით src-ში, ამჟამად აჩვენებს სტილიზებულ ასო S-ს ან მზა აიქონს -->
+                    <div class="text-orange-600 font-extrabold text-2xl bpg-font flex items-center justify-center">
+                        <i class="fa-solid fa-store"></i>
+                    </div>
                 </div>
                 <div>
                     <h1 class="text-xl font-bold tracking-tight text-gray-900">Mini-Market Akhaltsikhe</h1>
-                    <p class="text-xs text-gray-500">შენზე მორგებული მინი-ჰიპერმარკეტი</p>
+                    <p class="text-xs text-gray-500">ქ. ახალციხე, იაძის ქუჩა №2</p>
                 </div>
             </div>
 
@@ -45,7 +47,7 @@
             <div class="hidden md:flex items-center space-x-6 text-sm text-gray-600">
                 <div class="flex items-center space-x-2">
                     <i class="fa-solid fa-location-dot text-orange-600"></i>
-                    <span>ქ. ახალციხე, იაძის ქ. 2</span>
+                    <span>იაძის ქ. 2</span>
                 </div>
                 <div class="flex items-center space-x-2">
                     <i class="fa-solid fa-phone-volume text-orange-600"></i>
@@ -59,12 +61,11 @@
                     <button class="px-2.5 py-1 bg-white shadow rounded text-orange-600">ქარ</button>
                     <button class="px-2.5 py-1 text-gray-600 hover:text-orange-600">Հայ</button>
                     <button class="px-2.5 py-1 text-gray-600 hover:text-orange-600">Рус</button>
-                    <button class="px-2.5 py-1 text-gray-600 hover:text-orange-600">Eng</button>
                 </div>
-                <a href="https://www.instagram.com/minimarketakhaltsikhe?igsh=MXAyZ2d2aXpxMmw5OA==" target="_blank" class="w-9 h-9 bg-pink-50 text-pink-600 rounded-full flex items-center justify-center hover:bg-pink-100 transition">
+                <a href="https://www.instagram.com/minimarketakhaltsikhe?igsh=MXAyZ2d2aXpxMmw5OA==" target="_blank" class="w-9 h-9 bg-pink-50 text-pink-600 rounded-full flex items-center justify-center hover:bg-pink-100 transition shadow-sm">
                     <i class="fa-brands fa-instagram"></i>
                 </a>
-                <a href="https://wa.me/995500224822" target="_blank" class="w-9 h-9 bg-green-50 text-green-600 rounded-full flex items-center justify-center hover:bg-green-100 transition">
+                <a href="https://wa.me/995500224822" target="_blank" class="w-9 h-9 bg-green-50 text-green-600 rounded-full flex items-center justify-center hover:bg-green-100 transition shadow-sm">
                     <i class="fa-brands fa-whatsapp"></i>
                 </a>
             </div>
@@ -73,21 +74,21 @@
         <!-- Search & Navigation Categories -->
         <div class="bg-gray-50 border-t border-gray-100 py-3 px-4">
             <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-                <!-- Search Bar -->
+                <!-- Search Bar with Live Filtering -->
                 <div class="relative w-full md:w-96">
                     <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-400">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </span>
-                    <input type="text" placeholder="მოძებნე სასურველი პროდუქტი..." class="w-full pl-10 pr-4 py-2 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 shadow-sm">
+                    <input type="text" id="searchInput" onkeyup="filterProducts()" placeholder="მოძებნე სასურველი პროდუქტი..." class="w-full pl-10 pr-4 py-2 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 shadow-sm">
                 </div>
 
                 <!-- Category Filters -->
                 <div class="flex items-center space-x-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 scrollbar-none">
-                    <button class="px-4 py-2 bg-orange-600 text-white rounded-xl text-sm font-medium shadow-md whitespace-nowrap">ყველა</button>
-                    <button class="px-4 py-2 bg-white border border-gray-200 text-gray-700 hover:bg-gray-100 rounded-xl text-sm font-medium whitespace-nowrap">ხილი / ბოსტნეული</button>
-                    <button class="px-4 py-2 bg-white border border-gray-200 text-gray-700 hover:bg-gray-100 rounded-xl text-sm font-medium whitespace-nowrap">რძის პროდუქტები</button>
-                    <button class="px-4 py-2 bg-white border border-gray-200 text-gray-700 hover:bg-gray-100 rounded-xl text-sm font-medium whitespace-nowrap">ხორცპროდუქტები</button>
-                    <button class="px-4 py-2 bg-white border border-gray-200 text-gray-700 hover:bg-gray-100 rounded-xl text-sm font-medium whitespace-nowrap">სასმელები</button>
+                    <button onclick="filterCategory('all')" class="cat-btn px-4 py-2 bg-orange-600 text-white rounded-xl text-sm font-medium shadow-md whitespace-nowrap transition">ყველა</button>
+                    <button onclick="filterCategory('fruit')" class="cat-btn px-4 py-2 bg-white border border-gray-200 text-gray-700 hover:bg-gray-100 rounded-xl text-sm font-medium whitespace-nowrap transition">ხილი / ბოსტნეული</button>
+                    <button onclick="filterCategory('dairy')" class="cat-btn px-4 py-2 bg-white border border-gray-200 text-gray-700 hover:bg-gray-100 rounded-xl text-sm font-medium whitespace-nowrap transition">რძის პროდუქტები</button>
+                    <button onclick="filterCategory('meat')" class="cat-btn px-4 py-2 bg-white border border-gray-200 text-gray-700 hover:bg-gray-100 rounded-xl text-sm font-medium whitespace-nowrap transition">ხორცპროდუქტები</button>
+                    <button onclick="filterCategory('drinks')" class="cat-btn px-4 py-2 bg-white border border-gray-200 text-gray-700 hover:bg-gray-100 rounded-xl text-sm font-medium whitespace-nowrap transition">სასმელები</button>
                 </div>
             </div>
         </div>
@@ -95,35 +96,36 @@
 
     <!-- Main Content: Automated Assortment Showcase -->
     <main class="max-w-7xl mx-auto px-4 py-8">
-        <div class="flex items-center justify-between mb-6">
+        <div class="flex items-center justify-between mb-6 flex-wrap gap-2">
             <h2 class="text-xl sm:text-2xl font-bold text-gray-900 flex items-center gap-2">
-                <i class="fa-solid fa-basket-shopping text-orange-600"></i> შემთავაზებული ასორტიმენტი და ავტომატ გამოთვლილი ფასები
+                <i class="fa-solid fa-basket-shopping text-orange-600"></i> შემთავაზებული ასორტიმენტი (Jibe & 2nabiji-ზე 1-2 თეთრით იაფი)
             </h2>
-            <span class="text-xs bg-green-100 text-green-700 font-semibold px-3 py-1 rounded-full">
-                <i class="fa-solid fa-rotate mr-1"></i> ავტო-განახლებადი
+            <span class="text-xs bg-green-100 text-green-700 font-semibold px-3 py-1 rounded-full flex items-center gap-1 shadow-sm">
+                <i class="fa-solid fa-rotate animate-spin"></i> ფასები განახლებულია ავტომატურად
             </span>
         </div>
 
-        <!-- Product Grid (Dynamic Area connected to backend scraper simulation) -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Product Grid -->
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             
             <!-- Product Card 1 -->
-            <div class="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition overflow-hidden flex flex-col justify-between">
+            <div class="product-card bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition overflow-hidden flex flex-col justify-between" data-category="fruit" data-name="ახალი ხილი და ბოსტნეული">
                 <div class="relative">
-                    <span class="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-2.5 py-1 rounded-lg shadow">-10%</span>
+                    <span class="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-2.5 py-1 rounded-lg shadow">-10% იაფი</span>
                     <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=500&q=80" alt="ხილი" class="w-full h-48 object-cover">
                 </div>
                 <div class="p-4 flex-1 flex flex-col justify-between">
                     <div>
-                        <span class="text-xs text-gray-400 uppercase tracking-wider font-semibold">FRUIT</span>
+                        <span class="text-xs text-gray-400 uppercase tracking-wider font-semibold">ხილი / ბოსტნეული</span>
                         <h3 class="font-bold text-gray-800 mt-1">ახალი ხილი და ბოსტნეული</h3>
+                        <p class="text-xs text-gray-500 mt-1">Jibe: 3.50 ₾ | ჩვენთან:</p>
                     </div>
                     <div class="mt-4 flex items-center justify-between">
                         <div>
                             <span class="text-xs text-gray-400 line-through">3.50 ₾</span>
                             <div class="text-lg font-extrabold text-orange-600">3.48 ₾ <span class="text-xs font-normal text-gray-500">/კგ</span></div>
                         </div>
-                        <a href="https://wa.me/995500224822?text=გამარჯობა, მინდა შევუკვეთო: ახალი ხილი და ბოსტნეული" target="_blank" class="bg-green-600 hover:bg-green-700 text-white p-2.5 rounded-xl shadow transition flex items-center justify-center">
+                        <a href="https://wa.me/995500224822?text=გამარჯობა, მინდა შევუკვეთო საიტიდან: ახალი ხილი და ბოსტნეული (3.48 ₾)" target="_blank" class="bg-green-600 hover:bg-green-700 text-white p-2.5 rounded-xl shadow transition flex items-center justify-center" title="შეკვეთა WhatsApp-ით">
                             <i class="fa-brands fa-whatsapp text-lg"></i>
                         </a>
                     </div>
@@ -131,22 +133,23 @@
             </div>
 
             <!-- Product Card 2 -->
-            <div class="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition overflow-hidden flex flex-col justify-between">
+            <div class="product-card bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition overflow-hidden flex flex-col justify-between" data-category="dairy" data-name="რძის პროდუქტები ყველი კარაქი">
                 <div class="relative">
-                    <span class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-bold px-2.5 py-1 rounded-lg shadow">Fresh</span>
+                    <span class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-bold px-2.5 py-1 rounded-lg shadow">საუკეთესო ფასი</span>
                     <img src="https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?auto=format&fit=crop&w=500&q=80" alt="რძის პროდუქტები" class="w-full h-48 object-cover">
                 </div>
                 <div class="p-4 flex-1 flex flex-col justify-between">
                     <div>
-                        <span class="text-xs text-gray-400 uppercase tracking-wider font-semibold">DAIRY</span>
+                        <span class="text-xs text-gray-400 uppercase tracking-wider font-semibold">რძის პროდუქტები</span>
                         <h3 class="font-bold text-gray-800 mt-1">რძის პროდუქტები (ყველი, კარაქი)</h3>
+                        <p class="text-xs text-gray-500 mt-1">2nabiji: 12.50 ₾ | ჩვენთან:</p>
                     </div>
                     <div class="mt-4 flex items-center justify-between">
                         <div>
                             <span class="text-xs text-gray-400 line-through">12.50 ₾</span>
                             <div class="text-lg font-extrabold text-orange-600">12.48 ₾ <span class="text-xs font-normal text-gray-500">/კგ</span></div>
                         </div>
-                        <a href="https://wa.me/995500224822?text=გამარჯობა, მინდა შევუკვეთო: რძის პროდუქტები" target="_blank" class="bg-green-600 hover:bg-green-700 text-white p-2.5 rounded-xl shadow transition flex items-center justify-center">
+                        <a href="https://wa.me/995500224822?text=გამარჯობა, მინდა შევუკვეთო საიტიდან: რძის პროდუქტები (12.48 ₾)" target="_blank" class="bg-green-600 hover:bg-green-700 text-white p-2.5 rounded-xl shadow transition flex items-center justify-center" title="შეკვეთა WhatsApp-ით">
                             <i class="fa-brands fa-whatsapp text-lg"></i>
                         </a>
                     </div>
@@ -154,22 +157,23 @@
             </div>
 
             <!-- Product Card 3 -->
-            <div class="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition overflow-hidden flex flex-col justify-between">
+            <div class="product-card bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition overflow-hidden flex flex-col justify-between" data-category="meat" data-name="ხარისხიანი ხორცპროდუქტები და ძეხვეული">
                 <div class="relative">
-                    <span class="absolute top-3 left-3 bg-amber-600 text-white text-xs font-bold px-2.5 py-1 rounded-lg shadow">ხარისხიანი</span>
+                    <span class="absolute top-3 left-3 bg-amber-600 text-white text-xs font-bold px-2.5 py-1 rounded-lg shadow">სპეციალური</span>
                     <img src="https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=500&q=80" alt="ხორცპროდუქტები" class="w-full h-48 object-cover">
                 </div>
                 <div class="p-4 flex-1 flex flex-col justify-between">
                     <div>
-                        <span class="text-xs text-gray-400 uppercase tracking-wider font-semibold">MEAT</span>
+                        <span class="text-xs text-gray-400 uppercase tracking-wider font-semibold">ხორცპროდუქტები</span>
                         <h3 class="font-bold text-gray-800 mt-1">ხარისხიანი ხორცპროდუქტები და ძეხვეული</h3>
+                        <p class="text-xs text-gray-500 mt-1">Jibe: 15.00 ₾ | ჩვენთან:</p>
                     </div>
                     <div class="mt-4 flex items-center justify-between">
                         <div>
                             <span class="text-xs text-gray-400 line-through">15.00 ₾</span>
                             <div class="text-lg font-extrabold text-orange-600">14.98 ₾ <span class="text-xs font-normal text-gray-500">/ცალ</span></div>
                         </div>
-                        <a href="https://wa.me/995500224822?text=გამარჯობა, მინდა შევუკვეთო: ხორცპროდუქტები" target="_blank" class="bg-green-600 hover:bg-green-700 text-white p-2.5 rounded-xl shadow transition flex items-center justify-center">
+                        <a href="https://wa.me/995500224822?text=გამარჯობა, მინდა შევუკვეთო საიტიდან: ხორცპროდუქტები (14.98 ₾)" target="_blank" class="bg-green-600 hover:bg-green-700 text-white p-2.5 rounded-xl shadow transition flex items-center justify-center" title="შეკვეთა WhatsApp-ით">
                             <i class="fa-brands fa-whatsapp text-lg"></i>
                         </a>
                     </div>
@@ -177,22 +181,23 @@
             </div>
 
             <!-- Product Card 4 -->
-            <div class="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition overflow-hidden flex flex-col justify-between">
+            <div class="product-card bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition overflow-hidden flex flex-col justify-between" data-category="drinks" data-name="გამაგრილებელი სასმელები">
                 <div class="relative">
                     <span class="absolute top-3 left-3 bg-red-600 text-white text-xs font-bold px-2.5 py-1 rounded-lg shadow">აქცია</span>
                     <img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=500&q=80" alt="სასმელები" class="w-full h-48 object-cover">
                 </div>
                 <div class="p-4 flex-1 flex flex-col justify-between">
                     <div>
-                        <span class="text-xs text-gray-400 uppercase tracking-wider font-semibold">DRINKS</span>
+                        <span class="text-xs text-gray-400 uppercase tracking-wider font-semibold">სასმელები</span>
                         <h3 class="font-bold text-gray-800 mt-1">გამაგრილებელი სასმელები</h3>
+                        <p class="text-xs text-gray-500 mt-1">2nabiji: 2.50 ₾ | ჩვენთან:</p>
                     </div>
                     <div class="mt-4 flex items-center justify-between">
                         <div>
                             <span class="text-xs text-gray-400 line-through">2.50 ₾</span>
                             <div class="text-lg font-extrabold text-orange-600">2.48 ₾ <span class="text-xs font-normal text-gray-500">/ცალ</span></div>
                         </div>
-                        <a href="https://wa.me/995500224822?text=გამარჯობა, მინდა შევუკვეთო: სასმელები" target="_blank" class="bg-green-600 hover:bg-green-700 text-white p-2.5 rounded-xl shadow transition flex items-center justify-center">
+                        <a href="https://wa.me/995500224822?text=გამარჯობა, მინდა შევუკვეთო საიტიდან: გამაგრილებელი სასმელები (2.48 ₾)" target="_blank" class="bg-green-600 hover:bg-green-700 text-white p-2.5 rounded-xl shadow transition flex items-center justify-center" title="შეკვეთა WhatsApp-ით">
                             <i class="fa-brands fa-whatsapp text-lg"></i>
                         </a>
                     </div>
@@ -207,21 +212,21 @@
         <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
             <div>
                 <h3 class="text-lg font-bold mb-4 text-orange-500">Mini-Market Akhaltsikhe</h3>
-                <p class="text-gray-400 text-sm">საუკეთესო ხარისხი და ყოველთვის ყველაზე დაბალი ფასები თქვენს უბანში. პროდუქციის ავტომატური განახლება ყოველდღიურად.</p>
+                <p class="text-gray-400 text-sm">საუკეთესო ხარისხი და ყოველთვის 1-2 თეთრით იაფი ფასები კონკურენტებთან შედარებით თქვენს უბანში.</p>
             </div>
             <div>
                 <h3 class="text-lg font-bold mb-4 text-orange-500">საკონტაქტო ინფორმაცია</h3>
-                <p class="text-gray-400 text-sm mb-2"><i class="fa-solid fa-location-dot mr-2 text-orange-500"></i> ქ. ახალციხე, იაძის ქ. 2</p>
+                <p class="text-gray-400 text-sm mb-2"><i class="fa-solid fa-location-dot mr-2 text-orange-500"></i> ქ. ახალციხე, იაძის ქუჩა №2</p>
                 <p class="text-gray-400 text-sm mb-2"><i class="fa-solid fa-phone mr-2 text-orange-500"></i> 500 22 48 22; 555 73 88 91</p>
                 <p class="text-gray-400 text-sm"><i class="fa-solid fa-envelope mr-2 text-orange-500"></i> info.minimarket.akhaltsikhe@gmail.com</p>
             </div>
             <div>
                 <h3 class="text-lg font-bold mb-4 text-orange-500">სოციალური ქსელები</h3>
                 <div class="flex space-x-4 mb-4">
-                    <a href="https://www.instagram.com/minimarketakhaltsikhe?igsh=MXAyZ2d2aXpxMmw5OA==" target="_blank" class="w-10 h-10 bg-gray-800 text-white rounded-full flex items-center justify-center hover:bg-orange-600 transition">
+                    <a href="https://www.instagram.com/minimarketakhaltsikhe?igsh=MXAyZ2d2aXpxMmw5OA==" target="_blank" class="w-10 h-10 bg-gray-800 text-white rounded-full flex items-center justify-center hover:bg-orange-600 transition shadow">
                         <i class="fa-brands fa-instagram text-xl"></i>
                     </a>
-                    <a href="https://wa.me/995500224822" target="_blank" class="w-10 h-10 bg-gray-800 text-white rounded-full flex items-center justify-center hover:bg-green-600 transition">
+                    <a href="https://wa.me/995500224822" target="_blank" class="w-10 h-10 bg-gray-800 text-white rounded-full flex items-center justify-center hover:bg-green-600 transition shadow">
                         <i class="fa-brands fa-whatsapp text-xl"></i>
                     </a>
                 </div>
@@ -233,5 +238,42 @@
         </div>
     </footer>
 
+    <!-- JavaScript for Interactivity (Search & Filters) -->
+    <script>
+        function filterCategory(category) {
+            // Update Active Button Style
+            const buttons = document.querySelectorAll('.cat-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-orange-600', 'text-white', 'shadow-md');
+                btn.classList.add('bg-white', 'border', 'border-gray-200', 'text-gray-700');
+            });
+            event.target.classList.remove('bg-white', 'border', 'border-gray-200', 'text-gray-700');
+            event.target.classList.add('bg-orange-600', 'text-white', 'shadow-md');
+
+            // Filter Cards
+            const cards = document.querySelectorAll('.product-card');
+            cards.card = cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function filterProducts() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let cards = document.querySelectorAll('.product-card');
+
+            cards.forEach(card => {
+                let name = card.getAttribute('data-name').toLowerCase();
+                if (name.includes(input)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
 </body>
 </html>
