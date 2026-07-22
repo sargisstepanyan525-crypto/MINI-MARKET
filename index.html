@@ -70,6 +70,25 @@
             font-weight: bold;
         }
 
+        .header-btns {
+            display: flex;
+            gap: 10px;
+        }
+
+        .admin-toggle-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid white;
+            padding: 8px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+
+        .admin-toggle-btn:hover { background: white; color: var(--primary-color); }
+
         .cart-icon-btn {
             background: white;
             color: var(--primary-color);
@@ -115,19 +134,54 @@
             border-left: 4px solid var(--primary-color);
         }
 
-        .info-card i {
-            font-size: 1.8rem;
-            color: var(--primary-color);
+        .info-card i { font-size: 1.8rem; color: var(--primary-color); }
+
+        .info-card.promo-card { border-left-color: var(--accent-color); background: #fffdf5; }
+        .info-card.promo-card i { color: var(--accent-color); }
+
+        /* Admin Panel Section */
+        .admin-panel {
+            display: none;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #eef2f5;
+            border-radius: var(--border-radius);
+            border: 2px dashed var(--primary-color);
         }
 
-        .info-card.promo-card {
-            border-left-color: var(--accent-color);
-            background: #fffdf5;
+        .admin-panel h3 {
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .info-card.promo-card i {
-            color: var(--accent-color);
+        .admin-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 10px;
         }
+
+        .admin-form input, .admin-form select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        .admin-form button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .admin-form button:hover { background: var(--primary-dark); }
 
         /* Controls: Search & Country Filters */
         .controls-section {
@@ -271,8 +325,14 @@
             margin-bottom: 12px;
         }
 
-        .add-to-cart-btn {
+        .card-actions {
             margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .add-to-cart-btn {
             background: var(--primary-color);
             color: white;
             border: none;
@@ -287,6 +347,30 @@
         }
 
         .add-to-cart-btn:hover { background: var(--primary-dark); }
+
+        .admin-edit-btn {
+            display: none;
+            background: #ff9800;
+            color: white;
+            border: none;
+            padding: 6px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .admin-delete-btn {
+            display: none;
+            background: #d32f2f;
+            color: white;
+            border: none;
+            padding: 6px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
 
         /* Cart Modal */
         .cart-modal {
@@ -487,11 +571,16 @@
             <i class="fa-solid fa-basket-shopping"></i>
             <span>MINI MARKET</span>
         </div>
-        <button class="cart-icon-btn" onclick="toggleCart()">
-            <i class="fa-solid fa-cart-shopping"></i>
-            <span>კალათა</span>
-            <span class="cart-badge" id="cartBadge">0</span>
-        </button>
+        <div class="header-btns">
+            <button class="admin-toggle-btn" onclick="loginAdmin()">
+                <i class="fa-solid fa-user-gear"></i> ადმინ პანელი
+            </button>
+            <button class="cart-icon-btn" onclick="toggleCart()">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>კალათა</span>
+                <span class="cart-badge" id="cartBadge">0</span>
+            </button>
+        </div>
     </header>
 
     <!-- Info Cards Section -->
@@ -516,6 +605,28 @@
                 <strong>მიწოდების სერვისი</strong>
                 <p style="font-size:0.85rem; color:#666;">ქალაქში 3-6₾ | სოფლებში 10-20₾.<br><b>150₾-ზე ზემოთ მიწოდება უფასოა!</b></p>
             </div>
+        </div>
+    </div>
+
+    <!-- Admin Add Product Panel -->
+    <div class="admin-panel" id="adminPanel">
+        <h3><i class="fa-solid fa-plus-circle"></i> ახალი პროდუქტის დამატება (ადმინ პანელი)</h3>
+        <div class="admin-form">
+            <input type="text" id="newProdName" placeholder="პროდუქტის დასახელება">
+            <input type="number" id="newProdPrice" step="0.1" placeholder="ფასი (₾)">
+            <select id="newProdCountry">
+                <option value="GEO">🇬🇪 საქართველო</option>
+                <option value="ARM">🇦🇲 სომხეთი</option>
+                <option value="TUR">🇹🇷 თურქეთი</option>
+                <option value="UKR">🇺🇦 უკრაინა</option>
+                <option value="CHN">🇨🇳 ჩინეთი</option>
+                <option value="RUS">🇷🇺 რუსეთი</option>
+            </select>
+            <input type="text" id="newProdImg" placeholder="ფოტოს ბმული (URL)">
+            <label style="display:flex; align-items:center; gap:5px; font-size:0.85rem;">
+                <input type="checkbox" id="newProdPrize"> პრიზიანია? 🎁
+            </label>
+            <button onclick="addNewProduct()"><i class="fa-solid fa-plus"></i> დამატება</button>
         </div>
     </div>
 
@@ -600,8 +711,8 @@
     </div>
 
     <script>
-        // პროდუქტების განახლებული ბაზა
-        const products = [
+        // საწყისი პროდუქტების ბაზა
+        const defaultProducts = [
             { id: 1, name: "ყავა ლატინო (პრიზიანი 🎁)", countryCode: "ARM", country: "სომხეთი", price: 3.50, isPrize: true, img: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=300" },
             { id: 2, name: "კარაქი", countryCode: "GEO", country: "საქართველო", price: 9.00, isPrize: false, img: "https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=300" },
             { id: 3, name: "ქათმის ბარკალი", countryCode: "UKR", country: "უკრაინა", price: 7.20, isPrize: false, img: "https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=300" },
@@ -609,15 +720,39 @@
             { id: 5, name: "მაკარონი ერიშტა", countryCode: "GEO", country: "საქართველო", price: 7.50, isPrize: false, img: "https://images.unsplash.com/photo-1621996346565-e3d5d6281288?w=300" },
             { id: 6, name: "ზეთისხილი (4₾ - 7₾)", countryCode: "ARM", country: "სომხეთი", price: 4.00, isPrize: false, img: "https://images.unsplash.com/photo-1541014741259-de529411b96a?w=300" },
             { id: 7, name: "კიტრი", countryCode: "GEO", country: "საქართველო", price: 1.00, isPrize: false, img: "https://images.unsplash.com/photo-1449300079323-02e209d9d3a6?w=300" },
-            { id: 8, name: "პომიდორი", countryCode: "GEO", country: "საქართველო", price: 2.20, isPrize: false, img: "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=300" },
-            { id: 9, name: "თურქული ჩაი Doğuş 500გ", countryCode: "TUR", country: "თურქეთი", price: 8.50, isPrize: false, img: "https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=300" },
-            { id: 10, name: "უკრაინული შოკოლადი Roshen", countryCode: "UKR", country: "უკრაინა", price: 4.20, isPrize: false, img: "https://images.unsplash.com/photo-1511381939415-e44015466834?w=300" },
-            { id: 11, name: "ჩინური მწვანე ჩაი 100გ", countryCode: "CHN", country: "ჩინეთი", price: 6.00, isPrize: false, img: "https://images.unsplash.com/photo-1597481499750-3e6b22637e12?w=300" },
-            { id: 12, name: "სულგუნი ახალციხური 500გ", countryCode: "GEO", country: "საქართველო", price: 10.50, isPrize: false, img: "https://images.unsplash.com/photo-1452195100486-9cc805987862?w=300" }
+            { id: 8, name: "პომიდორი", countryCode: "GEO", country: "საქართველო", price: 2.20, isPrize: false, img: "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=300" }
         ];
+
+        // LocalStorage-დან წაკითხვა, რომ ცვლილებები შეინახოს browser-ში
+        let products = JSON.parse(localStorage.getItem('my_market_products')) || defaultProducts;
+
+        function saveProducts() {
+            localStorage.setItem('my_market_products', JSON.stringify(products));
+        }
 
         let cart = [];
         let activeCountry = 'all';
+        let isAdminLoggedIn = false;
+
+        // ადმინ ავტორიზაცია
+        function loginAdmin() {
+            if (isAdminLoggedIn) {
+                isAdminLoggedIn = false;
+                document.getElementById('adminPanel').style.display = 'none';
+                alert('ადმინ რეჟიმი გამორთულია');
+                filterProducts();
+                return;
+            }
+            let pass = prompt('შეიყვანეთ ადმინის პაროლი:');
+            if (pass === '1234') { // პაროლი
+                isAdminLoggedIn = true;
+                document.getElementById('adminPanel').style.display = 'block';
+                alert('ავტორიზაცია წარმატებულია! ახლა შეგიძლიათ ფასების შეცვლა და ახალი პროდუქტის დამატება.');
+                filterProducts();
+            } else if (pass !== null) {
+                alert('არასწორი პაროლი!');
+            }
+        }
 
         function renderProducts(items) {
             const grid = document.getElementById('productsGrid');
@@ -633,17 +768,98 @@
                     <div class="product-card">
                         ${p.isPrize ? '<div class="prize-tag">🎁 პრიზიანი</div>' : ''}
                         <div class="country-badge">${p.country}</div>
-                        <img src="${p.img}" class="product-img" alt="${p.name}">
+                        <img src="${p.img || 'https://via.placeholder.com/300'}" class="product-img" alt="${p.name}">
                         <div class="product-info">
                             <div class="product-title">${p.name}</div>
                             <div class="product-price">${p.price.toFixed(2)} ₾</div>
-                            <button class="add-to-cart-btn" onclick="addToCart(${p.id})">
-                                <i class="fa-solid fa-cart-plus"></i> კალათაში
-                            </button>
+                            <div class="card-actions">
+                                <button class="add-to-cart-btn" onclick="addToCart(${p.id})">
+                                    <i class="fa-solid fa-cart-plus"></i> კალათაში
+                                </button>
+                                <button class="admin-edit-btn" style="display:${isAdminLoggedIn ? 'block' : 'none'}" onclick="editProduct(${p.id})">
+                                    ✏️ შეცვლა
+                                </button>
+                                <button class="admin-delete-btn" style="display:${isAdminLoggedIn ? 'block' : 'none'}" onclick="deleteProduct(${p.id})">
+                                    🗑️ წაშლა
+                                </button>
+                            </div>
                         </div>
                     </div>
                 `;
             });
+        }
+
+        // ახალი პროდუქტის დამატება
+        function addNewProduct() {
+            const name = document.getElementById('newProdName').value.trim();
+            const price = parseFloat(document.getElementById('newProdPrice').value);
+            const countryCode = document.getElementById('newProdCountry').value;
+            const img = document.getElementById('newProdImg').value.trim();
+            const isPrize = document.getElementById('newProdPrize').checked;
+
+            const countryNames = {
+                GEO: "საქართველო", ARM: "სომხეთი", TUR: "თურქეთი",
+                UKR: "უკრაინა", CHN: "ჩინეთი", RUS: "რუსეთი"
+            };
+
+            if (!name || isNaN(price)) {
+                alert('გთხოვთ შეიყვანოთ დასახელება და სწორი ფასი!');
+                return;
+            }
+
+            const newProd = {
+                id: Date.now(),
+                name: name,
+                countryCode: countryCode,
+                country: countryNames[countryCode],
+                price: price,
+                isPrize: isPrize,
+                img: img || 'https://images.unsplash.com/photo-1542838132-92c53300491e?w=300'
+            };
+
+            products.unshift(newProd);
+            saveProducts();
+            filterProducts();
+
+            // გასუფთავება
+            document.getElementById('newProdName').value = '';
+            document.getElementById('newProdPrice').value = '';
+            document.getElementById('newProdImg').value = '';
+            document.getElementById('newProdPrize').checked = false;
+            alert('პროდუქტი წარმატებით დაემატა!');
+        }
+
+        // ფასის/დასახელების რედაქტირება
+        function editProduct(id) {
+            const prod = products.find(p => p.id === id);
+            if (!prod) return;
+
+            let newName = prompt('შეიყვანეთ ახალი დასახელება:', prod.name);
+            if (newName === null) return;
+
+            let newPriceStr = prompt('შეიყვანეთ ახალი ფასი (₾):', prod.price);
+            if (newPriceStr === null) return;
+
+            let newPrice = parseFloat(newPriceStr);
+            if (isNaN(newPrice)) {
+                alert('არასწორი ფასი!');
+                return;
+            }
+
+            prod.name = newName;
+            prod.price = newPrice;
+            saveProducts();
+            filterProducts();
+            alert('პროდუქტი განახლდა!');
+        }
+
+        // პროდუქტის წაშლა
+        function deleteProduct(id) {
+            if (confirm('ნამდვილად გსურთ პროდუქტის წაშლა?')) {
+                products = products.filter(p => p.id !== id);
+                saveProducts();
+                filterProducts();
+            }
         }
 
         function filterProducts() {
@@ -711,7 +927,6 @@
                 else if (zone === 'village_max') deliveryFee = 20.00;
             }
 
-            // Free Delivery progress notice
             const notice = document.getElementById('freeDeliveryNotice');
             if (subtotal > 0 && subtotal < 150) {
                 let diff = (150 - subtotal).toFixed(2);
@@ -785,11 +1000,9 @@
             const msg = input.value.trim();
             if (!msg) return;
 
-            // User Message
             addAIMessage(msg, 'user');
             input.value = '';
 
-            // AI Reply Logic
             setTimeout(() => {
                 let reply = getAIReply(msg.toLowerCase());
                 addAIMessage(reply, 'bot');
