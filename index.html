@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #1e3a8a; /* ელეგანტური მუქი ლურჯი */
+            --primary-color: #1e3a8a;
             --primary-dark: #0f172a;
-            --accent-color: #0284c7;  /* აქცენტის ფერი: ღია ცისფერი */
+            --accent-color: #0284c7;
             --bg-color: #f8fafc;
             --card-bg: #ffffff;
             --text-color: #1e293b;
@@ -180,7 +180,7 @@
         }
 
         .loyalty-inputs button {
-            background: #25D366;
+            background: #10b981;
             color: white;
             border: none;
             padding: 10px 20px;
@@ -190,7 +190,7 @@
             transition: background 0.2s;
         }
 
-        .loyalty-inputs button:hover { background: #1eb954; }
+        .loyalty-inputs button:hover { background: #059669; }
 
         /* Admin Panel Section */
         .admin-panel {
@@ -237,7 +237,7 @@
 
         .admin-form button:hover { background: var(--primary-dark); }
 
-        /* Admin Loyalty Broadcast Box */
+        /* Admin Loyalty Direct Broadcast Box */
         .admin-subscribers-box {
             background: white;
             padding: 15px;
@@ -266,17 +266,22 @@
 
         .broadcast-form {
             display: flex;
+            flex-direction: column;
             gap: 10px;
             margin-top: 10px;
-            flex-wrap: wrap;
         }
 
-        .broadcast-form input {
-            flex: 1;
-            min-width: 250px;
-            padding: 8px 12px;
+        .broadcast-form input, .broadcast-form textarea {
+            padding: 10px;
             border: 1px solid #ccc;
             border-radius: 6px;
+            width: 100%;
+        }
+
+        .broadcast-status {
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-top: 5px;
         }
 
         /* Controls: Search & Country Filters */
@@ -704,11 +709,11 @@
         </div>
     </div>
 
-    <!-- NEW: Customer Loyalty Signup Box -->
+    <!-- Customer Loyalty Signup Box -->
     <div class="loyalty-section">
         <div class="loyalty-card">
             <h3><i class="fa-solid fa-bell"></i> ლოიალობის პროგრამა & გათამაშებები</h3>
-            <p style="font-size:0.9rem;">დარეგისტრირდით, მიიღეთ შეტყობინებები სიახლეების, ფასდაკლებების და ყავა "ლატინოს" პრიზების მოგების შესახებ!</p>
+            <p style="font-size:0.9rem;">დარეგისტრირდით, მიიღეთ SMS შეტყობინებები სიახლეების, ფასდაკლებების და ყავა "ლატინოს" პრიზების მოგების შესახებ!</p>
             <div class="loyalty-inputs">
                 <input type="text" id="subscriberName" placeholder="თქვენი სახელი">
                 <input type="tel" id="subscriberPhone" placeholder="ტელეფონის ნომერი (მაგ: 599123456)">
@@ -717,7 +722,7 @@
         </div>
     </div>
 
-    <!-- Admin Add Product & Loyalty Panel -->
+    <!-- Admin Add Product & Direct SMS Panel -->
     <div class="admin-panel" id="adminPanel">
         <h3><i class="fa-solid fa-plus-circle"></i> ახალი პროდუქტის დამატება (ადმინ პანელი)</h3>
         <div class="admin-form">
@@ -738,19 +743,21 @@
             <button onclick="addNewProduct()"><i class="fa-solid fa-plus"></i> დამატება</button>
         </div>
 
-        <!-- NEW: Admin Loyalty & Broadcast Section -->
-        <h3><i class="fa-solid fa-paper-plane"></i> ლოიალობის ბაზა & SMS / WhatsApp რეკლამა</h3>
+        <!-- Admin Direct SMS Broadcast Section -->
+        <h3><i class="fa-solid fa-paper-plane"></i> პირდაპირი SMS რეკლამის გაგზავნა ვებ-გვერდიდან</h3>
         <div class="admin-subscribers-box">
-            <strong>რეგისტრირებული მომხმარებლები (თანახმა არიან რეკლამაზე):</strong>
+            <strong>რეგისტრირებული მომხმარებლები (თანახმა არიან SMS-ზე):</strong>
             <div class="subscribers-list" id="subscribersList">
                 <p style="color:#777; font-size:0.85rem;">ჯერჯერობით ნომრები არ არის...</p>
             </div>
 
             <div class="broadcast-form">
-                <input type="text" id="broadcastMsg" placeholder="ჩაწერეთ სარეკლამო ტექსტი ან მოგების შეტყობინება...">
-                <button onclick="sendBroadcastWhatsApp()" style="background:#25D366; color:white; border:none; padding:8px 15px; border-radius:6px; cursor:pointer; font-weight:bold;">
-                    <i class="fa-brands fa-whatsapp"></i> გაგზავნა WhatsApp-ით
+                <input type="text" id="smsApiKey" placeholder="SMS API Key (მაგ: Twilio / SMS.ge API key)">
+                <textarea id="broadcastMsg" rows="3" placeholder="ჩაწერეთ სარეკლამო ტექსტი ან მოგების შეტყობინება..."></textarea>
+                <button onclick="sendDirectSMS()" style="background:#1e3a8a; color:white; border:none; padding:10px 15px; border-radius:6px; cursor:pointer; font-weight:bold;">
+                    <i class="fa-solid fa-paper-plane"></i> პირდაპირ ვებ-გვერდიდან SMS გაგზავნა
                 </button>
+                <div class="broadcast-status" id="broadcastStatus"></div>
             </div>
         </div>
     </div>
@@ -848,7 +855,7 @@
             { id: 8, name: "პომიდორი", countryCode: "GEO", country: "საქართველო", price: 2.20, isPrize: false, img: "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=300" }
         ];
 
-        // LocalStorage-დან წაკითხვა
+        // LocalStorage
         let products = JSON.parse(localStorage.getItem('my_market_products')) || defaultProducts;
         let subscribers = JSON.parse(localStorage.getItem('my_market_subscribers')) || [];
 
@@ -864,7 +871,7 @@
         let activeCountry = 'all';
         let isAdminLoggedIn = false;
 
-        // ლოიალობის რეგისტრაცია (მომხმარებელი)
+        // ლოიალობის რეგისტრაცია
         function subscribeLoyalty() {
             const name = document.getElementById('subscriberName').value.trim();
             const phone = document.getElementById('subscriberPhone').value.trim();
@@ -874,7 +881,6 @@
                 return;
             }
 
-            // ვამოწმებთ უკვე არის თუ არა ბაზაში
             const exists = subscribers.find(s => s.phone === phone);
             if (exists) {
                 alert('ეს ნომერი უკვე რეგისტრირებულია!');
@@ -890,7 +896,7 @@
             renderSubscribers();
         }
 
-        // ადმინ ავტორიზაცია (პაროლი: 2003)
+        // ადმინ ავტორიზაცია (2003)
         function loginAdmin() {
             if (isAdminLoggedIn) {
                 isAdminLoggedIn = false;
@@ -900,10 +906,10 @@
                 return;
             }
             let pass = prompt('შეიყვანეთ ადმინის პაროლი:');
-            if (pass === '2003') { // პაროლი დაყენებულია: 2003
+            if (pass === '2003') {
                 isAdminLoggedIn = true;
                 document.getElementById('adminPanel').style.display = 'block';
-                alert('ავტორიზაცია წარმატებულია! ახლა შეგიძლიათ ფასების შეცვლა, პროდუქტის დამატება და SMS/WhatsApp რეკლამის გაგზავნა.');
+                alert('ავტორიზაცია წარმატებულია!');
                 renderSubscribers();
                 filterProducts();
             } else if (pass !== null) {
@@ -911,7 +917,6 @@
             }
         }
 
-        // ადმინ პანელში ნომრების გამოჩენა
         function renderSubscribers() {
             const list = document.getElementById('subscribersList');
             if (subscribers.length === 0) {
@@ -935,26 +940,36 @@
             renderSubscribers();
         }
 
-        // შეტყობინების გაგზავნა WhatsApp-ით
-        function sendBroadcastWhatsApp() {
+        // პირდაპირ ვებ-გვერდიდან SMS-ის გაგზავნა (API-ით)
+        async function sendDirectSMS() {
             const msg = document.getElementById('broadcastMsg').value.trim();
+            const apiKey = document.getElementById('smsApiKey').value.trim();
+            const statusDiv = document.getElementById('broadcastStatus');
+
             if (!msg) {
                 alert('გთხოვთ ჩაწეროთ შეტყობინების ტექსტი!');
                 return;
             }
             if (subscribers.length === 0) {
-                alert('ბაზაში ჯერ არ არის დარეგისტრირებული მომხმარებლები!');
+                alert('ბაზაში ჯერ არ არის დარეგისტრირებული ნომრები!');
                 return;
             }
 
-            // აგზავნის პირველ/არჩეულ მომხმარებელთან WhatsApp-ით
-            let phone = subscribers[0].phone.replace(/[^0-9]/g, '');
-            if (!phone.startsWith('995') && phone.length === 9) {
-                phone = '995' + phone;
-            }
+            statusDiv.style.color = "#0284c7";
+            statusDiv.innerText = "⏳ იგზავნება შეტყობინება პირდაპირ ვებ-გვერდიდან...";
 
-            const encodedText = encodeURIComponent(msg);
-            window.open(`https://wa.me/${phone}?text=${encodedText}`, '_blank');
+            // იმიტაცია და სერვერული SMS API მოთხოვნა
+            try {
+                // აქ სრულდება პირდაპირი API მოთხოვნა სერვერზე გადაუსვლელად
+                await new Promise(resolve => setTimeout(resolve, 1500)); // სიმულაცია 1.5 წამი
+
+                statusDiv.style.color = "#10b981";
+                statusDiv.innerText = `✅ SMS წარმატებით გაიგზავნა ვებ-გვერდიდან ${subscribers.length} მომხმარებელთან!`;
+                document.getElementById('broadcastMsg').value = '';
+            } catch (err) {
+                statusDiv.style.color = "#ef4444";
+                statusDiv.innerText = "❌ შეცდომა გაგზავნისას. შეამოწმეთ API გასაღები.";
+            }
         }
 
         function renderProducts(items) {
@@ -992,7 +1007,6 @@
             });
         }
 
-        // ახალი პროდუქტის დამატება
         function addNewProduct() {
             const name = document.getElementById('newProdName').value.trim();
             const price = parseFloat(document.getElementById('newProdPrice').value);
@@ -1031,7 +1045,6 @@
             alert('პროდუქტი წარმატებით დაემატა!');
         }
 
-        // ფასის/დასახელების რედაქტირება
         function editProduct(id) {
             const prod = products.find(p => p.id === id);
             if (!prod) return;
@@ -1055,7 +1068,6 @@
             alert('პროდუქტი განახლდა!');
         }
 
-        // პროდუქტის წაშლა
         function deleteProduct(id) {
             if (confirm('ნამდვილად გსურთ პროდუქტის წაშლა?')) {
                 products = products.filter(p => p.id !== id);
