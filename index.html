@@ -8,22 +8,25 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #1e3a8a; /* ელეგანტური მუქი ლურჯი */
-            --primary-dark: #0f172a;
-            --accent-color: #0284c7;  /* აქცენტის ფერი: ღია ცისფერი */
-            --bg-color: #f8fafc;
+            --primary-color: #4f46e5;      /* ინდიგო / იისფერი */
+            --primary-dark: #3730a3;       /* მუქი ინდიგო */
+            --accent-color: #7c3aed;       /* ელეგანტური იასამნისფერი */
+            --accent-light: #f3e8ff;      /* ნაზი იასამნისფერი ფონი */
+            --bg-color: #f8fafc;           /* სუფთა ღია ნაცრისფერი */
             --card-bg: #ffffff;
-            --text-color: #1e293b;
+            --text-color: #0f172a;         /* მუქი Slate */
             --text-light: #64748b;
-            --border-radius: 12px;
-            --shadow: 0 4px 15px rgba(0,0,0,0.08);
+            --border-radius: 16px;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+            --shadow-md: 0 8px 25px rgba(79, 70, 229, 0.08);
+            --shadow-lg: 0 12px 30px rgba(0,0,0,0.12);
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
 
         body {
@@ -34,17 +37,18 @@
 
         /* Test Mode Banner */
         .test-mode-banner {
-            background: #e11d48;
+            background: linear-gradient(90deg, #f43f5e, #e11d48);
             color: #ffffff;
             text-align: center;
-            padding: 6px 12px;
+            padding: 8px 12px;
             font-size: 0.85rem;
-            font-weight: bold;
+            font-weight: 700;
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 8px;
             letter-spacing: 0.5px;
+            box-shadow: 0 2px 10px rgba(225, 29, 72, 0.25);
         }
 
         .test-badge-dot {
@@ -57,183 +61,228 @@
         }
 
         @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.2; }
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.3; transform: scale(0.8); }
         }
 
         /* Top Notification Bar */
         .top-bar {
             background: #0f172a;
-            color: #fff;
-            padding: 8px 15px;
+            color: #cbd5e1;
+            padding: 10px 15px;
             font-size: 0.85rem;
             text-align: center;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
             flex-wrap: wrap;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
-        .top-bar i { color: var(--accent-color); }
+        .top-bar span { display: flex; align-items: center; gap: 6px; }
+        .top-bar i { color: #a5b4fc; }
 
         /* Header */
         header {
-            background-color: var(--primary-color);
+            background: linear-gradient(135deg, #312e81, #4f46e5);
             color: white;
-            padding: 1rem 2rem;
+            padding: 1.1rem 2rem;
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 20px rgba(49, 46, 129, 0.2);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            backdrop-filter: blur(10px);
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 1.4rem;
-            font-weight: bold;
+            gap: 12px;
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .logo i {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 10px;
+            border-radius: 12px;
         }
 
         .header-btns {
             display: flex;
-            gap: 10px;
+            gap: 12px;
         }
 
         .admin-toggle-btn {
-            background: rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.12);
             color: white;
-            border: 1px solid white;
-            padding: 8px 14px;
-            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.25);
+            padding: 10px 18px;
+            border-radius: 22px;
             cursor: pointer;
-            font-weight: bold;
+            font-weight: 600;
             font-size: 0.85rem;
-            transition: all 0.2s;
+            transition: all 0.25s ease;
         }
 
-        .admin-toggle-btn:hover { background: white; color: var(--primary-color); }
+        .admin-toggle-btn:hover { 
+            background: white; 
+            color: var(--primary-color);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
 
         .cart-icon-btn {
-            background: white;
+            background: #ffffff;
             color: var(--primary-color);
             border: none;
-            padding: 8px 18px;
-            border-radius: 25px;
+            padding: 10px 20px;
+            border-radius: 22px;
             cursor: pointer;
-            font-weight: bold;
+            font-weight: 700;
             display: flex;
             align-items: center;
-            gap: 8px;
-            transition: transform 0.2s;
+            gap: 10px;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
-        .cart-icon-btn:hover { transform: scale(1.05); }
+        .cart-icon-btn:hover { 
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+        }
 
         .cart-badge {
             background: var(--accent-color);
             color: white;
             border-radius: 50%;
-            padding: 2px 8px;
-            font-size: 0.85rem;
+            padding: 3px 9px;
+            font-size: 0.8rem;
+            font-weight: bold;
         }
 
         /* Info Banner */
         .info-section {
             max-width: 1200px;
-            margin: 20px auto;
+            margin: 25px auto;
             padding: 0 20px;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 15px;
+            gap: 18px;
         }
 
         .info-card {
             background: white;
-            padding: 15px;
+            padding: 18px;
             border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-sm);
             display: flex;
             align-items: center;
-            gap: 15px;
-            border-left: 4px solid var(--primary-color);
+            gap: 16px;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
-        .info-card i { font-size: 1.8rem; color: var(--primary-color); }
+        .info-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
 
-        .info-card.promo-card { border-left-color: var(--accent-color); background: #f0f9ff; }
-        .info-card.promo-card i { color: var(--accent-color); }
+        .info-card i { 
+            font-size: 1.8rem; 
+            color: var(--primary-color); 
+            background: #e0e7ff;
+            padding: 14px;
+            border-radius: 14px;
+        }
+
+        .info-card.promo-card { 
+            background: linear-gradient(135deg, #f3e8ff, #ffffff); 
+            border-color: #d8b4fe;
+        }
+        .info-card.promo-card i { 
+            color: var(--accent-color); 
+            background: #f3e8ff;
+        }
 
         /* Loyalty Section */
         .loyalty-section {
             max-width: 1200px;
-            margin: 20px auto;
+            margin: 25px auto;
             padding: 0 20px;
         }
 
         .loyalty-card {
-            background: linear-gradient(135deg, #1e3a8a, #0284c7);
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
             color: white;
-            padding: 20px;
+            padding: 25px;
             border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-md);
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 14px;
+            position: relative;
+            overflow: hidden;
         }
 
         .loyalty-card h3 {
             display: flex;
             align-items: center;
             gap: 10px;
-            font-size: 1.2rem;
+            font-size: 1.25rem;
         }
 
         .loyalty-inputs {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             flex-wrap: wrap;
         }
 
         .loyalty-inputs input {
-            padding: 10px 14px;
-            border: none;
-            border-radius: 8px;
+            padding: 12px 16px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 10px;
             outline: none;
             flex: 1;
             min-width: 200px;
+            font-size: 0.95rem;
         }
 
         .loyalty-inputs button {
-            background: #25D366;
+            background: #10b981;
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: bold;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-weight: 700;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
         }
 
-        .loyalty-inputs button:hover { background: #1eb954; }
+        .loyalty-inputs button:hover { 
+            background: #059669;
+            transform: translateY(-1px);
+        }
 
         /* Admin Panel Section */
         .admin-panel {
             display: none;
             max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
-            background: #f1f5f9;
+            margin: 25px auto;
+            padding: 25px;
+            background: #ffffff;
             border-radius: var(--border-radius);
             border: 2px dashed var(--primary-color);
+            box-shadow: var(--shadow-md);
         }
 
         .admin-panel h3 {
-            margin-bottom: 15px;
+            margin-bottom: 18px;
             color: var(--primary-dark);
             display: flex;
             align-items: center;
@@ -243,101 +292,111 @@
         .admin-form {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 10px;
+            gap: 12px;
             margin-bottom: 25px;
         }
 
         .admin-form input, .admin-form select {
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
+            padding: 11px;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
             outline: none;
+            font-size: 0.9rem;
         }
 
         .admin-form button {
             background: var(--primary-color);
             color: white;
             border: none;
-            padding: 10px;
-            border-radius: 8px;
-            font-weight: bold;
+            padding: 11px;
+            border-radius: 10px;
+            font-weight: 700;
             cursor: pointer;
+            transition: background 0.2s;
         }
 
         .admin-form button:hover { background: var(--primary-dark); }
 
         /* Admin Loyalty Broadcast Box */
         .admin-subscribers-box {
-            background: white;
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px solid #cbd5e1;
+            background: #f8fafc;
+            padding: 18px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
         }
 
         .subscribers-list {
             max-height: 150px;
             overflow-y: auto;
-            margin: 10px 0;
-            padding: 8px;
-            background: #f8fafc;
+            margin: 12px 0;
+            padding: 10px;
+            background: #ffffff;
             border: 1px solid #e2e8f0;
-            border-radius: 6px;
+            border-radius: 8px;
         }
 
         .subscriber-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 6px 0;
-            border-bottom: 1px solid #eee;
+            padding: 8px 0;
+            border-bottom: 1px solid #f1f5f9;
             font-size: 0.9rem;
         }
 
         .broadcast-form {
             display: flex;
             gap: 10px;
-            margin-top: 10px;
+            margin-top: 12px;
             flex-wrap: wrap;
         }
 
         .broadcast-form input {
             flex: 1;
             min-width: 250px;
-            padding: 8px 12px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
+            padding: 10px 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
         }
 
         /* Controls: Search & Country Filters */
         .controls-section {
             max-width: 1200px;
-            margin: 20px auto;
+            margin: 25px auto;
             padding: 0 20px;
             display: flex;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 18px;
             justify-content: space-between;
             align-items: center;
         }
 
         .search-box {
             flex: 1;
-            min-width: 250px;
+            min-width: 260px;
             position: relative;
         }
 
         .search-box input {
             width: 100%;
-            padding: 12px 20px 12px 40px;
-            border: 1px solid #ddd;
-            border-radius: 25px;
+            padding: 14px 20px 14px 45px;
+            border: 1px solid #cbd5e1;
+            border-radius: 30px;
             outline: none;
             font-size: 0.95rem;
+            background: white;
+            box-shadow: var(--shadow-sm);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .search-box input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
         }
 
         .search-box i {
             position: absolute;
-            left: 15px;
+            left: 18px;
             top: 50%;
             transform: translateY(-50%);
             color: var(--text-light);
@@ -352,70 +411,80 @@
 
         .country-btn {
             background: white;
-            border: 1px solid #ddd;
-            padding: 8px 14px;
+            border: 1px solid #e2e8f0;
+            padding: 9px 16px;
             border-radius: 20px;
             cursor: pointer;
             white-space: nowrap;
             font-size: 0.9rem;
+            font-weight: 600;
             transition: all 0.2s;
             display: flex;
             align-items: center;
             gap: 6px;
+            box-shadow: var(--shadow-sm);
         }
 
         .country-btn.active, .country-btn:hover {
             background: var(--primary-color);
             color: white;
             border-color: var(--primary-color);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
         }
 
         /* Product Grid */
         .products-grid {
             max-width: 1200px;
-            margin: 20px auto;
+            margin: 25px auto;
             padding: 0 20px;
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-            gap: 20px;
+            gap: 22px;
         }
 
         .product-card {
             background: var(--card-bg);
             border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #e2e8f0;
             overflow: hidden;
             display: flex;
             flex-direction: column;
             position: relative;
-            transition: transform 0.2s;
+            transition: all 0.25s ease;
         }
 
-        .product-card:hover { transform: translateY(-4px); }
+        .product-card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: var(--shadow-md);
+            border-color: #cbd5e1;
+        }
 
         .country-badge {
             position: absolute;
-            top: 10px;
-            right: 10px;
-            background: rgba(15, 23, 42, 0.8);
+            top: 12px;
+            right: 12px;
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(4px);
             color: white;
             padding: 4px 10px;
             border-radius: 12px;
             font-size: 0.75rem;
-            font-weight: bold;
+            font-weight: 700;
         }
 
         .prize-tag {
             position: absolute;
-            top: 10px;
-            left: 10px;
-            background: var(--accent-color);
+            top: 12px;
+            left: 12px;
+            background: linear-gradient(135deg, #7c3aed, #a855f7);
             color: white;
             padding: 4px 10px;
             border-radius: 12px;
             font-size: 0.75rem;
-            font-weight: bold;
-            animation: pulse 1.5s infinite;
+            font-weight: 700;
+            box-shadow: 0 2px 8px rgba(124, 58, 237, 0.4);
+            animation: pulse 1.8s infinite;
         }
 
         @keyframes pulse {
@@ -426,49 +495,52 @@
 
         .product-img {
             width: 100%;
-            height: 160px;
+            height: 165px;
             object-fit: cover;
-            background-color: #eee;
+            background-color: #f1f5f9;
         }
 
         .product-info {
-            padding: 15px;
+            padding: 16px;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
         }
 
         .product-title {
-            font-weight: 600;
-            margin-bottom: 6px;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 8px;
+            color: var(--text-color);
         }
 
         .product-price {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             color: var(--primary-color);
-            font-weight: bold;
-            margin-bottom: 12px;
+            font-weight: 800;
+            margin-bottom: 14px;
         }
 
         .card-actions {
             margin-top: auto;
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 8px;
         }
 
         .add-to-cart-btn {
             background: var(--primary-color);
             color: white;
             border: none;
-            padding: 10px;
-            border-radius: 8px;
+            padding: 11px;
+            border-radius: 10px;
             cursor: pointer;
-            font-weight: bold;
+            font-weight: 700;
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 8px;
+            transition: background 0.2s;
         }
 
         .add-to-cart-btn:hover { background: var(--primary-dark); }
@@ -478,11 +550,11 @@
             background: #0284c7;
             color: white;
             border: none;
-            padding: 6px;
-            border-radius: 6px;
+            padding: 7px;
+            border-radius: 8px;
             cursor: pointer;
             font-size: 0.8rem;
-            font-weight: bold;
+            font-weight: 700;
         }
 
         .admin-delete-btn {
@@ -490,11 +562,11 @@
             background: #ef4444;
             color: white;
             border: none;
-            padding: 6px;
-            border-radius: 6px;
+            padding: 7px;
+            border-radius: 8px;
             cursor: pointer;
             font-size: 0.8rem;
-            font-weight: bold;
+            font-weight: 700;
         }
 
         /* Cart Modal */
@@ -502,7 +574,8 @@
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5);
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(4px);
             z-index: 1000;
             justify-content: flex-end;
         }
@@ -514,100 +587,116 @@
             height: 100%;
             display: flex;
             flex-direction: column;
-            padding: 20px;
-            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            padding: 24px;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.15);
         }
 
         .cart-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 15px;
+            border-bottom: 1px solid #f1f5f9;
+            padding-bottom: 16px;
         }
 
-        .close-cart { background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+        .close-cart { 
+            background: #f1f5f9; 
+            border: none; 
+            width: 32px; 
+            height: 32px; 
+            border-radius: 50%; 
+            font-size: 1.2rem; 
+            cursor: pointer; 
+            color: var(--text-light);
+        }
 
-        .cart-items { flex-grow: 1; overflow-y: auto; margin: 15px 0; }
+        .cart-items { flex-grow: 1; overflow-y: auto; margin: 18px 0; }
 
         .cart-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 12px;
-            border-bottom: 1px solid #f0f0f0;
-            padding-bottom: 10px;
+            margin-bottom: 14px;
+            border-bottom: 1px solid #f8fafc;
+            padding-bottom: 12px;
         }
 
         .qty-btn {
-            background: #eee; border: none; width: 24px; height: 24px;
-            border-radius: 4px; cursor: pointer; font-weight: bold;
+            background: #f1f5f9; border: none; width: 26px; height: 26px;
+            border-radius: 6px; cursor: pointer; font-weight: bold;
+            color: var(--text-color);
         }
 
         .delivery-select {
-            margin-bottom: 15px;
-            padding: 10px;
-            background: #f9f9f9;
-            border-radius: 8px;
+            margin-bottom: 16px;
+            padding: 12px;
+            background: #f8fafc;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
         }
 
         .delivery-select select {
             width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
+            padding: 9px;
+            margin-top: 6px;
+            border-radius: 8px;
+            border: 1px solid #cbd5e1;
+            outline: none;
         }
 
         .total-price {
             display: flex;
             justify-content: space-between;
-            font-size: 1.1rem;
-            font-weight: bold;
-            margin-bottom: 10px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 8px;
         }
 
         .free-delivery-notice {
             font-size: 0.85rem;
             color: var(--primary-color);
-            margin-bottom: 10px;
-            font-weight: 500;
+            margin-bottom: 12px;
+            font-weight: 600;
         }
 
         .checkout-btn {
             width: 100%;
-            background: #25D366;
+            background: #10b981;
             color: white;
             border: none;
-            padding: 12px;
-            border-radius: 8px;
+            padding: 14px;
+            border-radius: 12px;
             font-size: 1rem;
-            font-weight: bold;
+            font-weight: 700;
             cursor: pointer;
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 10px;
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+            transition: background 0.2s;
         }
+
+        .checkout-btn:hover { background: #059669; }
 
         /* AI Widget Floating */
         .ai-widget-btn {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: var(--primary-color);
+            bottom: 24px;
+            right: 24px;
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
             color: white;
-            width: 60px;
-            height: 60px;
+            width: 62px;
+            height: 62px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: var(--shadow-lg);
             z-index: 999;
-            transition: transform 0.2s;
+            transition: transform 0.25s ease;
         }
 
         .ai-widget-btn:hover { transform: scale(1.1); }
@@ -615,68 +704,84 @@
         .ai-chat-window {
             display: none;
             position: fixed;
-            bottom: 90px;
-            right: 20px;
-            width: 350px;
-            height: 450px;
+            bottom: 95px;
+            right: 24px;
+            width: 360px;
+            height: 470px;
             background: white;
             border-radius: var(--border-radius);
-            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid #e2e8f0;
             z-index: 1000;
             flex-direction: column;
             overflow: hidden;
         }
 
         .ai-header {
-            background: var(--primary-color);
+            background: linear-gradient(135deg, #312e81, #4f46e5);
             color: white;
-            padding: 12px 15px;
+            padding: 14px 18px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-weight: bold;
+            font-weight: 700;
         }
 
         .ai-messages {
             flex-grow: 1;
-            padding: 12px;
+            padding: 14px;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            background: #fdfdfd;
+            gap: 12px;
+            background: #f8fafc;
         }
 
         .msg {
-            max-width: 80%;
-            padding: 8px 12px;
-            border-radius: 12px;
+            max-width: 82%;
+            padding: 10px 14px;
+            border-radius: 14px;
             font-size: 0.9rem;
-            line-height: 1.3;
+            line-height: 1.4;
         }
 
-        .msg.bot { background: #f0f9ff; color: #0369a1; align-self: flex-start; }
-        .msg.user { background: var(--primary-color); color: white; align-self: flex-end; }
+        .msg.bot { 
+            background: white; 
+            color: var(--text-color); 
+            align-self: flex-start;
+            border: 1px solid #e2e8f0;
+            border-bottom-left-radius: 4px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .msg.user { 
+            background: var(--primary-color); 
+            color: white; 
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
 
         .ai-input-area {
             display: flex;
-            border-top: 1px solid #eee;
-            padding: 8px;
+            border-top: 1px solid #e2e8f0;
+            padding: 10px;
+            background: white;
         }
 
         .ai-input-area input {
             flex-grow: 1;
             border: none;
-            padding: 8px;
+            padding: 8px 12px;
             outline: none;
+            font-size: 0.9rem;
         }
 
         .ai-input-area button {
             background: var(--primary-color);
             color: white;
             border: none;
-            padding: 8px 12px;
-            border-radius: 6px;
+            padding: 8px 14px;
+            border-radius: 8px;
             cursor: pointer;
         }
     </style>
@@ -720,30 +825,30 @@
             <i class="fa-solid fa-globe"></i>
             <div>
                 <strong>საერთაშორისო ასორტიმენტი</strong>
-                <p style="font-size:0.85rem; color:#666;">პროდუქცია საქართველოდან, თურქეთიდან, სომხეთიდან, რუსეთიდან, უკრაინიდან, ჩინეთიდან და სხვა.</p>
+                <p style="font-size:0.85rem; color:#64748b; margin-top:3px;">პროდუქცია საქართველოდან, თურქეთიდან, სომხეთიდან, რუსეთიდან, უკრაინიდან, ჩინეთიდან და სხვა.</p>
             </div>
         </div>
         <div class="info-card promo-card">
             <i class="fa-solid fa-gift"></i>
             <div>
                 <strong>მოიგე პრიზი! 🎁</strong>
-                <p style="font-size:0.85rem; color:#666;">სომხურ ყავა <b>"ლატინო"</b>-ს მოჰყვება საჩუქრები და პრიზები!</p>
+                <p style="font-size:0.85rem; color:#64748b; margin-top:3px;">სომხურ ყავა <b>"ლატინო"</b>-ს მოჰყვება საჩუქრები და პრიზები!</p>
             </div>
         </div>
         <div class="info-card">
             <i class="fa-solid fa-truck-fast"></i>
             <div>
                 <strong>მიწოდების სერვისი</strong>
-                <p style="font-size:0.85rem; color:#666;">ქალაქში 3-6₾ | სოფლებში 10-20₾.<br><b>150₾-ზე ზემოთ მიწოდება უფასოა!</b></p>
+                <p style="font-size:0.85rem; color:#64748b; margin-top:3px;">ქალაქში 3-6₾ | სოფლებში 10-20₾.<br><b>150₾-ზე ზემოთ მიწოდება უფასოა!</b></p>
             </div>
         </div>
     </div>
 
-    <!-- NEW: Customer Loyalty Signup Box -->
+    <!-- Customer Loyalty Signup Box -->
     <div class="loyalty-section">
         <div class="loyalty-card">
             <h3><i class="fa-solid fa-bell"></i> ლოიალობის პროგრამა & გათამაშებები</h3>
-            <p style="font-size:0.9rem;">დარეგისტრირდით, მიიღეთ შეტყობინებები სიახლეების, ფასდაკლებების და ყავა "ლატინოს" პრიზების მოგების შესახებ!</p>
+            <p style="font-size:0.9rem; opacity:0.95;">დარეგისტრირდით, მიიღეთ შეტყობინებები სიახლეების, ფასდაკლებების და ყავა "ლატინოს" პრიზების მოგების შესახებ!</p>
             <div class="loyalty-inputs">
                 <input type="text" id="subscriberName" placeholder="თქვენი სახელი">
                 <input type="tel" id="subscriberPhone" placeholder="ტელეფონის ნომერი (მაგ: 599123456)">
@@ -773,7 +878,7 @@
             <button onclick="addNewProduct()"><i class="fa-solid fa-plus"></i> დამატება</button>
         </div>
 
-        <!-- NEW: Admin Loyalty & Broadcast Section -->
+        <!-- Admin Loyalty & Broadcast Section -->
         <h3><i class="fa-solid fa-paper-plane"></i> ლოიალობის ბაზა & SMS / WhatsApp რეკლამა</h3>
         <div class="admin-subscribers-box">
             <strong>რეგისტრირებული მომხმარებლები (თანახმა არიან რეკლამაზე):</strong>
@@ -783,7 +888,7 @@
 
             <div class="broadcast-form">
                 <input type="text" id="broadcastMsg" placeholder="ჩაწერეთ სარეკლამო ტექსტი ან მოგების შეტყობინება...">
-                <button onclick="sendBroadcastWhatsApp()" style="background:#25D366; color:white; border:none; padding:8px 15px; border-radius:6px; cursor:pointer; font-weight:bold;">
+                <button onclick="sendBroadcastWhatsApp()" style="background:#10b981; color:white; border:none; padding:10px 18px; border-radius:8px; cursor:pointer; font-weight:bold;">
                     <i class="fa-brands fa-whatsapp"></i> გაგზავნა WhatsApp-ით
                 </button>
             </div>
@@ -909,7 +1014,6 @@
                 return;
             }
 
-            // ვამოწმებთ უკვე არის თუ არა ბაზაში
             const exists = subscribers.find(s => s.phone === phone);
             if (exists) {
                 alert('ეს ნომერი უკვე რეგისტრირებულია!');
@@ -935,7 +1039,7 @@
                 return;
             }
             let pass = prompt('შეიყვანეთ ადმინის პაროლი:');
-            if (pass === '2003') { // პაროლი დაყენებულია: 2003
+            if (pass === '2003') {
                 isAdminLoggedIn = true;
                 document.getElementById('adminPanel').style.display = 'block';
                 alert('ავტორიზაცია წარმატებულია! ახლა შეგიძლიათ ფასების შეცვლა, პროდუქტის დამატება და SMS/WhatsApp რეკლამის გაგზავნა.');
@@ -958,7 +1062,7 @@
                 list.innerHTML += `
                     <div class="subscriber-item">
                         <span><b>${s.name}</b> (${s.phone}) - <small>${s.date}</small></span>
-                        <button onclick="removeSubscriber(${idx})" style="background:#ef4444; color:white; border:none; padding:2px 6px; border-radius:4px; cursor:pointer;">წაშლა</button>
+                        <button onclick="removeSubscriber(${idx})" style="background:#ef4444; color:white; border:none; padding:3px 8px; border-radius:4px; cursor:pointer;">წაშლა</button>
                     </div>
                 `;
             });
@@ -982,7 +1086,6 @@
                 return;
             }
 
-            // აგზავნის პირველ/არჩეულ მომხმარებელთან WhatsApp-ით
             let phone = subscribers[0].phone.replace(/[^0-9]/g, '');
             if (!phone.startsWith('995') && phone.length === 9) {
                 phone = '995' + phone;
