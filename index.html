@@ -3,303 +3,637 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MINI MARKET | ახალციხე</title>
+    <title>Mini Market Akhaltsikhe | მინი მარკეტი ახალციხეში</title>
+    <!-- Font Awesome იკონები -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #0052cc;
-            --accent: #d32f2f;
-            --gold: #ffb300;
-            --bg: #f4f5f7;
-            --text-dark: #172b4d;
+            --primary-color: #2e7d32;
+            --primary-dark: #1b5e20;
+            --accent-color: #ff9800;
+            --bg-color: #f4f6f8;
+            --card-bg: #ffffff;
+            --text-color: #2c3e50;
+            --text-light: #666;
+            --border-radius: 12px;
+            --shadow: 0 4px 15px rgba(0,0,0,0.08);
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; }
-        body { background: var(--bg); color: var(--text-dark); padding-bottom: 90px; }
-
-        .top-nav {
-            background: #091e42; color: white; padding: 8px 20px;
-            display: flex; justify-content: space-between; align-items: center; font-size: 13px; flex-wrap: wrap; gap: 10px;
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        .lang-switch button {
-            background: rgba(255,255,255,0.2); color: white; border: none;
-            padding: 4px 10px; border-radius: 6px; cursor: pointer; font-weight: bold;
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding-bottom: 80px;
         }
-        .lang-switch button.active { background: var(--gold); color: #000; }
 
+        /* Top Notification Bar */
+        .top-bar {
+            background: #111;
+            color: #fff;
+            padding: 8px 15px;
+            font-size: 0.85rem;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .top-bar i { color: var(--accent-color); }
+
+        /* Header */
         header {
-            background: white; padding: 15px 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06); position: sticky; top: 0; z-index: 999;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .header-container {
-            max-width: 1200px; margin: 0 auto; display: flex;
-            align-items: center; justify-content: space-between; gap: 15px; flex-wrap: wrap;
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.4rem;
+            font-weight: bold;
         }
 
-        .brand-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-        .brand-logo img { width: 55px; height: 55px; border-radius: 50%; object-fit: cover; }
-        .brand-logo h1 { font-size: 22px; color: var(--primary); font-weight: 900; }
+        .cart-icon-btn {
+            background: white;
+            color: var(--primary-color);
+            border: none;
+            padding: 8px 18px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s;
+        }
 
-        .search-box { flex: 1; max-width: 450px; position: relative; }
+        .cart-icon-btn:hover { transform: scale(1.05); }
+
+        .cart-badge {
+            background: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            padding: 2px 8px;
+            font-size: 0.85rem;
+        }
+
+        /* Info Banner */
+        .info-section {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .info-card {
+            background: white;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .info-card i {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+        }
+
+        .info-card.promo-card {
+            border-left-color: var(--accent-color);
+            background: #fffdf5;
+        }
+
+        .info-card.promo-card i {
+            color: var(--accent-color);
+        }
+
+        /* Controls: Search & Country Filters */
+        .controls-section {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+            position: relative;
+        }
+
         .search-box input {
-            width: 100%; padding: 11px 45px 11px 18px; border: 2px solid #dfe1e6;
-            border-radius: 25px; outline: none; font-size: 14px; background: #fafbfc;
-        }
-        .search-box i { position: absolute; right: 18px; top: 50%; transform: translateY(-50%); color: #6b778c; }
-
-        .countries-bar { background: #fff; border-bottom: 1px solid #e2e8f0; padding: 12px 20px; }
-        .countries-container {
-            max-width: 1200px; margin: 0 auto; display: flex; align-items: center;
-            justify-content: center; gap: 12px; flex-wrap: wrap; font-size: 13px; font-weight: 600;
-        }
-        .country-item { display: flex; align-items: center; gap: 6px; background: #f8fafc; padding: 6px 14px; border-radius: 20px; border: 1px solid #e2e8f0; }
-
-        .hero { max-width: 1200px; margin: 20px auto; padding: 0 20px; }
-        .banner {
-            background: linear-gradient(135deg, #0052cc 0%, #0747a6 100%);
-            color: white; border-radius: 16px; padding: 25px;
-            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;
-        }
-        .delivery-badge {
-            background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(5px);
-            border: 1px solid rgba(255,255,255,0.3); padding: 15px 20px; border-radius: 12px;
+            width: 100%;
+            padding: 12px 20px 12px 40px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+            font-size: 0.95rem;
         }
 
-        .promo-banner { max-width: 1200px; margin: 0 auto 25px; padding: 0 20px; }
-        .promo-box {
-            background: linear-gradient(135deg, #ff9800 0%, #e65100 100%);
-            color: white; border-radius: 16px; padding: 20px; display: flex;
-            align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px;
+        .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
         }
 
-        .container { max-width: 1200px; margin: 25px auto; padding: 0 20px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
-
-        .card {
-            background: white; border-radius: 16px; overflow: hidden;
-            border: 1px solid #dfe1e6; transition: all 0.25s ease;
-            display: flex; flex-direction: column; justify-content: space-between; position: relative;
-        }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.08); }
-
-        .prize-badge {
-            position: absolute; top: 10px; right: 10px; background: var(--accent);
-            color: white; padding: 4px 8px; border-radius: 8px; font-size: 11px; font-weight: 800; z-index: 2;
+        .country-filters {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 5px;
         }
 
-        .card-img {
-            height: 200px; width: 100%; background: #f8fafc;
-            display: flex; align-items: center; justify-content: center; overflow: hidden;
-            border-bottom: 1px solid #f4f5f7;
-        }
-        .card-img img { width: 100%; height: 100%; object-fit: cover; }
-
-        .card-body { padding: 15px; }
-        .card-title { font-size: 14px; font-weight: 700; height: 38px; line-height: 1.3; overflow: hidden; }
-        .card-price { font-size: 20px; font-weight: 900; color: var(--accent); margin: 8px 0 12px; }
-
-        .btn-wa {
-            width: 100%; background: #25D366; color: white; border: none;
-            padding: 10px; border-radius: 10px; font-weight: 700; cursor: pointer;
-            display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 13px;
+        .country-btn {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 8px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            white-space: nowrap;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
-        /* Floating AI */
-        .ai-float {
-            position: fixed; bottom: 25px; right: 25px; background: var(--primary);
-            color: white; width: 60px; height: 60px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 26px; cursor: pointer; box-shadow: 0 6px 20px rgba(0,82,204,0.35); z-index: 1000;
+        .country-btn.active, .country-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
         }
-        .ai-box {
-            position: fixed; bottom: 95px; right: 25px; width: 340px; height: 430px;
-            background: white; border-radius: 18px; box-shadow: 0 12px 35px rgba(0,0,0,0.18);
-            display: none; flex-direction: column; z-index: 1000; overflow: hidden; border: 1px solid #dfe1e6;
+
+        /* Product Grid */
+        .products-grid {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+            gap: 20px;
         }
-        .ai-head { background: var(--primary); color: white; padding: 14px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; }
-        .ai-body { flex: 1; padding: 12px; overflow-y: auto; background: #f4f5f7; display: flex; flex-direction: column; gap: 10px; }
-        .msg { padding: 10px 14px; border-radius: 12px; font-size: 13px; max-width: 85%; line-height: 1.4; }
-        .msg.bot { background: #ebecf0; color: #172b4d; align-self: flex-start; }
-        .msg.user { background: var(--primary); color: white; align-self: flex-end; }
-        .ai-foot { padding: 10px; display: flex; gap: 6px; background: white; border-top: 1px solid #eee; }
-        .ai-foot input { flex: 1; padding: 9px 12px; border: 1px solid #ccc; border-radius: 20px; outline: none; font-size: 13px; }
-        .ai-foot button { background: var(--primary); color: white; border: none; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; }
+
+        .product-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: transform 0.2s;
+        }
+
+        .product-card:hover { transform: translateY(-4px); }
+
+        .country-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        .prize-tag {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: var(--accent-color);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .product-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            background-color: #eee;
+        }
+
+        .product-info {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-title {
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .product-price {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .add-to-cart-btn {
+            margin-top: auto;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .add-to-cart-btn:hover { background: var(--primary-dark); }
+
+        /* Cart Modal */
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: flex-end;
+        }
+
+        .cart-content {
+            background: white;
+            width: 100%;
+            max-width: 450px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+
+        .close-cart { background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+
+        .cart-items { flex-grow: 1; overflow-y: auto; margin: 15px 0; }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+
+        .qty-btn {
+            background: #eee; border: none; width: 24px; height: 24px;
+            border-radius: 4px; cursor: pointer; font-weight: bold;
+        }
+
+        .delivery-select {
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 8px;
+        }
+
+        .delivery-select select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        .total-price {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .free-delivery-notice {
+            font-size: 0.85rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* AI Widget Floating */
+        .ai-widget-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 999;
+            transition: transform 0.2s;
+        }
+
+        .ai-widget-btn:hover { transform: scale(1.1); }
+
+        .ai-chat-window {
+            display: none;
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 350px;
+            height: 450px;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+            z-index: 1000;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .ai-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+        }
+
+        .ai-messages {
+            flex-grow: 1;
+            padding: 12px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background: #fdfdfd;
+        }
+
+        .msg {
+            max-width: 80%;
+            padding: 8px 12px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            line-height: 1.3;
+        }
+
+        .msg.bot { background: #e8f5e9; color: #1b5e20; align-self: flex-start; }
+        .msg.user { background: var(--primary-color); color: white; align-self: flex-end; }
+
+        .ai-input-area {
+            display: flex;
+            border-top: 1px solid #eee;
+            padding: 8px;
+        }
+
+        .ai-input-area input {
+            flex-grow: 1;
+            border: none;
+            padding: 8px;
+            outline: none;
+        }
+
+        .ai-input-area button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
 
-    <div class="top-nav">
-        <div>📍 ქ. ახალციხე, იაძის ქ. №2 | 📞 +995 500 22 48 22</div>
-        <div class="lang-switch">
-            <button class="active" onclick="setLang('ka', this)">KA</button>
-            <button onclick="setLang('en', this)">EN</button>
-            <button onclick="setLang('ru', this)">RU</button>
-        </div>
+    <!-- Top Info Bar -->
+    <div class="top-bar">
+        <span><i class="fa-solid fa-location-dot"></i> ქ. ახალციხე, იაძის ქ. N 2ი (ივერიელის ასახვევი)</span>
+        <span><i class="fa-solid fa-clock"></i> 10:00 - 18:00</span>
+        <span><i class="fa-solid fa-phone"></i> +995 500 22 48 22</span>
     </div>
 
+    <!-- Header -->
     <header>
-        <div class="header-container">
-            <a href="#" class="brand-logo">
-                <img src="WhatsApp Image 2026-06-27 at 20.59.49.jpeg" alt="MINI MARKET">
-                <div><h1>MINI MARKET</h1></div>
-            </a>
-            <div class="search-box">
-                <input type="text" id="searchInput" onkeyup="filter()" placeholder="ძებნა კატალოგში...">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </div>
+        <div class="logo">
+            <i class="fa-solid fa-basket-shopping"></i>
+            <span>MINI MARKET</span>
         </div>
+        <button class="cart-icon-btn" onclick="toggleCart()">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span>კალათა</span>
+            <span class="cart-badge" id="cartBadge">0</span>
+        </button>
     </header>
 
-    <div class="countries-bar">
-        <div class="countries-container">
-            <span style="color:#6b778c;">პროდუქცია სხვადასხვა ქვეყნიდან:</span>
-            <div class="country-item">🇬🇪 საქართველო</div>
-            <div class="country-item">🇦🇲 სომხეთი</div>
-            <div class="country-item">🇹🇷 თურქეთი</div>
-            <div class="country-item">🇺🇦 უკრაინა</div>
-            <div class="country-item">🇷🇺 რუსეთი</div>
-            <div class="country-item">🇨🇳 ჩინეთი</div>
-        </div>
-    </div>
-
-    <div class="hero">
-        <div class="banner">
+    <!-- Info Cards Section -->
+    <div class="info-section">
+        <div class="info-card">
+            <i class="fa-solid fa-globe"></i>
             <div>
-                <h2 id="bTitle">🏪 თქვენი უბნის მინი მარკეტი</h2>
-                <p id="bDesc">ახალი, მრავალფეროვანი და ხარისხიანი პროდუქცია ყოველდღე!</p>
-            </div>
-            <div class="delivery-badge">
-                <h4><i class="fa-solid fa-truck-fast"></i> მიწოდების სერვისი ახალციხეში</h4>
-                <p id="delInfo">🚚 ქალაქის მასშტაბით!<br>✨ <b>50 ₾-ზე ზემოთ:</b> უფასო მიწოდება<br>📦 <b>50 ₾-მდე:</b> 5 ₾</p>
+                <strong>საერთაშორისო ასორტიმენტი</strong>
+                <p style="font-size:0.85rem; color:#666;">პროდუქცია საქართველოდან, თურქეთიდან, სომხეთიდან, რუსეთიდან, უკრაინიდან, ჩინეთიდან და სხვა.</p>
             </div>
         </div>
-    </div>
-
-    <div class="promo-banner">
-        <div class="promo-box">
+        <div class="info-card promo-card">
+            <i class="fa-solid fa-gift"></i>
             <div>
-                <div class="promo-title">🎁 საპრიზო აქცია MINI MARKET-ში!</div>
-                <p style="margin-top:5px; font-size:14px;">შეიძინეთ <b>სომხური ყავა Latino</b> და მოიგეთ ფასიანი საჩუქრები!</p>
+                <strong>მოიგე პრიზი! 🎁</strong>
+                <p style="font-size:0.85rem; color:#666;">სომხურ ყავა <b>"ლატინო"</b>-ს მოჰყვება საჩუქრები და პრიზები!</p>
             </div>
-            <span style="background:#fff; color:#e65100; padding:6px 12px; border-radius:8px; font-weight:800; font-size:12px;">✨ იპოვე პრიზი</span>
+        </div>
+        <div class="info-card">
+            <i class="fa-solid fa-truck-fast"></i>
+            <div>
+                <strong>მიწოდების სერვისი</strong>
+                <p style="font-size:0.85rem; color:#666;">ქალაქში 3-6₾ | სოფლებში 10-20₾.<br><b>150₾-ზე ზემოთ მიწოდება უფასოა!</b></p>
+            </div>
         </div>
     </div>
 
-    <div class="container">
-        <h3 style="margin-bottom:15px;" id="sTitle">🛒 პროდუქციის კატალოგი</h3>
-        <div class="grid" id="grid"></div>
+    <!-- Controls: Search & Categories -->
+    <div class="controls-section">
+        <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="searchInput" placeholder="მოძებნეთ პროდუქტი..." oninput="filterProducts()">
+        </div>
+        <div class="country-filters">
+            <button class="country-btn active" onclick="filterCountry('all', this)">ყველა</button>
+            <button class="country-btn" onclick="filterCountry('GEO', this)">🇬🇪 საქართველო</button>
+            <button class="country-btn" onclick="filterCountry('ARM', this)">🇦🇲 სომხეთი</button>
+            <button class="country-btn" onclick="filterCountry('TUR', this)">🇹🇷 თურქეთი</button>
+            <button class="country-btn" onclick="filterCountry('UKR', this)">🇺🇦 უკრაინა</button>
+            <button class="country-btn" onclick="filterCountry('CHN', this)">🇨🇳 ჩინეთი</button>
+            <button class="country-btn" onclick="filterCountry('RUS', this)">🇷🇺 რუსეთი</button>
+        </div>
     </div>
 
-    <div class="ai-float" onclick="toggleAI()"><i class="fa-solid fa-robot"></i></div>
+    <!-- Product Grid -->
+    <main class="products-grid" id="productsGrid"></main>
 
-    <div class="ai-box" id="aiBox">
-        <div class="ai-head">
-            <span>Voice AI Assistant</span>
-            <i class="fa-solid fa-xmark" onclick="toggleAI()" style="cursor:pointer;"></i>
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h2>თქვენი კალათა</h2>
+                <button class="close-cart" onclick="toggleCart()">&times;</button>
+            </div>
+            
+            <div class="cart-items" id="cartItems"></div>
+
+            <div class="delivery-select">
+                <label style="font-size:0.9rem; font-weight:bold;">აირჩიეთ მიწოდების ზონა:</label>
+                <select id="deliveryZone" onchange="updateCartUI()">
+                    <option value="city_min">ქალაქი ახალციხე (3.00 ₾)</option>
+                    <option value="city_max">ქალაქი ახალციხე - შორი უბანი (6.00 ₾)</option>
+                    <option value="village_min">ახლომდებარე სოფელი (10.00 ₾)</option>
+                    <option value="village_max">შორი სოფელი (20.00 ₾)</option>
+                </select>
+            </div>
+
+            <div class="free-delivery-notice" id="freeDeliveryNotice"></div>
+
+            <div class="total-price">
+                <span>პროდუქცია:</span>
+                <span id="subTotal">0.00 ₾</span>
+            </div>
+            <div class="total-price">
+                <span>მიწოდება:</span>
+                <span id="deliveryCost">0.00 ₾</span>
+            </div>
+            <div class="total-price" style="font-size:1.3rem; color:var(--primary-color);">
+                <span>სულ ჯამი:</span>
+                <span id="grandTotal">0.00 ₾</span>
+            </div>
+
+            <button class="checkout-btn" onclick="checkoutWhatsApp()">
+                <i class="fa-brands fa-whatsapp"></i> შეკვეთა WhatsApp-ით (+995500224822)
+            </button>
         </div>
-        <div class="ai-body" id="aiBody">
-            <div class="msg bot">გამარჯობა! მე ვარ MINI MARKET-ის AI ასისტენტი. რით დაგეხმაროთ? 🔊</div>
+    </div>
+
+    <!-- AI Floating Chatbot -->
+    <div class="ai-widget-btn" onclick="toggleAIChat()">
+        <i class="fa-solid fa-robot"></i>
+    </div>
+
+    <div class="ai-chat-window" id="aiChatWindow">
+        <div class="ai-header">
+            <span><i class="fa-solid fa-robot"></i> AI ასისტენტი (ონლაინ)</span>
+            <span style="cursor:pointer;" onclick="toggleAIChat()">&times;</span>
         </div>
-        <div class="ai-foot">
-            <input type="text" id="aiIn" placeholder="Write message..." onkeypress="if(event.key==='Enter') sendAI()">
-            <button onclick="sendAI()"><i class="fa-solid fa-paper-plane"></i></button>
+        <div class="ai-messages" id="aiMessages">
+            <div class="msg bot">გამარჯობა! 👋 რით შემიძლია დაგეხმაროთ? შეგიძლიათ მკითხოთ მიწოდებაზე, მისამართზე, სამუშაო საათებსა თუ პრიზიან ყავა "ლატინოზე"!</div>
+        </div>
+        <div class="ai-input-area">
+            <input type="text" id="aiInput" placeholder="ჩაწერეთ კითხვა..." onkeypress="handleAIPress(event)">
+            <button onclick="sendAIMessage()"><i class="fa-solid fa-paper-plane"></i></button>
         </div>
     </div>
 
     <script>
-        let currentLang = 'ka';
-
-        // 💡 აქ ჩაწერილია სურათების ფაილების სახელები, რომლებსაც შენ ჩააგდებ ფოლდერში:
+        // პროდუქტების ბაზა
         const products = [
-            {
-                id: 1,
-                name: { ka: "სომხური ყავა Latino (საპრიზო 🎁)", en: "Armenian Coffee Latino (Prize 🎁)", ru: "Армянский кофе Latino (Призовой 🎁)" },
-                price: 3.50,
-                prize: true,
-                img: "latino.jpg" // 👈 ჩააგდე latino.jpg ფოლდერში
-            },
-            {
-                id: 2,
-                name: { ka: "ახალი საქონლის ხორცი (1კგ)", en: "Fresh Beef Meat (1kg)", ru: "Свежая говядина (1кг)" },
-                price: 22.00,
-                prize: false,
-                img: "beef.jpg" // 👈 ჩააგდე beef.jpg
-            },
-            {
-                id: 3,
-                name: { ka: "ახალი ქათმის ფილე (1კგ)", en: "Fresh Chicken Fillet (1kg)", ru: "Куриное филе (1кг)" },
-                price: 13.50,
-                prize: false,
-                img: "chicken.jpg"
-            },
-            {
-                id: 4,
-                name: { ka: "შებოლილი სოსისი / ძეხვი", en: "Smoked Sausage / Salami", ru: "Копченая колбаса" },
-                price: 14.80,
-                prize: false,
-                img: "sausage.jpg"
-            },
-            {
-                id: 5,
-                name: { ka: "სარეცხი ფხვნილი Ariel / Tide", en: "Washing Powder Ariel / Tide", ru: "Стиральный порошок Ariel / Tide" },
-                price: 21.50,
-                prize: false,
-                img: "ariel.jpg"
-            },
-            {
-                id: 6,
-                name: { ka: "ჭურჭლის სარეცხი სითხე Fairy", en: "Dishwashing Liquid Fairy", ru: "Средство для посуды Fairy" },
-                price: 4.80,
-                prize: false,
-                img: "fairy.jpg"
-            },
-            {
-                id: 7,
-                name: { ka: "ქათმის კვერცხი C1 (10 ცალი)", en: "Chicken Eggs C1 (10 pcs)", ru: "Куриные яйца (10 шт)" },
-                price: 4.50,
-                prize: false,
-                img: "eggs.jpg"
-            },
-            {
-                id: 8,
-                name: { ka: "ქართული სულგუნი / ყველი (1კგ)", en: "Georgian Sulguni Cheese (1kg)", ru: "Грузинский сыр Сулугуни (1кг)" },
-                price: 18.00,
-                prize: false,
-                img: "cheese.jpg"
-            },
-            {
-                id: 9,
-                name: { ka: "შოკოლადის ფილა", en: "Chocolate Bar", ru: "Плитка шоколада" },
-                price: 3.20,
-                prize: false,
-                img: "chocolate.jpg"
-            },
-            {
-                id: 10,
-                name: { ka: "ლუდი ჰაინეკენი (Heineken) 0.5L", en: "Heineken Beer 0.5L", ru: "Пиво Heineken 0.5л" },
-                price: 3.80,
-                prize: false,
-                img: "beer.jpg"
-            }
+            { id: 1, name: "ყავა ლატინო (პრიზიანი 🎁)", countryCode: "ARM", country: "სომხეთი", price: 3.50, isPrize: true, img: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=300" },
+            { id: 2, name: "თურქული ჩაი Doğuş 500გ", countryCode: "TUR", country: "თურქეთი", price: 8.50, isPrize: false, img: "https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=300" },
+            { id: 3, name: "ქართული ლიმონათი 0.5ლ", countryCode: "GEO", country: "საქართველო", price: 2.00, isPrize: false, img: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=300" },
+            { id: 4, name: "უკრაინული შოკოლადი Roshen", countryCode: "UKR", country: "უკრაინა", price: 4.20, isPrize: false, img: "https://images.unsplash.com/photo-1511381939415-e44015466834?w=300" },
+            { id: 5, name: "ჩინური მწვანე ჩაი 100გ", countryCode: "CHN", country: "ჩინეთი", price: 6.00, isPrize: false, img: "https://images.unsplash.com/photo-1597481499750-3e6b22637e12?w=300" },
+            { id: 6, name: "რუსული ორცხობილა", countryCode: "RUS", country: "რუსეთი", price: 3.00, isPrize: false, img: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=300" },
+            { id: 7, name: "სულგუნი ახალციხური 500გ", countryCode: "GEO", country: "საქართველო", price: 10.50, isPrize: false, img: "https://images.unsplash.com/photo-1452195100486-9cc805987862?w=300" }
         ];
 
-        function render() {
-            const g = document.getElementById('grid');
-            g.innerHTML = '';
-            products.forEach(p => {
-                g.innerHTML += `
-                    <div class="card">
-                        ${p.prize ? '<span class="prize-badge">🎁 საპრიზო</span>' : ''}
-                        <div class="card-img">
-                            <img src="${p.img}" alt="${p.name[currentLang]}" onerror="this.src='https://via.placeholder.com/200?text=ფოტო+არ+არის'">
-                        </div>
-                        <div class="card-body">
-                            <div class="card-title">${p.name[currentLang]}</div>
-                            <div class="card-price">${p.price.toFixed(2)} ₾</div>
-                            <button class="btn-wa" onclick="buyWA('${p.name[currentLang]}')">
-                                <i class="fa-brands fa-whatsapp"></i> WhatsApp შეკვეთა
+        let cart = [];
+        let activeCountry = 'all';
+
+        function renderProducts(items) {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = '';
+            
+            if (items.length === 0) {
+                grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #777;">პროდუქტი ვერ მოიძებნა</p>';
+                return;
+            }
+
+            items.forEach(p => {
+                grid.innerHTML += `
+                    <div class="product-card">
+                        ${p.isPrize ? '<div class="prize-tag">🎁 პრიზიანი</div>' : ''}
+                        <div class="country-badge">${p.country}</div>
+                        <img src="${p.img}" class="product-img" alt="${p.name}">
+                        <div class="product-info">
+                            <div class="product-title">${p.name}</div>
+                            <div class="product-price">${p.price.toFixed(2)} ₾</div>
+                            <button class="add-to-cart-btn" onclick="addToCart(${p.id})">
+                                <i class="fa-solid fa-cart-plus"></i> კალათაში
                             </button>
                         </div>
                     </div>
@@ -307,44 +641,189 @@
             });
         }
 
-        function setLang(lang, btn) {
-            currentLang = lang;
-            document.querySelectorAll('.lang-switch button').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            render();
-        }
-
-        function toggleAI() {
-            const b = document.getElementById('aiBox');
-            b.style.display = b.style.display === 'flex' ? 'none' : 'flex';
-        }
-
-        function sendAI() {
-            const input = document.getElementById('aiIn');
-            const txt = input.value.trim();
-            if(!txt) return;
-            const body = document.getElementById('aiBody');
-            body.innerHTML += `<div class="msg user">${txt}</div>`;
-            input.value = '';
-            setTimeout(() => {
-                body.innerHTML += `<div class="msg bot">მადლობა შეკითხვისთვის! ახალციხეში 50₾-ზე ზემოთ მიწოდება უფასოა.<br><a href="https://wa.me/995500224822" target="_blank" style="color:var(--primary); font-weight:bold;">📲 მოგვწერეთ WhatsApp-ზე</a></div>`;
-                body.scrollTop = body.scrollHeight;
-            }, 400);
-        }
-
-        function buyWA(name) {
-            window.open(`https://wa.me/995500224822?text=გამარჯობა, მინდა შევიძინო: ${encodeURIComponent(name)}`, '_blank');
-        }
-
-        function filter() {
-            const v = document.getElementById('searchInput').value.toLowerCase();
-            document.querySelectorAll('.card').forEach(c => {
-                const t = c.querySelector('.card-title').innerText.toLowerCase();
-                c.style.display = t.includes(v) ? 'flex' : 'none';
+        function filterProducts() {
+            const searchVal = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = products.filter(p => {
+                const matchesCountry = activeCountry === 'all' || p.countryCode === activeCountry;
+                const matchesSearch = p.name.toLowerCase().includes(searchVal);
+                return matchesCountry && matchesSearch;
             });
+            renderProducts(filtered);
         }
 
-        render();
+        function filterCountry(code, btn) {
+            document.querySelectorAll('.country-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            activeCountry = code;
+            filterProducts();
+        }
+
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            const itemInCart = cart.find(c => c.id === id);
+
+            if (itemInCart) { itemInCart.qty++; } 
+            else { cart.push({ ...product, qty: 1 }); }
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const cartItemsContainer = document.getElementById('cartItems');
+            cartItemsContainer.innerHTML = '';
+            let subtotal = 0;
+            let count = 0;
+
+            cart.forEach(item => {
+                let itemTotal = item.price * item.qty;
+                subtotal += itemTotal;
+                count += item.qty;
+                cartItemsContainer.innerHTML += `
+                    <div class="cart-item">
+                        <div>
+                            <strong>${item.name}</strong>
+                            <div style="font-size:0.85rem; color:#666;">${item.price.toFixed(2)} ₾ x ${item.qty}</div>
+                            <div style="margin-top:4px;">
+                                <button class="qty-btn" onclick="changeQty(${item.id}, -1)">-</button>
+                                <span style="margin: 0 6px;">${item.qty}</span>
+                                <button class="qty-btn" onclick="changeQty(${item.id}, 1)">+</button>
+                            </div>
+                        </div>
+                        <div><strong>${itemTotal.toFixed(2)} ₾</strong></div>
+                    </div>
+                `;
+            });
+
+            // Delivery Fee Logic
+            let zone = document.getElementById('deliveryZone').value;
+            let deliveryFee = 0;
+
+            if (subtotal >= 150 || subtotal === 0) {
+                deliveryFee = 0;
+            } else {
+                if (zone === 'city_min') deliveryFee = 3.00;
+                else if (zone === 'city_max') deliveryFee = 6.00;
+                else if (zone === 'village_min') deliveryFee = 10.00;
+                else if (zone === 'village_max') deliveryFee = 20.00;
+            }
+
+            // Free Delivery progress notice
+            const notice = document.getElementById('freeDeliveryNotice');
+            if (subtotal > 0 && subtotal < 150) {
+                let diff = (150 - subtotal).toFixed(2);
+                notice.innerText = `💡 დაამატეთ еще ${diff} ₾ პროდუქტი უფასო მიწოდებისთვის!`;
+            } else if (subtotal >= 150) {
+                notice.innerText = `🎉 გილოცავთ! თქვენ გაქვთ უფასო მიწოდება!`;
+            } else {
+                notice.innerText = '';
+            }
+
+            document.getElementById('subTotal').innerText = subtotal.toFixed(2) + ' ₾';
+            document.getElementById('deliveryCost').innerText = (subtotal > 0 ? deliveryFee.toFixed(2) : '0.00') + ' ₾';
+            document.getElementById('grandTotal').innerText = (subtotal > 0 ? (subtotal + deliveryFee).toFixed(2) : '0.00') + ' ₾';
+            document.getElementById('cartBadge').innerText = count;
+        }
+
+        function changeQty(id, delta) {
+            const item = cart.find(c => c.id === id);
+            if (!item) return;
+            item.qty += delta;
+            if (item.qty <= 0) { cart = cart.filter(c => c.id !== id); }
+            updateCartUI();
+        }
+
+        function toggleCart() {
+            const modal = document.getElementById('cartModal');
+            modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        function checkoutWhatsApp() {
+            if (cart.length === 0) {
+                alert('თქვენი კალათა ცარიელია!');
+                return;
+            }
+
+            let phone = "995500224822";
+            let text = "გამარჯობა, მინდა შეკვეთის გაფორმება ახალციხის მინი მარკეტიდან:\n\n";
+            let subtotal = 0;
+
+            cart.forEach((item, index) => {
+                let itemTotal = item.price * item.qty;
+                subtotal += itemTotal;
+                text += `${index + 1}. ${item.name} (${item.country}) x ${item.qty} = ${itemTotal.toFixed(2)} ₾\n`;
+            });
+
+            let zone = document.getElementById('deliveryZone');
+            let zoneText = zone.options[zone.selectedIndex].text;
+            let delCost = document.getElementById('deliveryCost').innerText;
+            let grandTotal = document.getElementById('grandTotal').innerText;
+
+            text += `\n📦 *მიწოდების ზონა:* ${zoneText}`;
+            text += `\n🚚 *მიწოდების საფასური:* ${delCost}`;
+            text += `\n💰 *სულ გადასახდელი:* ${grandTotal}`;
+
+            const encodedText = encodeURIComponent(text);
+            window.open(`https://wa.me/${phone}?text=${encodedText}`, '_blank');
+        }
+
+        /* AI Assistant Engine */
+        function toggleAIChat() {
+            const window = document.getElementById('aiChatWindow');
+            window.style.display = window.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        function handleAIPress(e) {
+            if (e.key === 'Enter') sendAIMessage();
+        }
+
+        function sendAIMessage() {
+            const input = document.getElementById('aiInput');
+            const msg = input.value.trim();
+            if (!msg) return;
+
+            // User Message
+            addAIMessage(msg, 'user');
+            input.value = '';
+
+            // AI Reply Logic
+            setTimeout(() => {
+                let reply = getAIReply(msg.toLowerCase());
+                addAIMessage(reply, 'bot');
+            }, 500);
+        }
+
+        function addAIMessage(text, sender) {
+            const container = document.getElementById('aiMessages');
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `msg ${sender}`;
+            msgDiv.innerText = text;
+            container.appendChild(msgDiv);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function getAIReply(q) {
+            if (q.includes('მისამართი') || q.includes('სად') || q.includes('მდებარეობა') || q.includes('ადგილი')) {
+                return "📍 ჩვენი მაღაზია მდებარეობს ქალაქ ახალციხეში, იაძის ქუჩა N 2ი-ში (ივერიელის ქუჩის ასახვევთან). 10 კვ.მ საცალო მარკეტია!";
+            }
+            if (q.includes('საათი') || q.includes('როდის') || q.includes('ღიაა') || q.includes('დრო')) {
+                return "⏰ მაღაზია მუშაობს ყოველდღე 10:00 საათიდან 18:00 საათამდე.";
+            }
+            if (q.includes('მიწოდება') || q.includes('ტაქსი') || q.includes('მოტანა') || q.includes('ფასი')) {
+                return "🚚 მიწოდების პირობები:\n- ქალაქ ახალციხეში: 3-დან 6 ლარამდე\n- სოფლებში: 10-დან 20 ლარამდე\n- 150 ლარზე ზემოთ შეძენისას მიწოდება უფასოა!";
+            }
+            if (q.includes('პრიზი') || q.includes('ლატინო') || q.includes('ყავა') || q.includes('საჩუქარი')) {
+                return "🎁 დიახ! სომხურ ყავა 'ლატინო'-ს ამოდის სხვადასხვა პრიზები! შეიძინეთ ჩვენთან და გამოსცადეთ იღბალი!";
+            }
+            if (q.includes('ნომერი') || q.includes('ვაცაპი') || q.includes('whatsapp') || q.includes('ტელეფონი') || q.includes('კონტაქტი')) {
+                return "📞 ჩვენი საკონტაქტო და WhatsApp ნომერია: +995 500 22 48 22";
+            }
+            if (q.includes('ქვეყანა') || q.includes('საიდან') || q.includes('პროდუქტი')) {
+                return "🌍 ჩვენთან შეხვდებით პროდუქციას საქართველოდან, თურქეთიდან, სომხეთიდან, რუსეთიდან, უკრაინიდან, ჩინეთიდან და სხვა ქვეყნებიდან!";
+            }
+            return "😊 მადლობა შეკითხვისთვის! დამატებითი დეტალებისთვის ან შეკვეთისთვის შეგიძლიათ დაგვირეკოთ ნომერზე +995 500 22 48 22 ან მოგვწეროთ WhatsApp-ში!";
+        }
+
+        // Init
+        renderProducts(products);
     </script>
 </body>
 </html>
