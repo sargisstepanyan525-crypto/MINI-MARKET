@@ -976,36 +976,49 @@
     </div>
 
     <script>
-        // საწყისი პროდუქტების ბაზა
-        const defaultProducts = [
-            { id: 1, name: "ყავა ლატინო (პრიზიანი 🎁)", countryCode: "ARM", country: "სომხეთი", price: 3.50, isPrize: true, img: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=300" },
-            { id: 2, name: "კარაქი", countryCode: "GEO", country: "საქართველო", price: 9.00, isPrize: false, img: "https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=300" },
-            { id: 3, name: "ქათმის ბარკალი", countryCode: "UKR", country: "უკრაინა", price: 7.20, isPrize: false, img: "https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=300" },
-            { id: 4, name: "წვენი ჯუსა", countryCode: "ARM", country: "სომხეთი", price: 3.80, isPrize: false, img: "https://images.unsplash.com/photo-1613478223719-2ab802602423?w=300" },
-            { id: 5, name: "მაკარონი ერიშტა", countryCode: "GEO", country: "საქართველო", price: 7.50, isPrize: false, img: "https://images.unsplash.com/photo-1621996346565-e3d5d6281288?w=300" },
-            { id: 6, name: "ზეთისხილი (4₾ - 7₾)", countryCode: "ARM", country: "სომხეთი", price: 4.00, isPrize: false, img: "https://images.unsplash.com/photo-1541014741259-de529411b96a?w=300" },
-            { id: 7, name: "კიტრი", countryCode: "GEO", country: "საქართველო", price: 1.00, isPrize: false, img: "https://images.unsplash.com/photo-1449300079323-02e209d9d3a6?w=300" },
-            { id: 8, name: "პომიდორი", countryCode: "GEO", country: "საქართველო", price: 2.20, isPrize: false, img: "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=300" }
-        ];
+        // Firebase Cloud URL - ონლაინ ბაზა
+        const DB_URL = "https://minimarket-akhaltsikhe-default-rtdb.firebaseio.com";
 
-        // LocalStorage-დან წაკითხვა
-        let products = JSON.parse(localStorage.getItem('my_market_products')) || defaultProducts;
-        let subscribers = JSON.parse(localStorage.getItem('my_market_subscribers')) || [];
-
-        function saveProducts() {
-            localStorage.setItem('my_market_products', JSON.stringify(products));
-        }
-
-        function saveSubscribers() {
-            localStorage.setItem('my_market_subscribers', JSON.stringify(subscribers));
-        }
-
+        let products = [];
+        let subscribers = [];
         let cart = [];
         let activeCountry = 'all';
         let isAdminLoggedIn = false;
 
+        // ბაზიდან პროდუქტების წამოღება (ყველა მოწყობილობისთვის)
+        async function fetchProducts() {
+            try {
+                const res = await fetch(`${DB_URL}/products.json`);
+                const data = await res.json();
+                if (data) {
+                    products = Object.keys(data).map(key => ({ dbKey: key, ...data[key] }));
+                } else {
+                    products = [];
+                }
+                filterProducts();
+            } catch (err) {
+                console.error("ბაზასთან დაკავშირების შეცდომა:", err);
+            }
+        }
+
+        // ბაზიდან ხელმომწერების წამოღება
+        async function fetchSubscribers() {
+            try {
+                const res = await fetch(`${DB_URL}/subscribers.json`);
+                const data = await res.json();
+                if (data) {
+                    subscribers = Object.keys(data).map(key => ({ dbKey: key, ...data[key] }));
+                } else {
+                    subscribers = [];
+                }
+                renderSubscribers();
+            } catch (err) {
+                console.error("გამოწერების წამოღების შეცდომა:", err);
+            }
+        }
+
         // ლოიალობის რეგისტრაცია (მომხმარებელი)
-        function subscribeLoyalty() {
+        async function subscribeLoyalty() {
             const name = document.getElementById('subscriberName').value.trim();
             const phone = document.getElementById('subscriberPhone').value.trim();
 
@@ -1020,13 +1033,18 @@
                 return;
             }
 
-            subscribers.push({ name, phone, date: new Date().toLocaleDateString('ka-GE') });
-            saveSubscribers();
+            const newSub = { name, phone, date: new Date().toLocaleDateString('ka-GE') };
+
+            await fetch(`${DB_URL}/subscribers.json`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(newSub)
+            });
 
             alert('გმადლობთ! თქვენ წარმატებით დარეგისტრირდით ლოიალობის პროგრამაში.');
             document.getElementById('subscriberName').value = '';
             document.getElementById('subscriberPhone').value = '';
-            renderSubscribers();
+            fetchSubscribers();
         }
 
         // ადმინ ავტორიზაცია (პაროლი: 2003)
@@ -1043,7 +1061,7 @@
                 isAdminLoggedIn = true;
                 document.getElementById('adminPanel').style.display = 'block';
                 alert('ავტორიზაცია წარმატებულია! ახლა შეგიძლიათ ფასების შეცვლა, პროდუქტის დამატება და SMS/WhatsApp რეკლამის გაგზავნა.');
-                renderSubscribers();
+                fetchSubscribers();
                 filterProducts();
             } else if (pass !== null) {
                 alert('არასწორი პაროლი!');
@@ -1058,20 +1076,19 @@
                 return;
             }
             list.innerHTML = '';
-            subscribers.forEach((s, idx) => {
+            subscribers.forEach((s) => {
                 list.innerHTML += `
                     <div class="subscriber-item">
                         <span><b>${s.name}</b> (${s.phone}) - <small>${s.date}</small></span>
-                        <button onclick="removeSubscriber(${idx})" style="background:#ef4444; color:white; border:none; padding:3px 8px; border-radius:4px; cursor:pointer;">წაშლა</button>
+                        <button onclick="removeSubscriber('${s.dbKey}')" style="background:#ef4444; color:white; border:none; padding:3px 8px; border-radius:4px; cursor:pointer;">წაშლა</button>
                     </div>
                 `;
             });
         }
 
-        function removeSubscriber(idx) {
-            subscribers.splice(idx, 1);
-            saveSubscribers();
-            renderSubscribers();
+        async function removeSubscriber(dbKey) {
+            await fetch(`${DB_URL}/subscribers/${dbKey}.json`, { method: 'DELETE' });
+            fetchSubscribers();
         }
 
         // შეტყობინების გაგზავნა WhatsApp-ით
@@ -1112,15 +1129,15 @@
                         <img src="${p.img || 'https://via.placeholder.com/300'}" class="product-img" alt="${p.name}">
                         <div class="product-info">
                             <div class="product-title">${p.name}</div>
-                            <div class="product-price">${p.price.toFixed(2)} ₾</div>
+                            <div class="product-price">${Number(p.price).toFixed(2)} ₾</div>
                             <div class="card-actions">
                                 <button class="add-to-cart-btn" onclick="addToCart(${p.id})">
                                     <i class="fa-solid fa-cart-plus"></i> კალათაში
                                 </button>
-                                <button class="admin-edit-btn" style="display:${isAdminLoggedIn ? 'block' : 'none'}" onclick="editProduct(${p.id})">
+                                <button class="admin-edit-btn" style="display:${isAdminLoggedIn ? 'block' : 'none'}" onclick="editProduct('${p.dbKey}')">
                                     ✏️ შეცვლა
                                 </button>
-                                <button class="admin-delete-btn" style="display:${isAdminLoggedIn ? 'block' : 'none'}" onclick="deleteProduct(${p.id})">
+                                <button class="admin-delete-btn" style="display:${isAdminLoggedIn ? 'block' : 'none'}" onclick="deleteProduct('${p.dbKey}')">
                                     🗑️ წაშლა
                                 </button>
                             </div>
@@ -1130,8 +1147,8 @@
             });
         }
 
-        // ახალი პროდუქტის დამატება
-        function addNewProduct() {
+        // ახალი პროდუქტის დამატება (ინახება ღრუბლოვან ბაზაში)
+        async function addNewProduct() {
             const name = document.getElementById('newProdName').value.trim();
             const price = parseFloat(document.getElementById('newProdPrice').value);
             const countryCode = document.getElementById('newProdCountry').value;
@@ -1158,20 +1175,24 @@
                 img: img || 'https://images.unsplash.com/photo-1542838132-92c53300491e?w=300'
             };
 
-            products.unshift(newProd);
-            saveProducts();
-            filterProducts();
+            await fetch(`${DB_URL}/products.json`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(newProd)
+            });
 
             document.getElementById('newProdName').value = '';
             document.getElementById('newProdPrice').value = '';
             document.getElementById('newProdImg').value = '';
             document.getElementById('newProdPrize').checked = false;
-            alert('პროდუქტი წარმატებით დაემატა!');
+            
+            alert('პროდუქტი წარმატებით დაემატა ონლაინ ბაზაში!');
+            fetchProducts();
         }
 
         // ფასის/დასახელების რედაქტირება
-        function editProduct(id) {
-            const prod = products.find(p => p.id === id);
+        async function editProduct(dbKey) {
+            const prod = products.find(p => p.dbKey === dbKey);
             if (!prod) return;
 
             let newName = prompt('შეიყვანეთ ახალი დასახელება:', prod.name);
@@ -1186,19 +1207,22 @@
                 return;
             }
 
-            prod.name = newName;
-            prod.price = newPrice;
-            saveProducts();
-            filterProducts();
+            await fetch(`${DB_URL}/products/${dbKey}.json`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name: newName, price: newPrice })
+            });
+
             alert('პროდუქტი განახლდა!');
+            fetchProducts();
         }
 
         // პროდუქტის წაშლა
-        function deleteProduct(id) {
+        async function deleteProduct(dbKey) {
             if (confirm('ნამდვილად გსურთ პროდუქტის წაშლა?')) {
-                products = products.filter(p => p.id !== id);
-                saveProducts();
-                filterProducts();
+                await fetch(`${DB_URL}/products/${dbKey}.json`, { method: 'DELETE' });
+                alert('პროდუქტი წაიშალა!');
+                fetchProducts();
             }
         }
 
@@ -1242,7 +1266,7 @@
                     <div class="cart-item">
                         <div>
                             <strong>${item.name}</strong>
-                            <div style="font-size:0.85rem; color:#666;">${item.price.toFixed(2)} ₾ x ${item.qty}</div>
+                            <div style="font-size:0.85rem; color:#666;">${Number(item.price).toFixed(2)} ₾ x ${item.qty}</div>
                             <div style="margin-top:4px;">
                                 <button class="qty-btn" onclick="changeQty(${item.id}, -1)">-</button>
                                 <span style="margin: 0 6px;">${item.qty}</span>
@@ -1379,8 +1403,11 @@
             return "😊 მადლობა შეკითხვისთვის! დამატებითი დეტალებისთვის ან შეკვეთისთვის შეგიძლიათ დაგვირეკოთ ნომერზე +995 500 22 48 22 ან მოგვწეროთ WhatsApp-ში!";
         }
 
-        // Init
-        renderProducts(products);
+        // Init - ჩატვირთვისას მონაცემების წამოღება ონლაინ ბაზიდან
+        fetchProducts();
+        
+        // ყოველ 5 წამში ავტომატური განახლება (რეალურ დროში სინქრონიზაცია)
+        setInterval(fetchProducts, 5000);
     </script>
 </body>
 </html>
