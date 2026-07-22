@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>შეკვეთა WhatsApp-ით</title>
+    <title>Mini Market - ონლაინ მაღაზია</title>
     <style>
         * {
             box-sizing: border-box;
@@ -13,148 +13,413 @@
         }
 
         body {
-            background-color: #f4f7f6;
+            background-color: #f8f9fa;
+            color: #333;
+            padding-bottom: 80px;
+        }
+
+        header {
+            background-color: #232f3e;
+            color: white;
+            padding: 15px 20px;
             display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #25D366;
+        }
+
+        .cart-icon-btn {
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        .section-title {
+            margin-bottom: 20px;
+            font-size: 22px;
+            border-bottom: 2px solid #25D366;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 150px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        .product-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .product-price {
+            font-size: 18px;
+            color: #27ae60;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .add-to-cart-btn {
+            background: #232f3e;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .add-to-cart-btn:hover {
+            background: #34495e;
+        }
+
+        /* Cart Section / Modal */
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            padding: 20px;
         }
 
-        .form-card {
-            background: #ffffff;
-            padding: 30px;
+        .cart-content {
+            background: white;
+            width: 90%;
+            max-width: 500px;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 450px;
+            padding: 20px;
+            max-height: 90vh;
+            overflow-y: auto;
         }
 
-        .form-card h2 {
-            color: #333;
-            margin-bottom: 20px;
-            text-align: center;
-            font-size: 22px;
-        }
-
-        .input-group {
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
             margin-bottom: 15px;
         }
 
-        .input-group label {
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f1f1f1;
+        }
+
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cart-item-controls button {
+            width: 25px;
+            height: 25px;
+            border: 1px solid #ccc;
+            background: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .form-group {
+            margin-top: 15px;
+        }
+
+        .form-group label {
             display: block;
-            margin-bottom: 6px;
-            color: #555;
+            font-size: 14px;
+            margin-bottom: 5px;
             font-weight: 600;
+        }
+
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
             font-size: 14px;
         }
 
-        .input-group input,
-        .input-group textarea {
+        .total-price {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 15px 0;
+            text-align: right;
+            color: #27ae60;
+        }
+
+        .order-whatsapp-btn {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            font-size: 15px;
-            outline: none;
-            transition: border-color 0.3s ease;
-        }
-
-        .input-group input:focus,
-        .input-group textarea:focus {
-            border-color: #25D366;
-        }
-
-        .input-group textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        .btn-whatsapp {
-            width: 100%;
-            background-color: #25D366;
-            color: #ffffff;
+            background: #25D366;
+            color: white;
             border: none;
-            padding: 14px;
+            padding: 12px;
             font-size: 16px;
             font-weight: bold;
-            border-radius: 8px;
+            border-radius: 6px;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            transition: background-color 0.3s ease, transform 0.1s ease;
+            margin-top: 10px;
         }
 
-        .btn-whatsapp:hover {
-            background-color: #1ebc57;
-        }
-
-        .btn-whatsapp:active {
-            transform: scale(0.98);
-        }
-
-        .btn-whatsapp svg {
-            width: 22px;
-            height: 22px;
-            fill: currentColor;
+        .order-whatsapp-btn:hover {
+            background: #21b858;
         }
     </style>
 </head>
 <body>
 
-    <div class="form-card">
-        <h2>გააგზავნეთ შეტყობინება</h2>
-        
-        <form onsubmit="event.preventDefault(); sendToWhatsApp();">
-            <div class="input-group">
-                <label for="customerName">სახელი და გვარი</label>
-                <input type="text" id="customerName" placeholder="შეიყვანეთ სახელი" required>
+    <header>
+        <div class="logo">Mini Market</div>
+        <button class="cart-icon-btn" onclick="toggleCart()">
+            🛒 კალათა (<span id="cart-count">0</span>)
+        </button>
+    </header>
+
+    <div class="container">
+        <h2 class="section-title">პროდუქცია</h2>
+        <div class="products-grid" id="products-container">
+            <!-- პროდუქტები ჩაიტვირთება JavaScript-ით -->
+        </div>
+    </div>
+
+    <!-- კალათის ფანჯარა -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3>თქვენი კალათა</h3>
+                <button class="close-btn" onclick="toggleCart()">&times;</button>
             </div>
 
-            <div class="input-group">
-                <label for="customerPhone">ტელეფონის ნომერი</label>
-                <input type="tel" id="customerPhone" placeholder="მაგ: 599123456" required>
+            <div id="cart-items">
+                <!-- კალათის ნივთები -->
             </div>
 
-            <div class="input-group">
-                <label for="orderDetails">შეტყობინება / შეკვეთა</label>
-                <textarea id="orderDetails" placeholder="ჩაწერთ დეტალები..." required></textarea>
-            </div>
+            <div class="total-price" id="total-price">სულ: 0.00 ₾</div>
 
-            <button type="submit" class="btn-whatsapp">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                    <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3 18.6-68.1-4.4-6.9c-18.6-29.5-28.4-63.3-28.4-98.2 0-101.4 82.5-184 184-184 49.1 0 95.3 19.1 130 53.8 34.8 34.7 54 80.9 54 130 0 101.4-82.5 184-183.4 184zm100.9-138c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
-                </svg>
-                გაგზავნა WhatsApp-ზე
-            </button>
-        </form>
+            <hr>
+
+            <form onsubmit="event.preventDefault(); sendOrderToWhatsApp();">
+                <div class="form-group">
+                    <label>სახელი და გვარი *</label>
+                    <input type="text" id="custName" required placeholder="მაგ: გიორგი">
+                </div>
+                <div class="form-group">
+                    <label>ტელეფონის ნომერი *</label>
+                    <input type="tel" id="custPhone" required placeholder="მაგ: 599123456">
+                </div>
+                <div class="form-group">
+                    <label>მისამართი / მიტანის ადგილი *</label>
+                    <input type="text" id="custAddress" required placeholder="ქუჩა, ბინის №">
+                </div>
+                <div class="form-group">
+                    <label>დამატებითი კომენტარი</label>
+                    <textarea id="custNote" rows="2" placeholder="შენიშვნა..."></textarea>
+                </div>
+
+                <button type="submit" class="order-whatsapp-btn">
+                    შეკვეთის გაგზავნა WhatsApp-ზე
+                </button>
+            </form>
+        </div>
     </div>
 
     <script>
-        function sendToWhatsApp() {
-            // ოფიციალური ნომერი
-            const phoneNumber = "995500224822";
+        // პროდუქტების სია
+        const products = [
+            { id: 1, name: "პური", price: 1.20, img: "https://via.placeholder.com/150?text=პური" },
+            { id: 2, name: "რძე 1L", price: 4.50, img: "https://via.placeholder.com/150?text=რძე" },
+            { id: 3, name: "ყველი 500გ", price: 8.50, img: "https://via.placeholder.com/150?text=ყველი" },
+            { id: 4, name: "კარაქი", price: 6.00, img: "https://via.placeholder.com/150?text=კარაქი" },
+            { id: 5, name: "შაქარი 1კგ", price: 3.20, img: "https://via.placeholder.com/150?text=შაქარი" },
+            { id: 6, name: "ყავა", price: 12.00, img: "https://via.placeholder.com/150?text=ყავა" }
+        ];
 
-            // მონაცემების წამოღება ველებიდან
-            const name = document.getElementById("customerName").value;
-            const phone = document.getElementById("customerPhone").value;
-            const details = document.getElementById("orderDetails").value;
+        let cart = [];
 
-            // შეტყობინების ტექსტი
-            const message = `*ახალი შეტყობინება/შეკვეთა*%0A%0A` +
-                            `*სახელი:* ${encodeURIComponent(name)}%0A` +
-                            `*ტელეფონი:* ${encodeURIComponent(phone)}%0A` +
-                            `*დეტალები:* ${encodeURIComponent(details)}`;
+        // პროდუქტების გამოჩენა გვერდზე
+        function renderProducts() {
+            const container = document.getElementById('products-container');
+            container.innerHTML = '';
+            products.forEach(p => {
+                container.innerHTML += `
+                    <div class="product-card">
+                        <img src="${p.img}" alt="${p.name}" class="product-img">
+                        <div class="product-title">${p.name}</div>
+                        <div class="product-price">${p.price.toFixed(2)} ₾</div>
+                        <button class="add-to-cart-btn" onclick="addToCart(${p.id})">კალათაში დამატება</button>
+                    </div>
+                `;
+            });
+        }
 
-            // WhatsApp-ის ბმული
-            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+        // კალათაში დამატება
+        function addToCart(productId) {
+            const item = cart.find(x => x.id === productId);
+            if (item) {
+                item.qty++;
+            } else {
+                const product = products.find(x => x.id === productId);
+                cart.push({ ...product, qty: 1 });
+            }
+            updateCart();
+        }
 
-            // გახსნა ახალ ჩანართში
+        // რაოდენობის შეცვლა
+        function changeQty(productId, delta) {
+            const item = cart.find(x => x.id === productId);
+            if (item) {
+                item.qty += delta;
+                if (item.qty <= 0) {
+                    cart = cart.filter(x => x.id !== productId);
+                }
+            }
+            updateCart();
+        }
+
+        // კალათის განახლება
+        function updateCart() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartCount = document.getElementById('cart-count');
+            const totalPriceEl = document.getElementById('total-price');
+
+            cartItemsContainer.innerHTML = '';
+            let total = 0;
+            let count = 0;
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p style="text-align:center; color:#777;">კალათა ცარიელია</p>';
+            } else {
+                cart.forEach(item => {
+                    const itemTotal = item.price * item.qty;
+                    total += itemTotal;
+                    count += item.qty;
+
+                    cartItemsContainer.innerHTML += `
+                        <div class="cart-item">
+                            <div>
+                                <strong>${item.name}</strong><br>
+                                <small>${item.price.toFixed(2)} ₾ x ${item.qty}</small>
+                            </div>
+                            <div class="cart-item-controls">
+                                <button onclick="changeQty(${item.id}, -1)">-</button>
+                                <span>${item.qty}</span>
+                                <button onclick="changeQty(${item.id}, 1)">+</button>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+
+            cartCount.innerText = count;
+            totalPriceEl.innerText = `სულ: ${total.toFixed(2)} ₾`;
+        }
+
+        // კალათის ფანჯრის გამოჩენა/დამალვა
+        function toggleCart() {
+            const modal = document.getElementById('cartModal');
+            modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        // შეკვეთის გაგზავნა WhatsApp-ზე
+        function sendOrderToWhatsApp() {
+            if (cart.length === 0) {
+                alert("თქვენი კალათა ცარიელია!");
+                return;
+            }
+
+            const phoneNum = "995500224822";
+            const name = document.getElementById('custName').value;
+            const phone = document.getElementById('custPhone').value;
+            const address = document.getElementById('custAddress').value;
+            const note = document.getElementById('custNote').value;
+
+            let itemsList = "";
+            let total = 0;
+
+            cart.forEach(item => {
+                const subtotal = item.price * item.qty;
+                total += subtotal;
+                itemsList += `• ${item.name} (${item.qty}x) - ${subtotal.toFixed(2)} ₾%0A`;
+            });
+
+            let message = `🛒 *ახალი შეკვეთა MINI MARKET-იდან*%0A%0A`;
+            message += `*მომხმარებელი:* ${encodeURIComponent(name)}%0A`;
+            message += `*ტელეფონი:* ${encodeURIComponent(phone)}%0A`;
+            message += `*მისამართი:* ${encodeURIComponent(address)}%0A`;
+            if (note) message += `*შენიშვნა:* ${encodeURIComponent(note)}%0A`;
+            message += `%0A*შეკვეთის სია:*%0A${itemsList}%0A`;
+            message += `*სულ გადასახდელი:* ${total.toFixed(2)} ₾`;
+
+            const whatsappUrl = `https://wa.me/${phoneNum}?text=${message}`;
             window.open(whatsappUrl, '_blank');
         }
-    </script>
 
+        // საიტის ჩატვირთვისას პროდუქტების გამოჩენა
+        renderProducts();
+    </script>
 </body>
 </html>
