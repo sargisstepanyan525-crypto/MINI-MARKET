@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #1e3a8a; /* განახლებული ფერი: ელეგანტური მუქი ლურჯი */
+            --primary-color: #1e3a8a; /* ელეგანტური მუქი ლურჯი */
             --primary-dark: #0f172a;
             --accent-color: #0284c7;  /* აქცენტის ფერი: ღია ცისფერი */
             --bg-color: #f8fafc;
@@ -139,6 +139,59 @@
         .info-card.promo-card { border-left-color: var(--accent-color); background: #f0f9ff; }
         .info-card.promo-card i { color: var(--accent-color); }
 
+        /* Loyalty Section */
+        .loyalty-section {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .loyalty-card {
+            background: linear-gradient(135deg, #1e3a8a, #0284c7);
+            color: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .loyalty-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2rem;
+        }
+
+        .loyalty-inputs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .loyalty-inputs input {
+            padding: 10px 14px;
+            border: none;
+            border-radius: 8px;
+            outline: none;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .loyalty-inputs button {
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .loyalty-inputs button:hover { background: #1eb954; }
+
         /* Admin Panel Section */
         .admin-panel {
             display: none;
@@ -162,6 +215,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 10px;
+            margin-bottom: 25px;
         }
 
         .admin-form input, .admin-form select {
@@ -182,6 +236,48 @@
         }
 
         .admin-form button:hover { background: var(--primary-dark); }
+
+        /* Admin Loyalty Broadcast Box */
+        .admin-subscribers-box {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #cbd5e1;
+        }
+
+        .subscribers-list {
+            max-height: 150px;
+            overflow-y: auto;
+            margin: 10px 0;
+            padding: 8px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+        }
+
+        .subscriber-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 0.9rem;
+        }
+
+        .broadcast-form {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+
+        .broadcast-form input {
+            flex: 1;
+            min-width: 250px;
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
 
         /* Controls: Search & Country Filters */
         .controls-section {
@@ -608,7 +704,20 @@
         </div>
     </div>
 
-    <!-- Admin Add Product Panel -->
+    <!-- NEW: Customer Loyalty Signup Box -->
+    <div class="loyalty-section">
+        <div class="loyalty-card">
+            <h3><i class="fa-solid fa-bell"></i> ლოიალობის პროგრამა & გათამაშებები</h3>
+            <p style="font-size:0.9rem;">დარეგისტრირდით, მიიღეთ შეტყობინებები სიახლეების, ფასდაკლებების და ყავა "ლატინოს" პრიზების მოგების შესახებ!</p>
+            <div class="loyalty-inputs">
+                <input type="text" id="subscriberName" placeholder="თქვენი სახელი">
+                <input type="tel" id="subscriberPhone" placeholder="ტელეფონის ნომერი (მაგ: 599123456)">
+                <button onclick="subscribeLoyalty()"><i class="fa-solid fa-check-circle"></i> თანხმობა და რეგისტრაცია</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Add Product & Loyalty Panel -->
     <div class="admin-panel" id="adminPanel">
         <h3><i class="fa-solid fa-plus-circle"></i> ახალი პროდუქტის დამატება (ადმინ პანელი)</h3>
         <div class="admin-form">
@@ -627,6 +736,22 @@
                 <input type="checkbox" id="newProdPrize"> პრიზიანია? 🎁
             </label>
             <button onclick="addNewProduct()"><i class="fa-solid fa-plus"></i> დამატება</button>
+        </div>
+
+        <!-- NEW: Admin Loyalty & Broadcast Section -->
+        <h3><i class="fa-solid fa-paper-plane"></i> ლოიალობის ბაზა & SMS / WhatsApp რეკლამა</h3>
+        <div class="admin-subscribers-box">
+            <strong>რეგისტრირებული მომხმარებლები (თანახმა არიან რეკლამაზე):</strong>
+            <div class="subscribers-list" id="subscribersList">
+                <p style="color:#777; font-size:0.85rem;">ჯერჯერობით ნომრები არ არის...</p>
+            </div>
+
+            <div class="broadcast-form">
+                <input type="text" id="broadcastMsg" placeholder="ჩაწერეთ სარეკლამო ტექსტი ან მოგების შეტყობინება...">
+                <button onclick="sendBroadcastWhatsApp()" style="background:#25D366; color:white; border:none; padding:8px 15px; border-radius:6px; cursor:pointer; font-weight:bold;">
+                    <i class="fa-brands fa-whatsapp"></i> გაგზავნა WhatsApp-ით
+                </button>
+            </div>
         </div>
     </div>
 
@@ -725,14 +850,45 @@
 
         // LocalStorage-დან წაკითხვა
         let products = JSON.parse(localStorage.getItem('my_market_products')) || defaultProducts;
+        let subscribers = JSON.parse(localStorage.getItem('my_market_subscribers')) || [];
 
         function saveProducts() {
             localStorage.setItem('my_market_products', JSON.stringify(products));
         }
 
+        function saveSubscribers() {
+            localStorage.setItem('my_market_subscribers', JSON.stringify(subscribers));
+        }
+
         let cart = [];
         let activeCountry = 'all';
         let isAdminLoggedIn = false;
+
+        // ლოიალობის რეგისტრაცია (მომხმარებელი)
+        function subscribeLoyalty() {
+            const name = document.getElementById('subscriberName').value.trim();
+            const phone = document.getElementById('subscriberPhone').value.trim();
+
+            if (!name || !phone) {
+                alert('გთხოვთ ჩაწეროთ სახელი და ტელეფონის ნომერი!');
+                return;
+            }
+
+            // ვამოწმებთ უკვე არის თუ არა ბაზაში
+            const exists = subscribers.find(s => s.phone === phone);
+            if (exists) {
+                alert('ეს ნომერი უკვე რეგისტრირებულია!');
+                return;
+            }
+
+            subscribers.push({ name, phone, date: new Date().toLocaleDateString('ka-GE') });
+            saveSubscribers();
+
+            alert('გმადლობთ! თქვენ წარმატებით დარეგისტრირდით ლოიალობის პროგრამაში.');
+            document.getElementById('subscriberName').value = '';
+            document.getElementById('subscriberPhone').value = '';
+            renderSubscribers();
+        }
 
         // ადმინ ავტორიზაცია (პაროლი: 2003)
         function loginAdmin() {
@@ -747,11 +903,58 @@
             if (pass === '2003') { // პაროლი დაყენებულია: 2003
                 isAdminLoggedIn = true;
                 document.getElementById('adminPanel').style.display = 'block';
-                alert('ავტორიზაცია წარმატებულია! ახლა შეგიძლიათ ფასების შეცვლა და ახალი პროდუქტის დამატება.');
+                alert('ავტორიზაცია წარმატებულია! ახლა შეგიძლიათ ფასების შეცვლა, პროდუქტის დამატება და SMS/WhatsApp რეკლამის გაგზავნა.');
+                renderSubscribers();
                 filterProducts();
             } else if (pass !== null) {
                 alert('არასწორი პაროლი!');
             }
+        }
+
+        // ადმინ პანელში ნომრების გამოჩენა
+        function renderSubscribers() {
+            const list = document.getElementById('subscribersList');
+            if (subscribers.length === 0) {
+                list.innerHTML = '<p style="color:#777; font-size:0.85rem;">ჯერჯერობით ნომრები არ არის...</p>';
+                return;
+            }
+            list.innerHTML = '';
+            subscribers.forEach((s, idx) => {
+                list.innerHTML += `
+                    <div class="subscriber-item">
+                        <span><b>${s.name}</b> (${s.phone}) - <small>${s.date}</small></span>
+                        <button onclick="removeSubscriber(${idx})" style="background:#ef4444; color:white; border:none; padding:2px 6px; border-radius:4px; cursor:pointer;">წაშლა</button>
+                    </div>
+                `;
+            });
+        }
+
+        function removeSubscriber(idx) {
+            subscribers.splice(idx, 1);
+            saveSubscribers();
+            renderSubscribers();
+        }
+
+        // შეტყობინების გაგზავნა WhatsApp-ით
+        function sendBroadcastWhatsApp() {
+            const msg = document.getElementById('broadcastMsg').value.trim();
+            if (!msg) {
+                alert('გთხოვთ ჩაწეროთ შეტყობინების ტექსტი!');
+                return;
+            }
+            if (subscribers.length === 0) {
+                alert('ბაზაში ჯერ არ არის დარეგისტრირებული მომხმარებლები!');
+                return;
+            }
+
+            // აგზავნის პირველ/არჩეულ მომხმარებელთან WhatsApp-ით
+            let phone = subscribers[0].phone.replace(/[^0-9]/g, '');
+            if (!phone.startsWith('995') && phone.length === 9) {
+                phone = '995' + phone;
+            }
+
+            const encodedText = encodeURIComponent(msg);
+            window.open(`https://wa.me/${phone}?text=${encodedText}`, '_blank');
         }
 
         function renderProducts(items) {
